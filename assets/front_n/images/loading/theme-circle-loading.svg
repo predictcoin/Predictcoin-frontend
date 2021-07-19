@@ -1,0 +1,74 @@
+<svg width="410" height="50" viewBox="0 0 410 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<circle cx="25" cy="25" r="25" fill="url(#paint0_radial)">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/>
+	</circle>
+	<circle cx="25" cy="25" r="24" stroke="url(#paint1_radial)" stroke-opacity="0.24" stroke-width="2">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/>
+	</circle>
+	<circle cx="115" cy="25" r="25" fill="url(#paint2_radial)">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/>
+	</circle>	
+	<circle cx="115" cy="25" r="24" stroke="url(#paint3_radial)" stroke-opacity="0.24" stroke-width="2">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.4"/>
+	</circle>
+	<circle cx="205" cy="25" r="25" fill="url(#paint4_radial)">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.5"/>
+	</circle>
+	<circle cx="205" cy="25" r="24" stroke="url(#paint5_radial)" stroke-opacity="0.32" stroke-width="2">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.6"/>
+	</circle>
+	<circle cx="295" cy="25" r="25" fill="url(#paint6_radial)">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.7"/>
+	</circle>
+	<circle cx="295" cy="25" r="24" stroke="url(#paint7_radial)" stroke-opacity="0.32" stroke-width="2">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.8"/>
+	</circle>
+	<circle cx="385" cy="25" r="25" fill="url(#paint8_radial)">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.9"/>
+	</circle>
+	<circle cx="385" cy="25" r="24" stroke="url(#paint9_radial)" stroke-opacity="0.32" stroke-width="2">
+		<animate xmlns="http://www.w3.org/2000/svg" attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.10"/>
+	</circle>
+	<defs>
+		<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(25) rotate(90) scale(50 25)">
+			<stop stop-color="#5872FF"/>
+			<stop offset="1" stop-color="#4361FF"/>
+		</radialGradient>
+		<radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(25) rotate(90) scale(50)">
+			<stop stop-color="white" stop-opacity="0.96"/>
+			<stop offset="1" stop-color="#4361FF" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(115) rotate(90) scale(50 25)">
+			<stop stop-color="#824DFF"/>
+			<stop offset="1" stop-color="#7033FF"/>
+		</radialGradient>
+		<radialGradient id="paint3_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(115) rotate(90) scale(50)">
+			<stop stop-color="white"/>
+			<stop offset="1" stop-color="#7033FF" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="paint4_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(205) rotate(90) scale(50 25)">
+			<stop stop-color="#99D26F"/>
+			<stop offset="1" stop-color="#75AF4C"/>
+		</radialGradient>
+		<radialGradient id="paint5_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(205) rotate(90) scale(50)">
+			<stop stop-color="white"/>
+			<stop offset="1" stop-color="#7AB650" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="paint6_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(295) rotate(90) scale(50 25)">
+			<stop stop-color="#FFB287"/>
+			<stop offset="1" stop-color="#FC9155"/>
+		</radialGradient>
+		<radialGradient id="paint7_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(295) rotate(90) scale(50)">
+			<stop stop-color="white"/>
+			<stop offset="1" stop-color="#FC9155" stop-opacity="0"/>
+		</radialGradient>
+		<radialGradient id="paint8_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(385) rotate(90) scale(50 25)">
+			<stop stop-color="#FF7181"/>
+			<stop offset="1" stop-color="#F65164"/>
+		</radialGradient>
+		<radialGradient id="paint9_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(385) rotate(90) scale(50)">
+			<stop stop-color="white"/>
+			<stop offset="1" stop-color="#F65164" stop-opacity="0"/>
+		</radialGradient>
+	</defs>
+</svg>

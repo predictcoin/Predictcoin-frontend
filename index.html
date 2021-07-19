@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+		<title>Predictcoin</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+		<!-- Favicons -->
+		<link rel="icon" href="https://predictcoin.finance/images/favicon.svg">
+		<!-- <link href="images/favicon.svg" rel="icon"> -->
+		<!-- <link href="images/favicon.png" rel="icon"> -->
+  
+		<!-- Css Links -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/all.min.css">
+		<link rel="stylesheet" href="css/slick.css">
+		<link rel="stylesheet" href="css/aos.css">
+		<link rel="stylesheet" href="css/custom.css">
+	  
+		<!-- Google Font -->		
+		<link rel="preconnect" href="https://fonts.gstatic.com/">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+		
+		<!-- Js Links -->		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/aos.js"></script>		
+		<script src="js/custom.js"></script>		
+		
+	</head>	
+	<body>	
+		<header class="headerFix">
+			<div class="container">
+				<nav class="navbar headerNavbar">
+				
+					<a class="navbar-brand p-0" href="#">
+						<img src="images/logo.svg" alt="logo" />
+					</a>
+				
+					<div class="headerNav">
+						<ul class="navbar-nav flex-lg-row">
+							<li class="nav-item">
+								<a class="nav-link" href="#aboutSec">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#marketCapSec">Market</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#whitepaper">Whitepaper</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#roadMapSec">Roadmap</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#faqSec">FAQ</a>
+							</li>
+						</ul>						
+					</div>
+					
+					<div class="ml-auto headerRight">
+						<a href="staking.html"><button class="btn btn-15450 btn-iconText btn-grOrRd">
+							<span class="btn-icon">
+								<img src="images/icons/download.svg" alt="download" />
+							</span>
+							<span class="btn-text">
+								Launch DApp
+							</span>
+						</button></a>
+						<div class="mobMenu d-inline-block d-lg-none">
+							<div class="smClose">
+								<svg id="closeicon" viewBox="0 0 800 600">
+									<path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+									<path d="M300,320 L460,320" id="middle"></path>
+									<path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+								</svg>
+							</div>
+						</div>
+					</div>
+						
+				</nav>
+			</div>	
+		</header>			
+		
+		<div class="banner">			
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-sm-12 col-md-12 col-lg-6 order-2 order-lg-1 my-3">
+						<div class="bannerContent">
+							<h1> Discover Predictcoin, Price Prediction Redefined </h1>
+							<p>
+								Predictcoin is a crypto assets price prediction DAO, which allows PREDers to stake, farm and predict the prices of their favorite cryptocurrencies.
+							</p>	
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-6 order-1 order-lg-2 my-3">
+						<div class="bannerImg text-center text-lg-right">
+							<img src="images/banner/bannerImg.png" alt="bannerImg" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		
+		<div class="marketCap" id="marketCapSec">
+			<div class="container">
+				<div class="marketCapCon">
+				
+					<div class="marketCapHead">
+						<div class="row align-items-center">
+							<div class="col-sm-12 col-md-6 col-lg-5">
+								<div class="marketCapTitle">
+									<h2> Today's Cryptocurrency Prices by Market Cap </h2>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-7">
+								<div class="marketCapPara">
+									<p>
+										Have a sneak peek at the top crypto assests before launching the DApp to predict their prices.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="marketCapTable tableScroll dbTable">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Price</th>
+									<th>24h %</th>
+									<th>7d %</th>
+									<th>Market Cap</th>
+									<th class="text-right">Volume(24h)</th>
+									<th>Circulating Supply</th>
+									<th class="text-center">Last 7 Days</th>
+								</tr>
+							</thead>
+							<tbody class="custom-scroll scroll-xl">
+								<tr>
+									<td>
+										Bitcoin BTC
+									</td>
+									<td>
+										<span class="text-red">
+											$36,311.65
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											6.03%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											24.51%
+										</span>
+									</td>
+									<td>
+										$682,202,870,535
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$37,272,750,083</div>
+										<div class="volCVal text-lightGray">1,024,126 BTC</div>
+									</td>
+									<td>
+										18,744,562 BTC
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Ethereum ETH
+									</td>
+									<td>
+										<span class="text-green">
+											$2,223.94
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											10.99%
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											28.18%
+										</span>
+									</td>
+									<td>
+										$259,414,992,968
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$27,004,695,431</div>
+										<div class="volCVal text-lightGray">12,126,237 ETH</div>
+									</td>
+									<td>
+										116,488,177 ETH
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-profit-icon.png" alt="chart-profit-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Tether USDT
+									</td>
+									<td>
+										<span class="text-red">
+											$1.00
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											0.02%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											0.04%
+										</span>
+									</td>
+									<td>
+										$62,496,409,767
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$64,439,283,841</div>
+										<div class="volCVal text-lightGray">64,396,098,936 USDT</div>
+									</td>
+									<td>
+										62,454,526,907 USDT
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Binance Coin BNB
+									</td>
+									<td>
+										<span class="text-green">
+											$315.10
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											9.79%
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											38.87%
+										</span>
+									</td>
+									<td>
+										$47,966,009,416
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$1,960,707,423</div>
+										<div class="volCVal text-lightGray">6,271,879 BNB</div>
+									</td>
+									<td>
+										153,432,897 BNB
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-profit-icon.png" alt="chart-profit-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Cardano ADA
+									</td>
+									<td>
+										<span class="text-green">
+											$1.42
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											7.95%
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											41.15%
+										</span>
+									</td>
+									<td>
+										$44,947,839,324
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$2,731,441,030</div>
+										<div class="volCVal text-lightGray">1,941,350,532 ADA</div>
+									</td>
+									<td>
+										31,946,328,269 ADA
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-profit-icon.png" alt="chart-profit-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Dogecoin DOGE
+									</td>
+									<td>
+										<span class="text-red">
+											$0.273
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											7.83%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											63.29%
+										</span>
+									</td>
+									<td>
+										$35,586,513,010
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$2,117,255,959</div>
+										<div class="volCVal text-lightGray">7,748,071,270 DOGE</div>
+									</td>
+									<td>
+										130,228,392,047 DOGE
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										XRP XRP
+									<td>
+										<span class="text-red">												
+											$0.7248
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											14.87%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											40.42%
+										</span>
+									</td>
+									<td>
+										$33,267,134,791
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$3,158,417,656</div>
+										<div class="volCVal text-lightGray">4,381,239,081 XRP</div>
+									</td>
+									<td>
+										46,146,927,647 XRP
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										USD Coin USDC
+									</td>
+									<td>
+										<span class="text-red">
+											$1.00
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											0.00%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											0.02%
+										</span>
+									</td>
+									<td>
+										$25,386,710,914
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$2,378,851,518</div>
+										<div class="volCVal text-lightGray">2,377,919,968 USDC</div>
+									</td>
+									<td>
+										25,376,769,571 USDC
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Polkadot DOT
+									</td>
+									<td>
+										<span class="text-green">
+											$16.89
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											13.07%
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											25.04%
+										</span>
+									</td>
+									<td>
+										$16,144,799,760
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$1,367,517,240</div>
+										<div class="volCVal text-lightGray">80,965,908 DOT</div>
+									</td>
+									<td>
+										955,877,074 DOT
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-profit-icon.png" alt="chart-profit-icon" />
+										</span>
+									</td>									
+								</tr>
+								<tr>
+									<td>
+										Uniswap UNI
+									</td>
+									<td>
+										<span class="text-red">												
+											$19.09
+										</span>
+									</td>
+									<td>
+										<span class="text-red">
+											11.78%
+										</span>
+									</td>
+									<td>
+										<span class="text-green">
+											32.37%
+										</span>
+									</td>
+									<td>
+										$10,983,002,483
+									</td>
+									<td class="text-right">
+										<div class="volFVal">$319,378,257</div>
+										<div class="volCVal text-lightGray">16,727,405 UNI</div>
+									</td>
+									<td>
+										575,233,677 UNI
+									</td>
+									<td class="text-center">
+										<span class="ChartSicon">
+											<img src="images/chart/chart-loss-icon.png" alt="chart-loss-icon" />
+										</span>
+									</td>									
+								</tr>								
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="about" id="aboutSec">
+			<div class="container">
+				<div class="secCon text-center">
+					<h3 class="secTitle"> About Predictcoin </h3>
+					<p class="secPara">
+						Predictcoin is an all-in-one price prediction DAO. Stake, Farm, Vote and Predict the prices of various crypto assets. Save, earn passive income and learn a thing or two from professional predictors.
+					</p>
+				</div>
+				<div class="row justify-content-center aboutRow">
+					<div class="col-sm-12 col-md-6 col-lg-4 aboutCol my-3">
+						<div class="aboutCon" data-aos="flip-left" data-aos-duration="800"  data-aos-offset="0">
+							<div class="aboutIcon">
+								<img src="images/icons/database.png" alt="database" />
+							</div>
+							<h3>Stable & Long Term</h3>
+							<p>
+								With 100,000 fixed supply, Predictcoin's $PRED offers a stable and long term gains for holders, predictors and investors.
+								<br><br><br>
+							</p>	
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-4 aboutCol  my-3">
+						<div class="aboutCon" data-aos="flip-left" data-aos-duration="800"  data-aos-offset="400">
+							<div class="aboutIcon">
+								<img src="images/icons/headphones.png" alt="headphones" />
+							</div>
+							<h3>LIVE Tech Support</h3>
+							<p>
+								We are available 24/7 to answer your questions and enquiries. You can also join our official Telegram through the link below to get answers from our active community.
+								<br><br>
+							</p>	
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-6 col-lg-4 aboutCol  my-3">
+						<div class="aboutCon" data-aos="flip-left" data-aos-duration="800"  data-aos-offset="600">
+							<div class="aboutIcon">
+								<img src="images/icons/dollar-sign.png" alt="dollar-sign" />
+							</div>
+							<h3>Passive Income</h3>
+							<p>
+								Predictcoin provides a lifetime passive income for stakers & farmers as detailed on our Whitepaper. Predictors also earn free PRED once they attain a certain level of experience.<br><br>
+							</p>	
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<div class="whitepaper" id="whitepaper">
+			<div class="container">
+				<div class="secCon text-center">
+					<h3 class="secTitle"> Whitepaper </h3>					
+				</div>
+				<div style="text-align: center;">
+					<a href="images/whitepaper.pdf" class="btn btn-primary" target="_blank">Whitepaper</a>
+				</div>
+		</div>		
+		
+		<div class="roadMap" id="roadMapSec">
+			<div class="container">
+				<div class="secCon text-center">
+					<h3 class="secTitle"> Roadmap </h3>
+					<p class="secPara">
+						For our complete and detailed Roadmap, please click on the Whitepaper button in the navigation section above. However, here's a sneak peek
+					</p>
+				</div>
+				<div class="roadMapCont">
+					<div class="roadMapCustom">
+						<div class="d-flex flex-wrap flex-xl-nowrap justify-content-around roadMapRow">
+							<div class="rmCircle">
+								<div class="rmCircleOut">
+									<div class="rmCircleIn d-flex align-items-center justify-content-center">
+										<div class="rmCon">
+											<div class="rmIcon">
+												<img src="images/icons/bulb.png" alt="bulb" />
+											</div>
+											<div class="rmYear">
+												2021
+											</div>
+											<p>
+												<span>Platform launch</span>
+												<span>Development of the site</span>
+												<span>Launching officially on BSC</span>
+												<span>Creating the bep-20 token ($PRED)</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="rmCircle">
+								<div class="rmCircleOut">
+									<div class="rmCircleIn d-flex align-items-center justify-content-center">
+										<div class="rmCon">
+											<div class="rmIcon">
+												<img src="images/icons/mail.png" alt="mail" />
+											</div>
+											<div class="rmYear">
+												2021
+											</div>
+											<p>
+												<span>IFO/IDO</span><br>
+												<span>Initial dex offering & Audits</span><br>
+												<span>Building our userbase with incentives & heavy marketing</span><br>
+												<span>Farming, Staking, Voting & Price Prediction launch on DApp</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="rmCircle">
+								<div class="rmCircleOut">
+									<div class="rmCircleIn d-flex align-items-center justify-content-center">
+										<div class="rmCon">
+											<div class="rmIcon">
+												<img src="images/icons/chart.png" alt="chart" />
+											</div>
+											<div class="rmYear">
+												2021
+											</div>
+											<p>
+												<span>NFT Bidding Marketplace</span><br>
+												<span>Integrating NFT on Predictcoin</span><br>
+												<span>Price Prediction V2 (Leverage, Long & Buy/Sell Orders)</span><br>
+												<span>Cross-chain consideration</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="rmCircle">
+								<div class="rmCircleOut">
+									<div class="rmCircleIn d-flex align-items-center justify-content-center">
+										<div class="rmCon">
+											<div class="rmIcon">
+												<img src="images/icons/settings.png" alt="settings" />
+											</div>
+											<div class="rmYear">
+												2022
+											</div>
+											<p>
+												<span>Push for Global Adoption</span><br>
+												<span>Listing on major exchanges</span><br>
+												<span>Football and Sports partnerships to make Predictcoin the number 1 currency used on major sports predicting platforms</span><br>
+												<span>More developments</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="faq" id="faqSec">
+			<div class="container">
+				<div class="faqCont">
+					<div class="secCon text-center">
+						<h3 class="secTitle"> FREQUENTLY ASKED QUESTION </h3>
+						<!-- <p class="secPara">
+							Prediction is the global blockchain company behind the world's largest digital asset exchange by trading volume and users,
+							which shares the common vision of making crypto accessible and systemically important to people all around the world.
+						</p> -->
+					</div>
+					<div class="faqAcc" id="accordion">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_1" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												What is the usecase of PRED? 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_1" class="collapse">
+										<div class="card-body">
+											<p>
+												PRED is the governance token of Predictcoin and can be used to stake and earn more PRED, as well as vote and predict the prices of crypto assets.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_2" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												How to predict the price of Crypto Assets? 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_2" class="collapse">
+										<div class="card-body">
+											<p>
+												You can start predicting on crypto assets by gaining access to the DApp, where you can stake & farm as well.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_3" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												How to launch DApp? 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_3" class="collapse">
+										<div class="card-body">
+											<p>
+												You can launch the DApp by clicking on the "Launch DApp" if you're on desktop or the download icon at the top of this page if you're on mobile.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_4" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												What is the total supply of PRED? 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_4" class="collapse">
+										<div class="card-body">
+											<p>
+												PRED is a deflationary token with a total capped supply of 100,000
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_5" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												Where is the Whitepaper? 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_5" class="collapse">
+										<div class="card-body">
+											<p>
+												The whitepaper is accessible at the top of this page in the navigation section.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+<!-- 							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_6" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												Lorem ipsum dolor sit amet, consectetur 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_6" class="collapse">
+										<div class="card-body">
+											<p>
+												Prediction is the global blockchain company behind the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+												Prediction is the global blockchain company behind
+											</p>
+											<p>
+												the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_7" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												Lorem ipsum dolor sit amet, consectetur 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_7" class="collapse">
+										<div class="card-body">
+											<p>
+												Prediction is the global blockchain company behind the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+												Prediction is the global blockchain company behind
+											</p>
+											<p>
+												the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-6">
+								<div class="card">
+									<div class="card-header" data-toggle="collapse" data-target="#heading_8" aria-expanded="false">
+										<div class="d-flex justify-content-between">
+											<span class="accText">
+												Lorem ipsum dolor sit amet, consectetur 
+											</span>
+											<span class="accIcon align-self-start">
+												<img src="images/icons/plus-circle.svg" alt="plus-circle" />
+											</span>
+										</div>
+									</div>
+									<div id="heading_8" class="collapse">
+										<div class="card-body">
+											<p>
+												Prediction is the global blockchain company behind the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+												Prediction is the global blockchain company behind
+											</p>
+											<p>
+												the world's largest digital asset exchange by trading volume and users,
+												which shares the common vision of making crypto accessible and systemically important to people all around the world.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<footer class="indexFooter">
+			<div class="container">
+				<div class="row align-items-center py-3">
+					<div class="col-sm-12 col-md-12 col-lg-3 col-xl-4 my-3">
+						<div class="footerLogo text-center text-lg-left">
+							<img src="images/logo.svg" alt="logo" />
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 my-3">
+					<!-- 	<div class="smAdds text-center">
+							<span class="d-block smAddsLabel font-16 text-white font-600">
+								Smart ContractAddress
+							</span>
+							<span class="d-block smAddsVal font-14 text-white">
+								 0x50d3E3bEb2EF9A2fdA6f9bE2402E700a81A20984
+							</span>
+						</div> -->
+						<div class="socialLinks text-center">							
+							<!-- <a class="fb" href="#">
+								<i class="fab fa-facebook-f"></i>
+							</a> -->
+							<a class="bw" href="https://twitter.com/PredictcoinFin" target="_blank">
+								<i class="fab fa-twitter"></i>
+							</a>
+
+							<a class="bw" href="https://t.me/predictcoin" target="_blank">
+								<i class="fab fa-telegram-plane"></i>
+							</a>
+
+							<a class="bw" href="https://github.com/predictcoin" target="_blank">
+								<i class="fab fa-github"></i>
+							</a>
+							<a class="bw" href="https://instagram.com/predictcoin" target="_blank">
+								<i class="fab fa-instagram"></i>
+							</a>
+							<a class="bw" href="https://predictcoin.medium.com/" target="_blank">
+								<i class="fab fa-medium"></i>
+							</a>
+							<a class="bw" href= "mailto:predictcoinfinance@gmail.com" target="_blank">
+								<i class="fas fa-envelope"></i>
+							</a>
+							<a class="bw" href="https://reddit.com/r/predictcoinfinance" target="_blank">
+								<i class="fab fa-reddit"></i>
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 col-lg-3 col-xl-4 my-3">
+						<h5 class="mb-0 font-14 text-white text-center text-lg-right">
+							Copyright &copy;Predictcoin 2021. 
+						</h5>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<!-- Footer Js Links -->
+		<script> AOS.init(); </script>
+		
+	</body>	
+
+<!-- Mirrored from predictcoin.finance/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 15:48:44 GMT -->
+</html>

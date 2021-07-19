@@ -1,0 +1,602 @@
+	<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from predictcoin.osiztechnologies.in/vote/4 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Jul 2021 21:24:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- <title>Predictcoin - Staking </title> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Favicons -->
+    <link href="../assets/front_n/images/favicon.svg" rel="icon">
+  
+    <!-- Css Links -->
+    <link rel="stylesheet" href="../assets/front_n/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/front_n/css/all.min.css">
+    <link rel="stylesheet" href="../assets/front_n/css/slick.css">
+    <link rel="stylesheet" href="../assets/front_n/css/aos.css">
+    <link rel="stylesheet" href="../assets/front_n/css/jquery.growl.css">
+    <link rel="stylesheet" href="../assets/front_n/css/custom.css">
+    <link rel="stylesheet" href="../assets/front_n/css/css2.css">    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
+    <script src="../assets/front_n/js/jquery.min.js"></script>    
+    <script src="../assets/front_n/js/gijgo.min.js"></script>    
+    <!-- <link rel="stylesheet" href="https://predictcoin.osiztechnologies.in/assets/front_n/css/gijgo.min.css">     -->
+     <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> -->
+    <link href="../../unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  </head> 
+  <body class="pageBgGrdient pageFill">
+        <header class="headerStatic">
+      <div class="container-fluid">
+        <nav class="navbar headerNavbar inner">
+        
+          <a class="navbar-brand p-0" href="../index.html">
+            <img src="../assets/front_n/images/logo.svg" alt="logo" />
+          </a>
+        
+          <div class="headerNav mx-auto">
+            <ul class="navbar-nav flex-lg-row">
+              <li class="nav-item ">
+                <a class="nav-link" href="../staking.html">
+                  <span class="navIcon">
+                    <img src="../assets/front_n/images/icons/staking.png" alt="staking" />
+                  </span>
+                  <span class="navText">
+                    Staking
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../farming.html">
+                  <span class="navIcon">
+                    <img src="../assets/front_n/images/icons/farming.png" alt="farming" />
+                  </span>
+                  <span class="navText">
+                    Farming
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../voting.html">
+                  <span class="navIcon">
+                    <img src="../assets/front_n/images/icons/voting.png" alt="voting" />
+                  </span>
+                  <span class="navText">
+                    Voting
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../prediction.html">
+                  <span class="navIcon">
+                    <img src="../assets/front_n/images/icons/prediction.png" alt="prediction" />
+                  </span>
+                  <span class="navText">
+                    Price Prediction
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="headerRight">
+                          <!-- id="connect_metamask" -->
+            <button class="btn btn-wallet" data-toggle="modal" data-target="#walConnect" >
+              <span class="btn-wicon">
+                <img src="../assets/front_n/images/icons/wallet.png" alt="wallet" />
+              </span>
+              <span class="btn-wtext">
+                Connect
+              </span>
+            </button>
+                      <div class="mobMenu d-inline-block d-lg-none">
+              <div class="smClose">
+                <svg id="closeicon" viewBox="0 0 800 600">
+                  <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                  <path d="M300,320 L460,320" id="middle"></path>
+                  <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+        </nav>
+          
+      </div>  
+    </header>    
+    <input type="hidden" id="base_url" value="https://predictcoin.osiztechnologies.in/">4  <title>Predictcoin - Voting </title>
+    <div class="inPageSec">
+        <div class="container inner">
+            <div class="row flex-column justify-content-center pageRowFill">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="inPageSecTitles text-center">
+                        <h2 class="inpst_1"> Predictcoin </h2>
+                        <h3 class="inpst_2"> The #1 Decentralized Application </h3>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="boxGlass boxRadius voting-block">
+                        <div class="row stCardRow">
+                            <div class="col-sm-12 col-md-12 col-lg-12 stCardCol my-4 py-1">
+                                <div class="tab-content" id="votingtabcontent">
+                                    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                                                            
+                                        <div class="col-sm-12 col-md-12 col-lg-12 px-4 py-3 border-top">                                            
+                                            <label class="text-white font-20 fontweight-600">New Vote 1</label>
+                                            <div class="mt-lg-0 mt-sm-1">
+                                                <span class="text-white font-16 fontweight-600">New Vote Description</span>
+                                            </div>
+                                            <input type="radio" name="vote_value" value="1" /> Yes<br/>
+                                            <input type="radio" name="vote_value" value="0" /> no <br/>                                            
+                                            <input type="hidden" name="user_address" value ="" >
+                                            <input type="hidden" name="vote_amount" value ="0.1" >                                            
+                                            <input type="button" id="submit_vote" Value="Vote" />
+                                        </div>           
+                                        <h3 class="inpst_2">Positive Count : 1 </h3>
+                                        <h3 class="inpst_2">Negative Count : 0 </h3>                           
+                                    
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">  
+
+/*$(document).ready(function(){
+
+    $('#submit_vote').click(function() {
+
+    var vote_status = $('input[name=vote_value]:checked').val();         
+
+    var vote_amount = $('#vote_amount').val();
+
+    var address = '';
+
+    if(typeof vote_status !== "undefined"){
+
+if (localStorage.getItem('network_selectd') == "binance") {
+       if (typeof BinanceChain !== "undefined") {
+      select_binance();
+      async function select_binance()
+      {
+      var testdapp = await BinanceChain.enable();
+      window.web3 = new window.Web3(window.BinanceChain);
+      
+    setTimeout(function() {
+        BinanceChain.isConnected().then(function(testc) {
+            if (testc == true) {
+                BinanceChain.request({
+                    method: "eth_accounts"
+                }).then(function(accounts) { 
+            accounts1       =   accounts;             alert(accounts1[0]);
+            
+            vote_amount = parseFloat(0.1) * 10 ** 18;                       alert(vote_amount);
+                predict_contracts.methods.transfer(m_contractss_address,vote_amount.toString()).send({
+                    from: accounts1[0]                    
+                }).on('transactionHash', (hash) => {}).on('receipt', (receipt) => {
+                    $.growl.notice({
+                        title: "Please Note",
+                        message: ("Vote Transaction Success !!!")
+                    }, {});
+                    start_loader();
+                 $.ajax({ 
+                    url: base_url+'voteStatus',
+                    type: "POST", 
+                    data: {              
+                        vote_status: vote_status,
+                        user_address: accounts1[0],
+                        proposal_id: '4',
+                    },
+                    dataType: "JSON",                
+                    success: function(data) {
+                         
+                        if(data == 'true')
+                        {   
+                            stop_loader();
+                           $.growl.notice({ message: ("Congratulation, Vote Status Updated Successfully") }); 
+                            setTimeout(function() { window.location.href = "";}, 2000);
+                        }
+                        else
+                        {
+                            stop_loader();
+
+                            $.growl.error({ message: ("Vote Not Updated !!!") },{
+
+                            });
+                        }
+                    }
+                });                                       
+                    stop_loader();
+                }).on('confirmation', (confirmationNumber, receipt) => {}).on('error', (error) => {
+                    $.growl.error({
+                        message: ("Sending Transaction Failed !!!")
+                    }, {})
+                    $('.show_text').hide();
+                    stop_loader();
+                }); 
+                
+                stop_loader();
+      
+          });
+            }
+        });
+   }, 1500);
+
+      }
+    }else{
+       localStorage.setItem('network_selectd' ,'');
+      $.growl.error({ message: ("Binance Smart Chain extension not added on your browser") });
+    }  
+    }else if (localStorage.getItem('network_selectd') == "metamask") {
+
+    if (typeof web3 !== "undefined") {
+
+     window.web3 = new Web3(web3.currentProvider); 
+   
+    (async function(){
+      const accounts = await ethereum.request({ method: 'eth_accounts' })
+      .then()
+        .catch((accounts) => {
+          if (error.code === 4001) {
+            // EIP-1193 userRejectedRequest error
+            console.log('Please connect to MetaMask.');
+          } else {
+            console.error(error);
+          }
+        });
+      
+      if (accounts.length == 0) {
+          
+            $.growl.error({ message: ("Your metamask account is locked please unlock") },{
+              position: {
+                  from: "bottom",
+                  align: "left"
+              }});           
+              
+              enableAccount();
+          
+          }
+          else
+          { 
+            accounts1       =   accounts;            
+            
+            vote_amount = parseFloat(0.1) * 10 ** 18;                       
+                predict_contracts.methods.transfer(m_contractss_address,vote_amount.toString()).send({
+                    from: accounts1[0]
+                }).on('transactionHash', (hash) => {}).on('receipt', (receipt) => {
+                    $.growl.notice({
+                        title: "Please Note",
+                        message: ("Vote Transaction Success !!!")
+                    }, {});
+                    start_loader();
+                 $.ajax({ 
+                    url: base_url+'voteStatus',
+                    type: "POST", 
+                    data: {              
+                        vote_status: vote_status,
+                        user_address: accounts1[0],
+                        proposal_id: '4',
+                    },
+                    dataType: "JSON",                
+                    success: function(data) {
+                         
+                        if(data == 'true')
+                        {   
+                            stop_loader();
+                           $.growl.notice({ message: ("Congratulation, Vote Status Updated Successfully") }); 
+                            setTimeout(function() { window.location.href = "";}, 2000);
+                        }
+                        else
+                        {
+                            stop_loader();
+
+                            $.growl.error({ message: ("Vote Not Updated !!!") },{
+
+                            });
+                        }
+                    }
+                });                                       
+                    stop_loader();
+                }).on('confirmation', (confirmationNumber, receipt) => {}).on('error', (error) => {
+                    $.growl.error({
+                        message: ("Sending Transaction Failed !!!")
+                    }, {})
+                    $('.show_text').hide();
+                    stop_loader();
+                }); 
+                
+                stop_loader();
+      
+          }
+    })();
+  } 
+  else 
+  {
+      $.growl.error({ message: ("Metamask extension not added on your browser") });   
+  } }
+} else {
+      $.growl.error({ message: ("Please select checkbox value") });
+}
+      
+    
+
+    async function enableAccount() {
+
+    const accounts  =   await ethereum.enable();
+
+    accounts1     =   accounts;
+    
+  setTimeout(function(){ 
+    document.getElementById("submit_vote").click();
+  }, 3000);
+
+  }
+  });
+});*/
+</script>         <footer class="footerInner">
+      <div class="container inner">
+        <div class="row align-items-center py-2">
+          <div class="col-sm-12 col-md-6 col-lg-6 my-2">
+            <p class="text-white font-12 mb-0 text-center text-md-left">
+              Copyright &copy; 2021Predictcoin | All Rights Reserved
+            </p>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 my-2">
+            <div class="socialLinksInner text-center text-md-right">
+              <a href="#">
+                <i class="fab fa-telegram-plane"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="walConnect">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content boxRadius">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Connect To Wallet</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="walOptionBtns">
+            
+              <button onclick="select_network('metamask')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_metamask">
+                <span class="walOptText">
+                  Meta Mask
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/metamask.svg" alt="metamask"/>
+                </span>
+              </button>
+              
+              <button onclick="select_network('trustwallet')"  class="btn d-flex align-items-center justify-content-between" id="connect_wallet_trustwallet">
+                <span class="walOptText">
+                  Trust Wallet
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/trustwallet.png" alt="trustwallet"/>
+                </span>
+              </button>
+              
+              <button onclick="select_network('mathwallet')"  class="btn d-flex align-items-center justify-content-between" id="connect_wallet_mathwallet">
+                <span class="walOptText">
+                  Math Wallet
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/mathwallet.png" alt="mathwallet"/>
+                </span>
+              </button>
+              
+              <button onclick="select_network('tokenpocket')"  class="btn d-flex align-items-center justify-content-between" id="connect_wallet_tokenpocket">
+                <span class="walOptText">
+                  Token Pocket
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/tokenpo.png" alt="tokenpo"/>
+                </span>
+              </button>
+              
+              <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
+                <span class="walOptText">
+                  Wallet Connect
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/walletconnect.svg" alt="walletconnect"/>
+                </span>
+              </button>
+              
+              <button onclick="select_network('binance')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_binancechain">
+                <span class="walOptText">
+                  Binance Chain Wallet
+                </span>
+                <span class="walOptImg">
+                  <img src="../assets/front_n/images/wallet/binancewallet.png" alt="binancewallet"/>
+                </span>
+              </button>
+            </div>
+          </div>
+<!--           <div class="modal-footer justify-content-center">
+            <div class="lrnHtcont">
+              <a href="#">
+                <i class="far fa-question-circle"></i>
+                Learn how to connect
+              </a>  
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Js Links -->   
+     <div id="cover-spin" style="display: none">
+      <div  class="loadingIcon d-flex align-items-center justify-content-center" >
+        <img src="../assets/front_n/images/loading/theme-circle-loading.svg" alt="theme-circle-loading" />
+      </div>
+      </div>    
+    <script>
+         function start_loader()
+        {
+          $('#cover-spin').show(0);
+        }
+
+        function stop_loader()
+        {
+          $('#cover-spin').hide(0);
+        }
+    </script>
+
+  <script type="text/javascript">
+      
+            var base_url= "../index.html";            
+
+            let current_page      = "vote";
+
+  </script>
+
+    
+    <script src="../assets/front_n/js/popper.min.js"></script>
+    <script src="../assets/front_n/js/bootstrap.min.js"></script>
+    <script src="../assets/front_n/js/web3.min3c90.js?ver=1625865833"></script>
+    <script src="../assets/front_n/js/jquery.growl3c90.js?ver=1625865833"></script>
+    <script src="../assets/socket.io.js"></script>
+    <!-- <script src="https://predictcoin.osiztechnologies.in/assets/front_n/js/web3_connect.js?ver=1625865833"></script>   -->
+    <script src="../assets/front_n/js/bignumber.min3c90.js?ver=1625865833"></script>  
+    <script type="text/javascript" src="../../unpkg.com/%40walletconnect/web3-provider%401.2.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="../../unpkg.com/web3modal%401.9.0/dist/index.js"></script>
+    <script src="../assets/front_n/js/stake3c90.js?ver=1625865833"></script>    
+    <script src="../assets/front_n/js/slick.min.js"></script>
+    <script src="../assets/front_n/js/aos.js"></script>       
+    <script src="../assets/front_n/js/custom.js"></script>     
+    <script src="../assets/front_n/js/jquery.validate.min.js"></script>
+    <script src="../assets/front_n/js/predict.js"></script>
+    <script src="../assets/front_n/js/vote.js"></script>
+
+    <script type="text/javascript">
+
+    var host                    =   window.location.hostname;
+
+    var hosts                   =   window.location.origin;
+
+    var res                     =   hosts.substring(0, 5);
+
+    
+    if( host == 'localhost'){
+     var socket              =   io.connect( 'http://'+window.location.hostname+':2087',{transports:['websocket'], upgrade: false}, {'force new connection': true} );
+    }else{
+     var socket              =   io.connect( 'https://'+window.location.hostname+':2053',{transports:['websocket'], upgrade: false}, {'force new connection': true} );
+    } 
+   
+   
+   </script>
+   <script type="text/javascript">
+$(function () {
+    $('.add').on('click',function(){
+        var qty=$("#predict_price").val();
+        var currentVal = parseInt(qty);
+        if (!isNaN(currentVal)) {
+          $("#predict_price").val(currentVal + 1);
+        }
+    });
+    $('.minus').on('click',function(){
+        var qty=$("#predict_price").val();
+        var currentVal = parseInt(qty);
+        if (!isNaN(currentVal) && currentVal > 0) {
+         $("#predict_price").val(currentVal - 1);
+        }
+    });
+});
+   </script> 
+ <script type="text/javascript">
+ if(current_page == 'stack' || current_page == 'staking' || current_page == 'farm' || current_page == 'farming' ){
+  $('.load_stake').hide(0);
+ start_loader(); 
+ } 
+  </script>  
+<!-- <script type="text/javascript">
+
+     $('#create_prediction').validate({
+
+    submitHandler: function(form)
+    {
+      var enter_tokenamount = $('#enter_tokenamount').val();
+      var predict_time = $('#predict_time').val(); 
+      var predict_price = $('#predict_price').val();
+      var predict_address = $('#predict_address').val();
+      var predict_coin = $('#predict_coin').val();
+
+            // ==============================================
+
+            if( predict_time == ''){
+            $.growl.error({ message: ("Please Select Predict time..!") },{position: { from: "bottom",align: "left" }});
+            return false;
+            }
+
+            if( predict_price == ''){
+            $.growl.error({ message: ("Predict Price is empty or invalid..!") },{position: { from: "bottom",align: "left" }});
+            return false;
+            }
+
+            if( predict_address == ''){
+            $.growl.error({ message: ("Please connect metamask..!") },{position: { from: "bottom",align: "left" }});
+            return false;
+            }            
+            
+            // ==============================================
+
+            start_loader();
+
+          
+             $.ajax({ 
+                url: base_url+'/enterPredict',
+                type: "POST", 
+                data: {              
+                    enter_tokenamount: enter_tokenamount,
+                    predict_coin: predict_coin,
+                    predict_time: predict_time,
+                    predict_price: predict_price,
+                    predict_address: predict_address,
+                },
+                dataType: "JSON",                
+                success: function(data) {
+                     
+                    if(data == 'true')
+                    {   
+                        stop_loader();
+                       $.growl.notice({ message: ("Congratulation, Your Prediction Added successfully") });                   
+                    }
+                    else
+                    {
+                        stop_loader();
+
+                        $.growl.error({ message: ("Prediction Not Updated !!!") },{
+
+                        });
+                    }
+                }
+            });
+
+    }
+    
+    });  
+</script> -->
+
+  </body> 
+
+<!-- Mirrored from predictcoin.osiztechnologies.in/vote/4 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Jul 2021 21:24:33 GMT -->
+</html>
