@@ -1695,3 +1695,52 @@ header
 	}
 }	
 /** =========================================================== Modal Popup Content End =============================================================== **/
+
+
+
+.box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(255, 255, 255);
+	margin: 20px 0;
+	padding: 10px;
+	width: 100%;
+	min-height: 200px;
+	/* border: 2px rgb(26, 23, 182) solid; */
+	color: rgb(0, 0, 0);
+  }
+
+  .road-header{
+	color: #1446f9;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+  }
+
+#rock{
+	color: #f91c14;
+}
+
+
+#done{
+    background: #34AB0B;
+    border-radius: 41px;
+	border: none;
+    color: white;
+    padding: 4px 8px;
+    margin-left: 4px;
+    font-size: 12px;
+
+}
+
+#ongoing{
+    background: #4d4d4d;
+    border-radius: 41px;
+	border: none;
+    color: white;
+    padding: 4px 8px;
+    margin-left: 4px;
+    font-size: 12px;
+
+}
