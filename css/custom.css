@@ -622,6 +622,10 @@ header
     font-size: 12px;
 }
 
+.text-center canvas{
+	width: 100% !important;
+	height: 40px !important;
+}
 
 
 .tableScroll {
