@@ -1657,6 +1657,44 @@ header
     color: #000000;
 }
 
+.walInfo .address{
+	margin-top: 1rem;
+	background-color: rgba(29, 255, 160, 0.32);
+	color: #00A660;
+	font-weight: bold;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+}
+
+.walInfo .address-text{
+	text-align: center;
+	width: 90%;
+	padding: 10px;
+}
+
+.walInfo .address-copy{
+	cursor: pointer;
+	display: inline-block;
+	padding: 10px;
+	width: 10%;
+	text-align: center;
+	background-color: rgba(0, 166, 96, 0.12);
+}
+
+.walInfo .btns{
+	margin: 2rem 0;
+	text-align: center;
+}
+
+.walInfo .btn:hover{
+	text-decoration: underline;
+}
+
+.walInfo textarea{
+	position: absolute;
+	transform: translate(9999px);
+}
 
 
 @media only screen and (max-width: 575px)
@@ -1671,6 +1709,10 @@ header
 
 	.walOptImg img {
 		max-width: 28px;
+	}
+
+	.walInfo .address-text{
+		font-size: 10px;
 	}
 }	
 /** =========================================================== Modal Popup Content End =============================================================== **/
@@ -1691,4 +1733,8 @@ header
 
 #votingtabcontent a {
 	color: #fff;
+}
+
+.hide{
+	display: none;
 }
