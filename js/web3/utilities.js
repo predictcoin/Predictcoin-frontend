@@ -1,3 +1,6 @@
+// This file contains code for creating instances 
+// of contracts and ineractinf with them
+
 function Util(signer, provider){
   this.signer = signer;
   this.provider = provider;
@@ -9,9 +12,9 @@ function Util(signer, provider){
 
 Util.prototype.initialize = async function() {
   this.farm = new Farm();
-  await this.farm.initialize(config.addresses.Farm, config.abis.Farm, signer);
+  await this.farm.initialize(config.addresses.Farm, config.abis.Farm, this.signer);
   this.PancakeRouter = new PancakeRouter();
-  await this.PancakeRouter.initialize(config.addresses.PancakeRouter, config.abis.PancakeRouter, signer);
+  await this.PancakeRouter.initialize(config.addresses.PancakeRouter, config.abis.PancakeRouter, this.signer);
   this.pools = [];
   this.pools[0] = await this.farm.poolInfo(0);
 }
@@ -32,27 +35,26 @@ Util.prototype.getStakeApr = async function() {
   const numerator = poolPredPerYr.mul(100);
   const stakedPred = await token.balanceOf(config.addresses.Farm);
   let denominator = stakedPred.mul(this.farm.totalAllocPoint);
-  denominator = denominator.eq(0) ? 1 : denominator;
+  if (denominator.eq(0)) return 0;
   return numerator.div(denominator);
 }
 
 Util.prototype.pendingPred = async function(id) {
-  const pending = await this.farm.pendingPred(id, await signer.getAddress())
+  const pending = await this.farm.pendingPred(id, await this.signer.getAddress())
   return pending;
 }
 
 Util.prototype.userInfo = async function(id) {
-  return this.farm.userInfo(id, await signer.getAddress());
+  return this.farm.userInfo(id, await this.signer.getAddress());
 }
 
 Util.prototype.getPoolToken = async function(id) {
-  
   if (!(this.pools && this.pools[id])){
     this.pools[id] = await this.farm.poolInfo();
   }
   
   const token = new ERC20();
-  await token.initialize(this.pools[id].lpToken, config.abis.ERC20, signer);
+  await token.initialize(this.pools[id].lpToken, config.abis.ERC20, this.signer);
   return token
 }
 
@@ -67,7 +69,7 @@ Util.prototype.userStake = async function(id) {
 
 Util.prototype.getBalance = async function(id) {
   const token = await this.getPoolToken(id);
-  const balance = await token.balanceOf(await signer.getAddress());
+  const balance = await token.balanceOf(await this.signer.getAddress());
   return balance;
 }
 
@@ -78,7 +80,7 @@ Util.prototype.approve = async function(id){
 
 Util.prototype.allowance = async function(id){
   const token = await this.getPoolToken(id);
-  return await token.allowance(await signer.getAddress(), 
+  return await token.allowance(await this.signer.getAddress(), 
     util.farm.instance.address);
 }
 
@@ -95,7 +97,7 @@ Util.prototype.getAmountsOut = async function (amountIn, PRED, BUSD){
   return await this.PancakeRouter.getAmountsOut(amountIn, [PRED, BUSD])
 }
 
-async function initWeb3(signer, provider){
+async function initContracts(signer, provider){
   util = new Util(signer, provider);
   await util.initialize();
 }

@@ -1,22 +1,24 @@
+// This file Connects wallets and registers events
+let provider, signer;
+
 window.addEventListener("load", async () => {
-  // config math library
-  math.config({
-    number: 'BigNumber',      // Default type of number:
-    precision: 64             // Number of significant digits for BigNumbers
-  })
+  // render APR and total staked/liquidity
+
   try {
     await checkConnection();
+    await start();
   } catch (err) {
     console.log(err);
+    let provider = ethers.getDefaultProvider(config.providerEndpoint);
+    await initContracts(provider, provider);
+    fillTotal_APR();
   }
 });
-
-let provider, signer;
 
 async function start() {
   const proceed = await initUI(await signer.getAddress());
   if (proceed === false) return;
-  await initWeb3(signer, provider);
+  await initContracts(signer, provider);
   await populateUI();
   await establishEvents();
   document.querySelector("body").classList.remove("loading");
@@ -48,12 +50,18 @@ async function checkConnection() {
   if (window.ethereum) {
     provider = new ethers.providers.Web3Provider(window.ethereum);
     signer = provider.getSigner();
-    try {
-      await start();
-    } catch (err) {
-      console.log(err);
-    }
   }
+}
+
+async function fillTotal_APR(){
+  document.querySelectorAll(".web3-card").forEach(async ele => {
+    const pool = ele.dataset.pool;
+    const token = await util.getPoolToken(pool);
+    await renderAPR();
+    await renderTotalStaked(token);
+    document.querySelector("body").classList.remove("loading");
+    document.querySelector("body").classList.add("loaded");
+  })
 }
 
 async function initUI(address) {
@@ -117,11 +125,10 @@ async function establishEvents() {
     });
   }
 
-  // provider.off("block");
-  // provider.on("block", async () => {
-  //   await initWeb3(signer, provider);
-  //   await populateUI();
-  // });
+  provider.off("block");
+  provider.on("block", async () => {
+    await populateUI();
+  });
 }
 
 function closeModal(modal){
@@ -131,114 +138,38 @@ function closeModal(modal){
   document.querySelector(`${modal} .close`).click();
 }
 
-async function putBalance(event, pId) {
-  const parent = event.target.closest(".modal");
-  const input = parent.querySelector("input");
-  const token = await util.getPoolToken(pId)
-  const bal = await util.getBalance(pId);
-  input.value = ethers.utils.formatUnits(bal, token.decimals);
-  if (bal.gt(0)) {
-    parent.querySelector(".btn__confirm").classList.remove("disable-btn");
-    parent.classList.remove("disable-modal");
-  }
+
+function clearInput(event){
+  if (event.target.dataset.dismiss !== "modal" &&
+    !event.target.closest("[data-dismiss=modal]") && 
+    event.target !== event.currentTarget) return;
+  event.currentTarget.querySelectorAll("input").forEach(ele => ele.value = "");
 }
 
-async function putStaked(event, pId) {
-  const parent = event.target.closest(".modal");
-  const input = parent.querySelector("input");
-  const token = await util.getPoolToken(pId)
-  const stake = await util.userStake(pId);
-  input.value = ethers.utils.formatUnits(stake, token.decimals);;
-  if (stake.gt(0)) {
-    parent.querySelector(".btn__confirm").classList.remove("disable-btn");
-    parent.classList.remove("disable-modal");
-  }
-}
 
-async function enableContract(event) {
-  if (event.target.closest("body").contains("loading")) return;
-  const parent = event.target.closest(".web3-card");
-  let tx = async () => await util.approve(parent.dataset.pool);
-  await sendTx(tx, "Contract Enabled");
-}
-
-async function withdraw(event){
-  const parent = event.target.closest(".modal");
-  if(event.target.classList.contains("disable-btn") ||
-    parent.classList.contains("disable-modal")) return; 
-  const token = await util.getPoolToken(parent.dataset.pool);
-  const input = parent.querySelector("input");
-  const amount = ethers.utils.parseUnits(input.value, token.decimals);
-  console.log(amount.toString(), (await util.userInfo(0)).amount.toString());
-  let tx = async () => await util.withdraw(parent.dataset.pool, amount);
-  await sendTx(tx, "Withdrawal successful");
-  closeModal("#unstake");
-  input.value= "";
-}
-
-async function harvest(event){
-  const parent = event.target.closest(".web3-card");
-  if (event.target.classList.contains("disable-btn")) return;
-  let tx = async () => await util.withdraw(parent.dataset.pool, 0);
-  await sendTx(tx, "Harvest successful");
-}
-
-async function deposit(event){
-  const parent = event.target.closest(".modal");
-  if(event.target.classList.contains("disable-btn") ||
-    parent.classList.contains("disable-modal")) return; 
-  const token = await util.getPoolToken(parent.dataset.pool);
-  const input = parent.querySelector("input");  
-  const amount = ethers.utils.parseUnits(input.value, token.decimals);
-  
-  let tx = async () => await util.deposit(parent.dataset.pool, amount);
-  await sendTx(tx, "You successfully staked");
-  closeModal("#stake");
-  input.value= "";
-}
-
-async function sendTx(tx, message){
-  try {
-    tx = await tx();
-  } catch (err) {
-    switch (err.code) {
-      case 4001:
-        $.growl.error({ message: "User rejected transaction" });
-        break;
-      case -32602:
-        $.growl.error({ message: "Invalid parameters" });
-        break;
-      case -32603:
-        $.growl.error({ message: "Internal error" });
-        break;
-      default:
-        $.growl.error({ message: "Something went wrong" });
-    }
-    console.log(err);
-    return;
-  }
-
-  updateNotificaion(1);
-  provider.waitForTransaction(tx.hash).then((receipt) => {
-    if (receipt.status) {
-      $.growl.notice({ message: `✓  ${message}`, title: "" });
-    } else {
-      $.growl.error({ message: `Transaction failed to ${message}` });
-    }
-    updateNotificaion(-1);
-  });
-}
-
-function updateNotificaion(dir) {
-  const countEle = document.querySelector(".notifications__status");
-  let count = Number(countEle.textContent);
-  count += dir;
-  countEle.textContent = count;
-
-  const notificationEle = document.querySelector(".notifications");
-  if (count > 0) {
-    notificationEle.classList.add("notifications--show");
-  } else {
-    notificationEle.classList.remove("notifications--show");
-  }
-}
+// add event listeners
+window.addEventListener("load", () => {
+  // add events to max btns
+  document.querySelectorAll(".max").forEach(
+    ele => ele.addEventListener("click", (event) => putMax(event))
+  );
+  document.querySelectorAll(".mutate-btn").forEach(ele => 
+    ele.addEventListener("click", (event) => populateModal(event))
+  );
+  // add events to validateNumber and check balance in modal
+  document.querySelectorAll(".modal input").forEach(input => {
+    input.addEventListener("input", async (event) => {
+      const modal = validateNumber(event);
+      await checkBalance(modal, event);
+    })
+  })
+  //deposit and withdraw
+  document.querySelector("#unstake .btn__confirm").addEventListener("click", withdraw);
+  document.querySelector("#stake .btn__confirm").addEventListener("click", deposit);
+  // add events to harvest
+  document.querySelectorAll(".harvest").forEach(ele => ele.addEventListener("click", harvest));
+  // add events to clear input when modal is closed
+  document.querySelectorAll(".modal").forEach(ele => ele.addEventListener("click", clearInput));
+  // enable contract
+  document.querySelectorAll(".enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
+})

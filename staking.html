@@ -13,8 +13,6 @@
     <!-- Css Links -->
     <link rel="stylesheet" href="assets/front_n/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/front_n/css/all.min.css">
-    <link rel="stylesheet" href="assets/front_n/css/slick.css">
-    <link rel="stylesheet" href="assets/front_n/css/aos.css">
     <link rel="stylesheet" href="assets/front_n/css/jquery.growl.css">
     <link rel="stylesheet" href="assets/front_n/css/custom.css">
     <link rel="stylesheet" href="assets/front_n/css/web3.css">
@@ -31,9 +29,6 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <!-- Validate -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <!-- Numeral -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script src="js/math.js"></script>
   </head> 
   <body class="pageBgGrdient pageFill not-connected loading">
         <header class="headerStatic">
@@ -145,7 +140,7 @@
               <span>APR</span>
               <span>
                   <div class="ph-item loading"><div class="ph-picture"></div></div>
-                <span id="apr" class="loaded">0%
+                <span  class="apr loaded">0%
                 </span>
               </span>
             </li>  
@@ -154,7 +149,7 @@
               </span>
             </li>
             <li><span>Earn</span><span>PRED</span></li>
-            <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span id="earned" class="loaded">0.0</span></span></li>
+            <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
             <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
           </ul>
           <div class="web3-card__amount contract-enabled">
@@ -182,7 +177,7 @@
             <p>Details</p>
             <div>Total stacked:
                 <div class="ph-item loading"><div class="ph-picture"></div></div>
-                <span class="loaded" id="total-staked">0</span>
+                <span class="loaded total-staked">0</span>
             </div>
             <a href="http://BscScan.com/" class="contract-link">View contract</a>
           </div>
@@ -349,8 +344,8 @@
           <div class="modal-body">
             <div class="stake-input">
               <p class="stake-input__heading"><span>Stake</span><span>Balance</span></p>
-              <p class="stake-input__balance" id="balance">0</p>
-              <div><input autofocus type="text" placeholder="0"> <button class="max-balance">MAX</button></div>
+              <p class="stake-input__balance balance">0</p>
+              <div><input autofocus type="text" placeholder="0"> <button class="max">MAX</button></div>
             </div>
             <span class="warning">You don't have enough PRED tokens to stake</span>
             <div class="stake-btns">
@@ -375,7 +370,7 @@
             <div class="stake-input">
               <p class="stake-input__heading"><span>Unstake</span><span>Staked</span></p>
               <p class="stake-input__balance staked" >0</p>
-              <div><input autofocus type="text" placeholder="0"> <button class="max-stake">MAX</button></div>
+              <div><input autofocus type="text" placeholder="0"> <button class="max">MAX</button></div>
             </div>
             <span class="warning">You don't have enough PRED tokens to unstake</span>
             <div class="stake-btns">
@@ -393,37 +388,11 @@
         <img src="assets/front_n/images/loading/theme-circle-loading.svg" alt="theme-circle-loading" />
       </div>
       </div>     -->
-    <script>
-         function start_loader()
-        {
-          $('#cover-spin').show(0);
-        }
 
-        function stop_loader()
-        {
-          $('#cover-spin').hide(0);
-        }
-    </script>
-
-  <script type="text/javascript">
-      
-            var base_url= "index.html";            
-
-            let current_page      = "staking";
-
-  </script>
     <script src="assets/front_n/js/popper.min.js"></script>
     <script src="assets/front_n/js/bootstrap.min.js"></script>
-    <script src="assets/front_n/js/web3.min689d.js?ver=1625865650"></script>
     <script src="assets/front_n/js/jquery.growl689d.js?ver=1625865650"></script>
-    <script src="assets/socket.io.js"></script>
-    <script src="assets/front_n/js/bignumber.min689d.js?ver=1625865650"></script>  
-    <script type="text/javascript" src="unpkg.com/%40walletconnect/web3-provider%401.2.1/dist/umd/index.min.js"></script>
-    <script type="text/javascript" src="unpkg.com/web3modal%401.9.0/dist/index.js"></script> 
-    <script src="assets/front_n/js/slick.min.js"></script>
-    <script src="assets/front_n/js/aos.js"></script>       
     <script src="assets/front_n/js/custom.js"></script>     
-    <script src="assets/front_n/js/jquery.validate.min.js"></script>
     <script src="js/web3/config.js"></script>
     <script src="js/web3/ERC20Contract.js"></script>
     <script src="js/web3/FarmContract.js"></script>
@@ -433,115 +402,6 @@
     <script src="js/web3/stake.js"></script>
     <script src="js/web3/general.js"></script>
 
-    <script type="text/javascript">
-
-    var host                    =   window.location.hostname;
-
-    var hosts                   =   window.location.origin;
-
-    var res                     =   hosts.substring(0, 5);
-
-    
-    if( host == 'localhost'){
-     var socket              =   io.connect( 'http://'+window.location.hostname+':2087',{transports:['websocket'], upgrade: false}, {'force new connection': true} );
-    }else{
-     var socket              =   io.connect( 'https://'+window.location.hostname+':2053',{transports:['websocket'], upgrade: false}, {'force new connection': true} );
-    } 
-   
-   
-   </script>
-   <script type="text/javascript">
-$(function () {
-    $('.add').on('click',function(){
-        var qty=$("#predict_price").val();
-        var currentVal = parseInt(qty);
-        if (!isNaN(currentVal)) {
-          $("#predict_price").val(currentVal + 1);
-        }
-    });
-    $('.minus').on('click',function(){
-        var qty=$("#predict_price").val();
-        var currentVal = parseInt(qty);
-        if (!isNaN(currentVal) && currentVal > 0) {
-         $("#predict_price").val(currentVal - 1);
-        }
-    });
-});
-   </script> 
- <script type="text/javascript">
- if(current_page == 'stack' || current_page == 'staking' || current_page == 'farm' || current_page == 'farming' ){
-  $('.load_stake').hide(0);
- start_loader(); 
- } 
-  </script>  
-
-<!-- <script type="text/javascript">
-
-     $('#create_prediction').validate({
-
-    submitHandler: function(form)
-    {
-      var enter_tokenamount = $('#enter_tokenamount').val();
-      var predict_time = $('#predict_time').val(); 
-      var predict_price = $('#predict_price').val();
-      var predict_address = $('#predict_address').val();
-      var predict_coin = $('#predict_coin').val();
-
-            // ==============================================
-
-            if( predict_time == ''){
-            $.growl.error({ message: ("Please Select Predict time..!") },{position: { from: "bottom",align: "left" }});
-            return false;
-            }
-
-            if( predict_price == ''){
-            $.growl.error({ message: ("Predict Price is empty or invalid..!") },{position: { from: "bottom",align: "left" }});
-            return false;
-            }
-
-            if( predict_address == ''){
-            $.growl.error({ message: ("Please connect metamask..!") },{position: { from: "bottom",align: "left" }});
-            return false;
-            }            
-            
-            // ==============================================
-
-            start_loader();
-
-          
-             $.ajax({ 
-                url: base_url+'/enterPredict',
-                type: "POST", 
-                data: {              
-                    enter_tokenamount: enter_tokenamount,
-                    predict_coin: predict_coin,
-                    predict_time: predict_time,
-                    predict_price: predict_price,
-                    predict_address: predict_address,
-                },
-                dataType: "JSON",                
-                success: function(data) {
-                     
-                    if(data == 'true')
-                    {   
-                        stop_loader();
-                       $.growl.notice({ message: ("Congratulation, Your Prediction Added successfully") });                   
-                    }
-                    else
-                    {
-                        stop_loader();
-
-                        $.growl.error({ message: ("Prediction Not Updated !!!") },{
-
-                        });
-                    }
-                }
-            });
-
-    }
-    
-    });  
-</script> -->
 
   </body> 
 

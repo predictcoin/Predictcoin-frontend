@@ -1,75 +1,80 @@
-function addEventListeners(){
-  console.log("in")
-}
-
-async function populateUI(){
-  let token = await util.getPoolToken(0);
+async function populateCard(card){
+  const pId = card.dataset.pool;
+  let token = await util.getPoolToken(pId);
   //show buttons
   // enter APR
-  const aprEle = document.querySelector("#apr");
-  let apr = await util.getStakeApr();
-  aprEle.textContent = `${formatNumber(apr, "per")}%`;
-  
-  
+  if(pId === 0) renderAPR(card);
+
   // enter reward
-  let earnedEle = document.querySelector("#earned");
-  let earned = await util.pendingPred(0);
-  
+  let earnedEle = card.querySelector(".earned");
+  let earned = await util.pendingPred(pId);
   earnedEle.textContent = ethers.utils.formatUnits(earned, token.decimals);
-  if (earned.lte(0)){
-    document.querySelector(".harvest").classList.add("disable-btn");
+  if (earned.lte(pId)){
+    card.querySelector(".harvest").classList.add("disable-btn");
   }
+
   // enter staked
-  let stakedEles = document.querySelectorAll(".staked");
-  let staked = await util.userStake(0);
+  let stakedEle = card.querySelector(".staked");
+  let staked = await util.userStake(pId);
   staked = ethers.utils.formatUnits(staked, token.decimals)
-  stakedEles.forEach(ele => {
-    ele.textContent = staked;
-  })
-  // enter balance
-  let balEle = document.querySelector("#balance");
-  let bal = await util.getBalance(0);
-  balEle.textContent = ethers.utils.formatUnits(bal, token.decimals);
+  stakedEle.textContent = staked;
+  
   // enter totalStaked
-  let totalEle = document.querySelector("#total-staked");
+  renderTotalStaked(token, card);
+
+  // check if contracts enabled
+  const allowance = ethers.utils.formatUnits(await util.allowance(pId), token.decimals);
+  if (Number(allowance) > 10**10){
+    card.classList.remove("not-enabled");
+    card.classList.add("enabled");
+  }
+
+  // dollar equivalent of rewards
+  if(pId === 0){
+    let dollarValue = (await util.getAmountsOut(ethers.utils.parseUnits( "1", 18 ), 
+      config.addresses.Pred, config.addresses.BUSD))[1];
+    dollarValue = ethers.utils.formatUnits(dollarValue, token.decimals);
+    let totalDollarValue = dollarValue*ethers.utils.formatUnits(earned, token.decimals);
+    card.querySelector(".dollar-value").textContent = `$${Number(totalDollarValue).toFixed(2)}`;
+  }
+}
+
+function populateUI(){
+  document.querySelectorAll(".web3-card").forEach(ele => populateCard(ele))
+}
+
+async function renderTotalStaked(token, card){
+  let totalEle = card.querySelector(".total-staked");
   let total = await util.totalStaked(token);
   totalEle.textContent = ethers.utils.formatUnits(total, token.decimals);
-  // check if contracts enabled
-  document.querySelectorAll(".web3-card").forEach(async ele => {
-    const pool = ele.dataset.pool;
-    const token = util.getPoolToken(pool);
-    const allowance = ethers.utils.formatUnits(await util.allowance(pool), token.decimals);
-    if (Number(allowance) > 10**10){
-      ele.classList.remove("not-enabled");
-      ele.classList.add("enabled");
-    }
-  })
-  // dollar equivalent of rewards
-  let dollarValue = (await util.getAmountsOut(ethers.utils.parseUnits( "1", 18 ), 
-    config.addresses.Pred, config.addresses.BUSD))[1];
-  dollarValue = ethers.utils.formatUnits(dollarValue, token.decimals);
-  let totalDollarValue = dollarValue*ethers.utils.formatUnits(earned, token.decimals);
-  document.querySelector(".dollar-value").textContent = `$${Number(totalDollarValue).toFixed(2)}`;
-
-  // enable contract
-  let enableBtns = document.querySelectorAll(".enable-contract");
-  enableBtns.forEach((ele) => ele.addEventListener("click", enableContract));
 }
 
-function clearInput(event){
-  if (event.target.dataset.dismiss !== "modal" &&
-    !event.target.closest("[data-dismiss=modal]") && 
-    event.target !== event.currentTarget) return;
-  event.currentTarget.querySelectorAll("input").forEach(ele => ele.value = "");
+async function renderAPR(card){
+  const aprEle = card.querySelector(".apr");
+  let apr = await util.getStakeApr();
+  aprEle.textContent = `${formatNumber(apr, "per")}%`;
 }
 
-function giveModal(event){
+async function populateModal(event){
   const ele = event.target.closest(".web3-card");
-  const pool = ele.dataset.pool;
+  const pId = ele.dataset.pool;
   const modalId = event.target.dataset.target;
-  console.log(modalId);
-  console.log(pool);
-  document.querySelector(`${modalId}`).dataset.pool = pool;
+  const modal = document.querySelector(`${modalId}`)
+  modal.dataset.pool = pId;
+
+  let token = await util.getPoolToken(pId);
+  // enter staked
+  if (modal.id === "unstake"){
+    let stakedEle = modal.querySelector(".staked");
+    let staked = await util.userStake(pId);
+    staked = ethers.utils.formatUnits(staked, token.decimals)
+    stakedEle.textContent = staked;
+  }else {
+    // enter balance
+    let balEle = modal.querySelector(".balance");
+    let bal = await util.getBalance(pId);
+    balEle.textContent = ethers.utils.formatUnits(bal, token.decimals);
+  }
 }
 
 function validateNumber(event){
@@ -91,45 +96,123 @@ function validateNumber(event){
 }
 
 async function checkBalance(modal, event){
-  console.log(event.target.value);
   const poolId = modal.dataset.pool;
   let balance 
   let token = await util.getPoolToken(poolId);
   if (modal.id === "stake"){
-    balance = ethers.utils.formatUnits(await util.getBalance(poolId), token.decimals);
+    balance = await util.getBalance(poolId);
   }else if(modal.id === "unstake"){
-    balance = ethers.utils.formatUnits(await util.userStake(poolId), token.decimals);
+    balance = await util.userStake(poolId);
   }
-  console.log(balance)
-  if(Number(balance) < Number(event.target.value)){
+  let value = event.target.value;
+  if (value === "") value = "0";
+  value = ethers.utils.parseUnits(value, token.decimals);
+  if(balance.lt(value)){
     modal.classList.add("disable-modal");
   }else{modal.classList.remove("disable-modal");}
 }
 
-window.addEventListener("load", () => {
-  // add events to max btns
-  document.querySelector(".max-balance").addEventListener("click", 
-    (event) => putBalance(event, 0));
-  document.querySelector(".max-stake").addEventListener("click", 
-    (event) => putStaked(event, 0));
-  document.querySelectorAll(".mutate-btn").forEach(ele => 
-    ele.addEventListener("click", (event) => giveModal(event))
-  )
-  // add events to validateNumber and check balance in modal
-  document.querySelectorAll(".modal input").forEach(input => {
-    input.addEventListener("input", async (event) => {
-      const modal = validateNumber(event);
-      await checkBalance(modal, event);
-    })
-  })
-  //deposit and withdraw
-  document.querySelector("#unstake .btn__confirm").addEventListener("click", withdraw);
-  document.querySelector("#stake .btn__confirm").addEventListener("click", deposit);
-  // add events to harvest
-  document.querySelectorAll(".harvest").forEach(ele => ele.addEventListener("click", harvest));
-  // add events to clear input when modal is closed
-  document.querySelectorAll(".modal").forEach(ele => ele.addEventListener("click", clearInput));
-})
+async function sendTx(tx, message){
+  try {
+    tx = await tx();
+  } catch (err) {
+    switch (err.code) {
+      case 4001:
+        $.growl.error({ message: "User rejected transaction" });
+        break;
+      case -32602:
+        $.growl.error({ message: "Invalid parameters" });
+        break;
+      case -32603:
+        $.growl.error({ message: "Internal error" });
+        break;
+      default:
+        $.growl.error({ message: "Something went wrong" });
+    }
+    console.log(err);
+    return;
+  }
 
+  updateNotificaion(1);
+  provider.waitForTransaction(tx.hash).then((receipt) => {
+    if (receipt.status) {
+      $.growl.notice({ message: `✓  ${message}`, title: "" });
+    } else {
+      $.growl.error({ message: `Transaction failed to ${message}` });
+    }
+    updateNotificaion(-1);
+  });
+}
 
+function updateNotificaion(dir) {
+  const countEle = document.querySelector(".notifications__status");
+  let count = Number(countEle.textContent);
+  count += dir;
+  countEle.textContent = count;
 
+  const notificationEle = document.querySelector(".notifications");
+  if (count > 0) {
+    notificationEle.classList.add("notifications--show");
+  } else {
+    notificationEle.classList.remove("notifications--show");
+  }
+}
+
+async function putMax(event) {
+  const parent = event.target.closest(".modal");
+  const pId = parent.dataset.pool;
+  const input = parent.querySelector("input");
+  const token = await util.getPoolToken(pId);
+  let bal;
+  if(parent.id === "unstake"){
+    bal = await util.userStake(pId);
+  }else{
+    bal = await util.getBalance(pId);
+  }
+  input.value = ethers.utils.formatUnits(bal, token.decimals);
+  if (bal.gt(0)) {
+    parent.querySelector(".btn__confirm").classList.remove("disable-btn");
+    parent.classList.remove("disable-modal");
+  }
+}
+
+async function enableContract(event) {
+  if (event.target.closest("body").contains("loading")) return;
+  const parent = event.target.closest(".web3-card");
+  let tx = async () => await util.approve(parent.dataset.pool);
+  await sendTx(tx, "Contract Enabled");
+}
+
+async function withdraw(event){
+  const parent = event.target.closest(".modal");
+  if(event.target.classList.contains("disable-btn") ||
+    parent.classList.contains("disable-modal")) return; 
+  const token = await util.getPoolToken(parent.dataset.pool);
+  const input = parent.querySelector("input");
+  const amount = ethers.utils.parseUnits(input.value, token.decimals);
+  let tx = async () => await util.withdraw(parent.dataset.pool, amount);
+  await sendTx(tx, "Withdrawal successful");
+  closeModal("#unstake");
+  input.value= "";
+}
+
+async function harvest(event){
+  const parent = event.target.closest(".web3-card");
+  if (event.target.classList.contains("disable-btn")) return;
+  let tx = async () => await util.withdraw(parent.dataset.pool, 0);
+  await sendTx(tx, "Harvest successful");
+}
+
+async function deposit(event){
+  const parent = event.target.closest(".modal");
+  if(event.target.classList.contains("disable-btn") ||
+    parent.classList.contains("disable-modal")) return; 
+  const token = await util.getPoolToken(parent.dataset.pool);
+  const input = parent.querySelector("input");  
+  const amount = ethers.utils.parseUnits(input.value, token.decimals);
+  
+  let tx = async () => await util.deposit(parent.dataset.pool, amount);
+  await sendTx(tx, "You successfully staked");
+  closeModal("#stake");
+  input.value= "";
+}

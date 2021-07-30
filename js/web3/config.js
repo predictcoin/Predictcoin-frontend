@@ -1870,6 +1870,7 @@ const config = {
     "Pred": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b"
   },
   chainId: 97,
+  providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
 
   // Mainnet addresses
   // addresses : {
