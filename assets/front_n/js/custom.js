@@ -55,6 +55,40 @@ $(document).ready(function () {
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     document.execCommand("copy");
-    $.growl.notice({ message: "Address copied successfully", title: "" });
+    $.growl.notice({ message: "✓ Copied to clipboard", title: "" });
   });
+
+  // Every time a modal is shown, if it has an autofocus element, focus on it.
+  $('.modal').on('shown.bs.modal', function() {
+    $(this).find('[autofocus]').focus();
+  });
+
+  // $(".modal input").each((_, input) => input.addEventListener("input", (event) => {
+  //   const check = validate({duration: event.target.value}, {duration: {numericality: true}})
+  //   if (check){
+  //     const len = event.target.value.length;
+  //     event.target.value = event.target.value.slice(0, len-1);
+  //   }
+  // }))
+
+  formatNumber = function (num, format){
+    num = String(num);
+    if (num < 0.000001) return 0;
+    if (Number.isInteger(Number(num))){
+      return num;
+    }
+
+    if (format === "per"){
+      if(num.split(".")[1].length <= 2){
+        return num
+      }
+      return Number(num).toFixed(2);
+    } else {
+      if(num.split(".")[1].length <= 5){
+        return num
+      }
+      console.log(num, num.split("."))
+      return Number(num).toFixed(5);
+    }
+  }
 });

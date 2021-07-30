@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="assets/front_n/css/aos.css">
     <link rel="stylesheet" href="assets/front_n/css/jquery.growl.css">
     <link rel="stylesheet" href="assets/front_n/css/custom.css">
-    <link rel="stylesheet" href="assets/front_n/css/css2.css">    
+    <link rel="stylesheet" href="assets/front_n/css/web3.css">
+    <link rel="stylesheet" href="assets/front_n/css/css2.css"> 
+    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">   
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
@@ -27,8 +29,13 @@
     <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <!-- Etherjs -->
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <!-- Validate -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <!-- Numeral -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="js/math.js"></script>
   </head> 
-  <body class="pageBgGrdient pageFill">
+  <body class="pageBgGrdient pageFill not-connected loading">
         <header class="headerStatic">
       <div class="container-fluid">
         <nav class="navbar headerNavbar inner">
@@ -84,7 +91,7 @@
           
           <div class="headerRight">
                           <!-- id="connect_metamask" -->
-            <button class="btn btn-wallet connect" data-toggle="modal" data-target="#walConnect" >
+            <button class="btn btn-wallet wallet-not-connected" data-toggle="modal" data-target="#walConnect" >
               <span class="btn-wicon">
                 <img src="assets/front_n/images/icons/wallet.png" alt="wallet" />
               </span>
@@ -93,7 +100,7 @@
               </span>
             </button>
 
-            <button class="btn btn-wallet connected hide" data-toggle="modal" data-target="#walInfo" >
+            <button class="btn btn-wallet wallet-connected" data-toggle="modal" data-target="#walInfo" >
               <span class="btn-wicon">
                 <img src="assets/front_n/images/icons/wallet.png" alt="wallet" />
               </span>
@@ -121,9 +128,65 @@
      <title>Predictcoin - Staking </title>
 
      <div class="inPageSec">
+      <div class="notifications"> 
+        <div class="spinner-border text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <span><span class="notifications__status">0</span> transactions pending</span>
+      </div>
 			<div class="container inner">
-				<img src="images/coming.jpg" alt="download" />
-
+        <div class="web3-card not-enabled" data-pool="0">
+          <div class="web3-card__heading">
+            <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+            <h4>PRED</h4>
+          </div>
+          <ul class="web3-card__user-reward">
+            <li>
+              <span>APR</span>
+              <span>
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span id="apr" class="loaded">0%
+                </span>
+              </span>
+            </li>  
+            <li>
+              <span>Stake</span><span>PRED
+              </span>
+            </li>
+            <li><span>Earn</span><span>PRED</span></li>
+            <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span id="earned" class="loaded">0.0</span></span></li>
+            <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+          </ul>
+          <div class="web3-card__amount contract-enabled">
+            <div>
+              <span>PRED Staked</span>
+              <span class="staked">0.001</span>
+            </div>
+            <div>
+              <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                -
+              </span>
+              <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                +
+              </span>
+            </div>
+          </div>
+          <div class="web3-card__btns">
+            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest">HARVEST</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+            <button class="web3-card__btn web3-card__btn--blue contract-enabled">COMPOUND</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-not-connected" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+          </div>
+          
+          <div class="web3-card__bottom">
+            <p>Details</p>
+            <div>Total stacked:
+                <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span class="loaded" id="total-staked">0</span>
+            </div>
+            <a href="http://BscScan.com/" class="contract-link">View contract</a>
+          </div>
+        </div>
 			</div>
 		</div>
     
@@ -153,7 +216,7 @@
     <!-- Modal -->
     <div class="modal fade" id="walConnect">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content boxRadius">
+        <div class="modal-content ">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Connect To Wallet</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -232,7 +295,7 @@
 
     <div class="modal fade walInfo" id="walInfo">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content boxRadius">
+        <div class="modal-content ">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Your Wallet</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -274,6 +337,55 @@
         </div>
       </div>
     </div>
+    <div class="modal fade stake" id="stake">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Stake PRED Token</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="stake-input">
+              <p class="stake-input__heading"><span>Stake</span><span>Balance</span></p>
+              <p class="stake-input__balance" id="balance">0</p>
+              <div><input autofocus type="text" placeholder="0"> <button class="max-balance">MAX</button></div>
+            </div>
+            <span class="warning">You don't have enough PRED tokens to stake</span>
+            <div class="stake-btns">
+              <button class="btn btn__cancel" data-dismiss="modal" aria-label="Close">CANCEL</button>
+              <button class="btn btn__confirm disable-btn">CONFIRM</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade stake" id="unstake">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Unstake PRED Token</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="stake-input">
+              <p class="stake-input__heading"><span>Unstake</span><span>Staked</span></p>
+              <p class="stake-input__balance staked" >0</p>
+              <div><input autofocus type="text" placeholder="0"> <button class="max-stake">MAX</button></div>
+            </div>
+            <span class="warning">You don't have enough PRED tokens to unstake</span>
+            <div class="stake-btns">
+              <button data-dismiss="modal" aria-label="Close" class="btn btn__cancel">CANCEL</button>
+              <button class="btn btn__confirm disable-btn">CONFIRM</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Js Links -->   
      <!-- <div id="cover-spin" style="display: none">
@@ -300,8 +412,6 @@
             let current_page      = "staking";
 
   </script>
-
-    
     <script src="assets/front_n/js/popper.min.js"></script>
     <script src="assets/front_n/js/bootstrap.min.js"></script>
     <script src="assets/front_n/js/web3.min689d.js?ver=1625865650"></script>
@@ -314,7 +424,14 @@
     <script src="assets/front_n/js/aos.js"></script>       
     <script src="assets/front_n/js/custom.js"></script>     
     <script src="assets/front_n/js/jquery.validate.min.js"></script>
-    <script src="js/wallet.js"></script>
+    <script src="js/web3/config.js"></script>
+    <script src="js/web3/ERC20Contract.js"></script>
+    <script src="js/web3/FarmContract.js"></script>
+    <script src="js/web3/PancakeRouterContract.js"></script>
+    <script src="js/web3/utilities.js"></script>
+    <script src="js/web3/wallet.js"></script>
+    <script src="js/web3/stake.js"></script>
+    <script src="js/web3/general.js"></script>
 
     <script type="text/javascript">
 

@@ -1614,12 +1614,28 @@ header
     background-image: linear-gradient( 180deg , rgb(46 89 242 / 92%) 15.1%, rgb(237 38 38 / 92%) 100%);
 }
 
+.modal .close{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.modal-title{
+	width: 100%;
+	margin-top: 1.2rem;
+	text-align: center;
+}
+.modal-header{
+	border-bottom: 0;
+	padding-bottom: 0;
+}
 .close:focus {
     outline: 0px;
 }
-
 .modal-title {
     font-weight: 600;
+}
+.modal-body{
+	padding-top: 10px;
 }
 
 .walOptionBtns .btn
@@ -1690,10 +1706,68 @@ header
 .walInfo .btn:hover{
 	text-decoration: underline;
 }
-
 .walInfo textarea{
 	position: absolute;
 	transform: translate(9999px);
+}
+
+.stake .modal-content{
+
+}
+.stake .stake-input{
+	background: rgba(227, 227, 227, 0.17);
+	padding: 1rem;
+	position: relative;
+}
+.stake-input p{
+	margin: 0;
+}
+.stake-input__heading{
+	display: flex;
+	justify-content: space-between;
+	color: #C4C4C4;
+}
+.stake-input__balance{
+	text-align: end;
+}
+.stake-input button{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	border: none;
+	color: #ffffff;
+	background: rgba(14, 86, 192, 0.56);
+	padding: 7px 20px;
+}
+.stake-input input{
+	outline: none;
+	font-size: 1.5rem;
+	font-weight: 600;
+	border: none;
+	background: none;
+}
+.warning{
+	color: rgba(200, 48, 77, 0.76);
+	display: block;
+	margin: 1rem 0 1.5rem;
+}
+
+.stake-btns{
+	text-align: center;
+}
+.stake-btns .btn{
+	border: 1px solid;
+	margin: 0 8px;
+	padding: 7px 20px;
+	outline: none;
+}
+.btn__cancel, .btn__cancel:hover{
+	color: #C8304D;
+	border: 1px solid #C8304D;
+}
+.btn__confirm, .btn__confirm:hover{
+	color: #fff;
+	background-image: linear-gradient(to right, #FF3D00, #C8304D);;
 }
 
 
@@ -1735,6 +1809,6 @@ header
 	color: #fff;
 }
 
-.hide{
+.hide-display{
 	display: none;
 }
