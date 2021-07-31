@@ -1867,7 +1867,9 @@ const config = {
     "Predcoin": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b",
     "BUSD": "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
     "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
-    "Pred": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b"
+    "Pred": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b",
+    "BUSDPRED": "0x5439645686228463132595f31d8173c6e634da6e",
+    "BNBPRED": "0xf57567e5b648d7cf34fb87ec3f5f47609ae31413"
   },
   chainId: 97,
   providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",

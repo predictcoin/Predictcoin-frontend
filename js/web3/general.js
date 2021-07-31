@@ -3,7 +3,6 @@ let provider, signer;
 
 window.addEventListener("load", async () => {
   // render APR and total staked/liquidity
-
   try {
     await checkConnection();
     await start();
@@ -20,6 +19,7 @@ async function start() {
   if (proceed === false) return;
   await initContracts(signer, provider);
   await populateUI();
+  
   await establishEvents();
   document.querySelector("body").classList.remove("loading");
   document.querySelector("body").classList.add("loaded");
@@ -57,8 +57,8 @@ async function fillTotal_APR(){
   document.querySelectorAll(".web3-card").forEach(async ele => {
     const pool = ele.dataset.pool;
     const token = await util.getPoolToken(pool);
-    await renderAPR();
-    await renderTotalStaked(token);
+    await renderAPR(ele, ele.dataset.pool);
+    await renderTotalStaked(token, ele);
     document.querySelector("body").classList.remove("loading");
     document.querySelector("body").classList.add("loaded");
   })
@@ -125,10 +125,10 @@ async function establishEvents() {
     });
   }
 
-  provider.off("block");
-  provider.on("block", async () => {
-    await populateUI();
-  });
+  // provider.off("block");
+  // provider.on("block", async () => {
+  //   await populateUI();
+  // });
 }
 
 function closeModal(modal){

@@ -14,8 +14,16 @@
 /* Farming and Staking Cards */
 .web3-card{
 	background: #ffffff;
-  width: 25rem;
-  margin: auto;
+  margin: 0 1rem 2rem 1rem;
+  max-width: 25rem;
+  width: 100%;
+  min-width: 10rem;
+}
+.card-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 2rem;
 }
 .web3-card__heading{
 	background-color:rgba(14, 86, 192, 0.12);
@@ -24,6 +32,22 @@
   align-items: center;
   color: var(--primary-color);
   padding: 8%;
+}
+.web3-card__heading div:last-of-type{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.web3-card__heading .multiplier{
+  text-align: end;
+  font-weight: 700;
+  display: inline-block;
+  color: #ffffff;
+  background-color: #FF3D00;
+  padding: 2px;
+  border: 1px solid #FF3D00;
+  border-radius: 40%;
 }
 .web3-card__heading h4{
   font-weight: 700;
@@ -43,7 +67,7 @@
   display: flex;
   justify-content: space-between;
 }
-.web3-card__user-reward span:first-of-type{
+.web3-card__user-reward div>span:first-of-type{
   color: rgba(115, 115, 115, 1);
 }
 .web3-card__user-reward span:last-of-type{
@@ -208,4 +232,12 @@
 
 .loaded .loading{
   display: none;
+}
+
+/* styling for pools */
+.lpimg{
+  transform: translate(-20%, 25%);
+}
+.first-lpimg{
+  transform: translate(50%, -60%);
 }

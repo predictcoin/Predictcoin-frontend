@@ -1,10 +1,9 @@
 async function populateCard(card){
   const pId = card.dataset.pool;
   let token = await util.getPoolToken(pId);
-  //show buttons
+  // show buttons
   // enter APR
-  if(pId === 0) renderAPR(card);
-
+  await renderAPR(card, pId);
   // enter reward
   let earnedEle = card.querySelector(".earned");
   let earned = await util.pendingPred(pId);
@@ -12,7 +11,6 @@ async function populateCard(card){
   if (earned.lte(pId)){
     card.querySelector(".harvest").classList.add("disable-btn");
   }
-
   // enter staked
   let stakedEle = card.querySelector(".staked");
   let staked = await util.userStake(pId);
@@ -20,7 +18,7 @@ async function populateCard(card){
   stakedEle.textContent = staked;
   
   // enter totalStaked
-  renderTotalStaked(token, card);
+  await renderTotalStaked(token, card);
 
   // check if contracts enabled
   const allowance = ethers.utils.formatUnits(await util.allowance(pId), token.decimals);
@@ -37,22 +35,82 @@ async function populateCard(card){
     let totalDollarValue = dollarValue*ethers.utils.formatUnits(earned, token.decimals);
     card.querySelector(".dollar-value").textContent = `$${Number(totalDollarValue).toFixed(2)}`;
   }
+  
 }
 
-function populateUI(){
-  document.querySelectorAll(".web3-card").forEach(ele => populateCard(ele))
+async function populateUI(){
+  await document.querySelectorAll(".web3-card").forEach(async ele => await populateCard(ele))
+  console.log("1");
 }
 
 async function renderTotalStaked(token, card){
   let totalEle = card.querySelector(".total-staked");
   let total = await util.totalStaked(token);
+  if(card.dataset.pool !== "0"){
+    const res = await( (
+      await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              pair(id: "0x7efaef62fddcca950418312c6c91aef321375a00"){
+                reserveUSD,
+                totalSupply
+              }
+            }
+                `,
+            }),
+          })
+      ).json())
+    const pair = res.data.pair ? res.data.pair : { reserveUSD: 0, totalSupply: 1 };
+    total = ethers.utils.formatUnits(total, token.decimals)
+    total = (total/pair.totalSupply)*pair.reserveUSD;
+    totalEle.textContent = `$${formatNumber(total, "per")}`;
+  }
   totalEle.textContent = ethers.utils.formatUnits(total, token.decimals);
 }
 
-async function renderAPR(card){
+async function renderAPR(card, id){
+  let token = await util.getPoolToken(id);
+  let apr = ethers.utils.formatUnits(await util.getStakeApr(id), token.decimals);
+  if(id !== "0" ){
+    apr = Number(apr) + Number(await getLiqFeeApr());
+  }
   const aprEle = card.querySelector(".apr");
-  let apr = await util.getStakeApr();
   aprEle.textContent = `${formatNumber(apr, "per")}%`;
+}
+
+async function getLiqFeeApr(token){
+  const res = await( (
+    await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query {
+            pair(id: "0x7efaef62fddcca950418312c6c91aef321375a00"){
+              reserveUSD,
+              pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
+                hourlyVolumeUSD
+              }
+            }
+          }
+              `,
+          }),
+        })
+    ).json())
+
+  const volume24 = (res.data.pair ? 
+    res.data.pair.pairHourData.slice(1).reduce((total, value)=> total+=Number(value.hourlyVolumeUSD), 0)
+    : 0);
+  if (volume24 === 0) return 0;
+  const apr = (volume24*365*0.17/100)/res.data.pair.reserveUSD * 100;
+  return apr;
 }
 
 async function populateModal(event){
@@ -177,7 +235,7 @@ async function putMax(event) {
 }
 
 async function enableContract(event) {
-  if (event.target.closest("body").contains("loading")) return;
+  if (event.target.closest("body").classList.contains("loading")) return;
   const parent = event.target.closest(".web3-card");
   let tx = async () => await util.approve(parent.dataset.pool);
   await sendTx(tx, "Contract Enabled");

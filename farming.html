@@ -31,8 +31,8 @@
   </head> 
   <body class="pageBgGrdient pageFill  not-connected loading">
         <header class="headerStatic">
-      <div class="container-fluid">
-        <nav class="navbar headerNavbar inner">
+      <div class="container-fluid inner">
+        <nav class="navbar headerNavbar">
         
           <a class="navbar-brand p-0" href="index.html">
             <img src="assets/front_n/images/logo.svg" alt="logo" />
@@ -127,66 +127,128 @@
         </div>
         <span><span class="notifications__status">0</span> transactions pending</span>
       </div>
-			<div class="container inner">
-        <div class="web3-card not-enabled" data-pool="0">
-          <div class="web3-card__heading">
-            <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
-            <h4>PRED</h4>
-          </div>
-          <ul class="web3-card__user-reward">
-            <li>
-              <span>APR</span>
-              <span>
-                  <div class="ph-item loading"><div class="ph-picture"></div></div>
-                <span  class="apr loaded">0%
+			<div class="inner card-container">
+          <div class="web3-card not-enabled" data-pool="1">
+            <div class="web3-card__heading">
+              <div class="lpimg">
+                <img src="assets/front_n/images/coins/busd.png" class="first-lpimg" alt="busd">
+                <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
+              </div>
+              <div>
+                <h4>BUSD-PRED</h4>
+                <span class="multiplier">40x</span>
+              </div>
+            </div>
+            <ul class="web3-card__user-reward">
+              <li>
+                <span>APR</span>
+                <span>
+                    <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span  class="apr loaded">0%
+                  </span>
                 </span>
-              </span>
-            </li>  
-            <li>
-              <span>Stake</span><span>PRED
-              </span>
-            </li>
-            <li><span>Earn</span><span>PRED</span></li>
-            <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
-            <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
-          </ul>
-          <div class="web3-card__amount contract-enabled">
-            <div>
-              <span>PRED Staked</span>
-              <span class="staked">0.001</span>
+              </li>  
+              <li>
+                <span>Stake</span><span>BUSD-PRED LP
+                </span>
+              </li>
+              <li><span>Earn</span><span>PRED</span></li>
+              <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+              <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+            </ul>
+            <div class="web3-card__amount contract-enabled">
+              <div>
+                <span>BUSD-PRED LP Staked</span>
+                <span class="staked">0.001</span>
+              </div>
+              <div>
+                <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                  -
+                </span>
+                <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                  +
+                </span>
+              </div>
             </div>
-            <div>
-              <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
-                -
-              </span>
-              <span class="mutate-btn" data-toggle="modal" data-target="#stake">
-                +
-              </span>
+            <div class="web3-card__btns">
+              <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest">HARVEST</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-not-connected" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+            </div>
+            
+            <div class="web3-card__bottom">
+              <p>Details</p>
+              <div>Total liquidity:
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span class="loaded total-staked">0</span>
+              </div>
+              <a href="http://BscScan.com/" class="contract-link">View contract</a>
             </div>
           </div>
-          <div class="web3-card__btns">
-            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest">HARVEST</button>
-            <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
-            <button class="web3-card__btn web3-card__btn--blue contract-enabled">COMPOUND</button>
-            <button class="web3-card__btn web3-card__btn--blue wallet-not-connected" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
-          </div>
-          
-          <div class="web3-card__bottom">
-            <p>Details</p>
-            <div>Total stacked:
-                <div class="ph-item loading"><div class="ph-picture"></div></div>
-                <span class="loaded total-staked">0</span>
+          <div class="web3-card not-enabled" data-pool="2">
+            <div class="web3-card__heading">
+              <div class="lpimg">
+                <img src="assets/front_n/images/coins/bnb.png" class="first-lpimg" alt="busd">
+                <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
+              </div>
+              <div>
+                <h4>BNB-PRED LP</h4>
+                <span class="multiplier">40x</span>
+              </div>
             </div>
-            <a href="http://BscScan.com/" class="contract-link">View contract</a>
+            <ul class="web3-card__user-reward">
+              <li>
+                <span>APR</span>
+                <span>
+                    <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span  class="apr loaded">0%
+                  </span>
+                </span>
+              </li>  
+              <li>
+                <span>Stake</span><span>BNB-PRED LP
+                </span>
+              </li>
+              <li><span>Earn</span><span>PRED</span></li>
+              <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+              <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+            </ul>
+            <div class="web3-card__amount contract-enabled">
+              <div>
+                <span>BNB-PRED LP Staked</span>
+                <span class="staked">0.001</span>
+              </div>
+              <div>
+                <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                  -
+                </span>
+                <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                  +
+                </span>
+              </div>
+            </div>
+            <div class="web3-card__btns">
+              <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest">HARVEST</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-not-connected" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+            </div>
+            
+            <div class="web3-card__bottom">
+              <p>Details</p>
+              <div>Total liquidity:
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span class="loaded total-staked">0</span>
+              </div>
+              <a href="http://BscScan.com/" class="contract-link">View contract</a>
+            </div>
           </div>
-        </div>
 			</div>
 		</div>
     
     
     <footer class="footerInner">
-      <div class="container inner">
-        <div class="row align-items-center py-2">
+      <div class="inner container">
+        <div class="row align-items-center py-2 text-center">
           <div class="col-sm-12 col-md-6 col-lg-6 my-2">
             <p class="text-white font-12 mb-0 text-center text-md-left">
               Copyright &copy; 2021Predictcoin | All Rights Reserved

@@ -28,10 +28,10 @@ Util.prototype.deposit = async function(id, amount) {
   return await this.farm.deposit(id, amount);
 }
 
-Util.prototype.getStakeApr = async function() {
-  const token = await util.getPoolToken(0);
+Util.prototype.getStakeApr = async function(id) {
+  const token = await util.getPoolToken(id);
   const totalPredPerYr = this.farm.predPerBlock.mul(28800).mul(365);
-  const poolPredPerYr = this.pools[0].allocPoint.mul(totalPredPerYr);
+  const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   const numerator = poolPredPerYr.mul(100);
   const stakedPred = await token.balanceOf(config.addresses.Farm);
   let denominator = stakedPred.mul(this.farm.totalAllocPoint);
@@ -50,7 +50,7 @@ Util.prototype.userInfo = async function(id) {
 
 Util.prototype.getPoolToken = async function(id) {
   if (!(this.pools && this.pools[id])){
-    this.pools[id] = await this.farm.poolInfo();
+    this.pools[id] = await this.farm.poolInfo(id);
   }
   
   const token = new ERC20();
