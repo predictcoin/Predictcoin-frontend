@@ -97,6 +97,30 @@ Util.prototype.getAmountsOut = async function (amountIn, PRED, BUSD){
   return await this.PancakeRouter.getAmountsOut(amountIn, [PRED, BUSD])
 }
 
+Util.prototype.totalSupply = async function(token){
+  return await token.totalSupply();
+}
+
+Util.prototype.getReserves = async function (token){
+  return await token.getReserves();
+}
+
+// Util.prototype.token0 = async function(token){
+//   return await token.token0()
+// }
+
+// Util.prototype.removeLiquidity = async function (
+//   tokenA,
+//   tokenB,
+//   liquidity,
+//   amountAMin,
+//   amountBMin,
+//   to,
+//   deadline
+// ){
+//   return await this.PancakeRouter.removeLiquidity(  tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline);
+// }
+
 async function initContracts(signer, provider){
   util = new Util(signer, provider);
   await util.initialize();

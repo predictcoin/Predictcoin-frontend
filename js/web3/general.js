@@ -2,39 +2,67 @@
 let provider, signer;
 
 window.addEventListener("load", async () => {
+  let wallet = localStorage.getItem("wallet");
+  if (!wallet) {
+    useDefaultProvider()
+    return;
+  }
+  let walletProvider = getWalletProvider(wallet);
   // render APR and total staked/liquidity
   try {
-    await checkConnection();
+    await checkConnection(walletProvider);
     await start();
   } catch (err) {
     console.log(err);
-    let provider = ethers.getDefaultProvider(config.providerEndpoint);
-    await initContracts(provider, provider);
-    fillTotal_APR();
+    useDefaultProvider();
   }
 });
 
+async function useDefaultProvider(){
+  let provider = ethers.getDefaultProvider(config.providerEndpoint);
+  await initContracts(provider, provider);
+  fillTotal_APR();
+}
+
 async function start() {
+  provider.off("block");
+  document.querySelector("body").classList.add("loading");
+  document.querySelector("body").classList.remove("loaded");
+
   const proceed = await initUI(await signer.getAddress());
   if (proceed === false) return;
   await initContracts(signer, provider);
   await populateUI();
-  
   await establishEvents();
-  document.querySelector("body").classList.remove("loading");
-  document.querySelector("body").classList.add("loaded");
+}
+
+function getWalletProvider(wallet){
+  let walletProvider;
+  switch (wallet){
+    case "mathwallet":
+    case "trustwallet":
+    case "tokenpocket":
+    case "metamask":
+      walletProvider = window.ethereum;
+      break;
+    case "binance":
+      walletProvider = window.BinanceChain;
+  }
+
+  return walletProvider;
 }
 
 async function select_network(wallet) {
-  if (wallet == "metamask") {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    try {
-      await ethereum.request({ method: "eth_requestAccounts" });
-    } catch (err) {
-      if (err.code == 4001) {
-        $.growl.error({ message: "Wallet connection was rejected" });
-        return;
-      }
+  let walletProvider = getWalletProvider(wallet);
+   
+  provider = new ethers.providers.Web3Provider(walletProvider);
+  try {
+    await walletProvider.request({ method: "eth_requestAccounts" });
+    localStorage.setItem("wallet", wallet);
+  } catch (err) {
+    if (err.code == 4001) {
+      $.growl.error({ message: "Wallet connection was rejected" });
+      return;
     }
   }
 
@@ -46,19 +74,54 @@ async function select_network(wallet) {
   }
 }
 
-async function checkConnection() {
-  if (window.ethereum) {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    signer = provider.getSigner();
-  }
+function disconnectWallet(){
+  closeModal("#walInfo");
+  provider.off("block");
+  provider.removeAllListeners("accountsChanged", "chainChanged");
+
+  document.querySelector("body").classList.add("not-connected");
+  document.querySelector("body").classList.remove("connected");
+  document.querySelectorAll(".web3-card").forEach(ele => {
+    ele.classList.add("not-enabled")
+    ele.classList.remove("enabled")
+    }
+  );
+  localStorage.removeItem("wallet");
+}
+
+async function checkConnection(walletProvider) {
+  provider = new ethers.providers.Web3Provider(walletProvider);
+  signer = provider.getSigner();
 }
 
 async function fillTotal_APR(){
   document.querySelectorAll(".web3-card").forEach(async ele => {
-    const pool = ele.dataset.pool;
-    const token = await util.getPoolToken(pool);
-    await renderAPR(ele, ele.dataset.pool);
-    await renderTotalStaked(token, ele);
+    const id = ele.dataset.pool;
+    const res = await( (
+      await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              pair(id: "${id === "1" ? config.addresses.BUSDPRED: config.addresses.BNBPRED}"){
+                reserveUSD,
+                totalSupply,
+                pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
+                  hourlyVolumeUSD
+                }
+              }
+            }
+                `,
+            }),
+          })
+      ).json())
+    const token = await util.getPoolToken(id);
+
+    await renderAPR(ele, ele.dataset.pool, res);
+    await renderTotalStaked(token, ele, res);
     document.querySelector("body").classList.remove("loading");
     document.querySelector("body").classList.add("loaded");
   })
@@ -71,6 +134,7 @@ async function initUI(address) {
       title: "Wrong Network",
       message: "Connect your wallet to Binance Smart Chain",
     });
+    closeModal("#walConnect");
     return false;
   }
 
@@ -100,35 +164,27 @@ async function initUI(address) {
 }
 
 async function establishEvents() {
-  if (window.ethereum) {
-    window.ethereum.on("accountsChanged", async () => {
-      try {
-        await signer.getAddress();
-      } catch (err) {
-        document.querySelector("body").classList.add("not-connected");
-        document.querySelector("body").classList.remove("connected");
-        document.querySelectorAll(".web3-card").forEach(ele => {
-          ele.classList.add("not-enabled")
-          ele.classList.remove("enabled")
-          }
-        );
-        window.ethereum.removeAllListeners("accountsChanged", "chainChanged");
-        console.log(err);
-        return;
-      }
+  provider.removeAllListeners("accountsChanged", "chainChanged");
+  provider.on("accountsChanged", async () => {
+    try {
+      await signer.getAddress();
+    } catch (err) {
+      //off wallet event listeners
+      disconnectWallet();
+      console.log(err);
+      return;
+    }
 
-      start();
-      //window.location.reload();
-    });
-    window.ethereum.on("chainChanged", () => {
-      window.location.reload();
-    });
-  }
+    start();
+    //window.location.reload();
+  });
+  provider.on("chainChanged", () => {
+    window.location.reload();
+  });
 
-  // provider.off("block");
-  // provider.on("block", async () => {
-  //   await populateUI();
-  // });
+  provider.on("block", async () => {
+    await populateUI();
+  });
 }
 
 function closeModal(modal){
@@ -172,4 +228,6 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".modal").forEach(ele => ele.addEventListener("click", clearInput));
   // enable contract
   document.querySelectorAll(".enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
+  // add event to logout button
+  document.querySelector(".btn--logout").addEventListener("click", disconnectWallet);
 })

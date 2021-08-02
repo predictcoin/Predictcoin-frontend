@@ -87,8 +87,7 @@ $(document).ready(function () {
       if(num.split(".")[1].length <= 5){
         return num
       }
-      console.log(num, num.split("."))
-      return Number(num).toFixed(5);
+      return Number(Number(num).toFixed(5)).toString();
     }
   }
 });

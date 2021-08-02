@@ -19,3 +19,15 @@ ERC20.prototype.approve = async function (spender){
 ERC20.prototype.allowance = async function (owner, spender){
   return this.instance.allowance(owner, spender);
 }
+
+ERC20.prototype.totalSupply = async function (){
+  return this.instance.totalSupply();
+}
+
+ERC20.prototype.getReserves = async function (){
+  return this.instance.getReserves();
+}
+
+ERC20.prototype.token0 = async function (){
+  return this.instance.token0();
+}
