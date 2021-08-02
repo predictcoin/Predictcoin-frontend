@@ -3,7 +3,7 @@ let provider, signer;
 
 window.addEventListener("load", async () => {
   let wallet = localStorage.getItem("wallet");
-  if (!wallet) {
+  if (wallet === null) {
     useDefaultProvider()
     return;
   }

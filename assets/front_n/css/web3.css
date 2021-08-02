@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0 2rem;
+  margin: 0 0.3rem;
 }
 .web3-card__heading{
 	background-color:rgba(14, 86, 192, 0.12);
@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
   flex-direction: column;
 }
 .web3-card__heading .multiplier{
@@ -236,8 +237,24 @@
 
 /* styling for pools */
 .lpimg{
-  transform: translate(-20%, 25%);
+  position: absolute;
 }
 .first-lpimg{
-  transform: translate(50%, -60%);
+  transform: translate(0, -30%);
+}
+.lpimg img:not(.first-lpimg){
+  transform: translate(-50%, 30%);
+}
+footer{
+  margin-top: 1rem;
+}
+
+/* styling for responsiveness */
+@media only screen and (max-width: 768px){
+  :root{
+    font-size: 12px;
+  }
+  .notifications{
+    width: 90%;
+  }
 }

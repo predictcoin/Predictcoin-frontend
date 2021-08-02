@@ -29,8 +29,6 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <!-- Validate -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <!-- Web3Modal -->
-    <script src="js/web3modal.js"></script>
   </head> 
   <body class="pageBgGrdient pageFill not-connected loading">
         <header class="headerStatic">
@@ -154,7 +152,7 @@
             <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
             <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
           </ul>
-          <div class="web3-card__amount contract-enabled">
+          <div class="web3-card__amount contract-enabled wallet-connected">
             <div>
               <span>PRED Staked</span>
               <span class="staked">0.001</span>
@@ -169,9 +167,9 @@
             </div>
           </div>
           <div class="web3-card__btns">
-            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest">HARVEST</button>
+            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected">HARVEST</button>
             <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
-            <button class="web3-card__btn web3-card__btn--blue contract-enabled">COMPOUND</button>
+            <button class="web3-card__btn web3-card__btn--blue contract-enabled wallet-connected">COMPOUND</button>
             <button class="web3-card__btn web3-card__btn--blue wallet-not-connected" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
           </div>
           
@@ -259,14 +257,14 @@
                 </span>
               </button>
               
-              <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
+              <!-- <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
                 <span class="walOptText">
                   Wallet Connect
                 </span>
                 <span class="walOptImg">
                   <img src="assets/front_n/images/wallet/walletconnect.svg" alt="walletconnect"/>
                 </span>
-              </button>
+              </button> -->
               
               <button onclick="select_network('binance')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_binancechain">
                 <span class="walOptText">
@@ -300,7 +298,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <textarea type="text" class="address-text"></textarea>
+            <textarea type="text"   class="address-text"></textarea>
             <div class="address">  
               <span class="address-text" ></span>
               <span class="address-copy">

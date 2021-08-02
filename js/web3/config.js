@@ -2278,7 +2278,7 @@ const config = {
     "0x5439645686228463132595f31d8173c6e634da6e",
     "0xf57567e5b648d7cf34fb87ec3f5f47609ae31413"],
   chainId: 97,
-  providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+  providerEndpoint: "https://data-seed-prebsc-1-s2.binance.org:8545/",
 
   // Mainnet addresses
   // addresses : {

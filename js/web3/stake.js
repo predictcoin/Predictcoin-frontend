@@ -36,7 +36,7 @@ async function populateCard(card) {
   // enter reward
   let earnedEle = card.querySelector(".earned");
   let earned = await util.pendingPred(pId);
-  earned = ethers.utils.formatUnits(earned, token.decimals);
+  earned = ethers.utils.formatUnits(earned, 18);
   earnedEle.textContent = formatNumber(earned);
   if (earned <= 0) {
     card.querySelector(".harvest").classList.add("disable-btn");

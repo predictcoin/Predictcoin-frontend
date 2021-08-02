@@ -28,6 +28,8 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <!-- Validate -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <!-- WalletConnect
+    <script type="text/javascript" src="unpkg.com/%40walletconnect/web3-provider%401.2.1/dist/umd/index.min.js"></script> -->
   </head> 
   <body class="pageBgGrdient pageFill  not-connected loading">
         <header class="headerStatic">
@@ -135,7 +137,7 @@
                 <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
               </div>
               <div>
-                <h4>BUSD-PRED</h4>
+                <h4>BUSD-PRED LP</h4>
                 <span class="multiplier">40x</span>
               </div>
             </div>
@@ -317,14 +319,14 @@
                 </span>
               </button>
               
-              <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
+              <!-- <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
                 <span class="walOptText">
                   Wallet Connect
                 </span>
                 <span class="walOptImg">
                   <img src="assets/front_n/images/wallet/walletconnect.svg" alt="walletconnect"/>
                 </span>
-              </button>
+              </button> -->
               
               <button onclick="select_network('binance')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_binancechain">
                 <span class="walOptText">
@@ -357,7 +359,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <textarea type="text" class="address-text"></textarea>
+            <textarea type="text" disabled class="address-text"></textarea>
             <div class="address">  
               <span class="address-text" ></span>
               <span class="address-copy">
