@@ -11,7 +11,7 @@ window.addEventListener("load", async () => {
   // render APR and total staked/liquidity
   try {
     await checkConnection(walletProvider);
-    await start();
+    await start(walletProvider);
   } catch (err) {
     console.log(err);
     useDefaultProvider();
@@ -24,7 +24,7 @@ async function useDefaultProvider(){
   fillTotal_APR();
 }
 
-async function start() {
+async function start(walletProvider) {
   provider.off("block");
   document.querySelector("body").classList.add("loading");
   document.querySelector("body").classList.remove("loaded");
@@ -33,7 +33,7 @@ async function start() {
   if (proceed === false) return;
   await initContracts(signer, provider);
   await populateUI();
-  await establishEvents();
+  await establishEvents(walletProvider);
 }
 
 function getWalletProvider(wallet){
@@ -68,7 +68,7 @@ async function select_network(wallet) {
 
   signer = provider.getSigner();
   try {
-    await start();
+    await start(walletProvider);
   } catch (err) {
     console.log(err);
   }
@@ -171,10 +171,9 @@ async function initUI(address) {
   }
 }
 
-async function establishEvents() {
+async function establishEvents(wallet) {
   provider.removeAllListeners("accountsChanged", "chainChanged");
-  console.log("establishing");
-  provider.on("accountsChanged", async () => {
+  wallet.on("accountsChanged", async () => {
     console.log("me");
     try {
       await signer.getAddress();
@@ -185,10 +184,10 @@ async function establishEvents() {
       return;
     }
 
-    start();
+    start(localStorage.getItem("wallet"));
     //window.location.reload();
   });
-  provider.on("chainChanged", () => {
+  wallet.on("chainChanged", () => {
     window.location.reload();
   });
 

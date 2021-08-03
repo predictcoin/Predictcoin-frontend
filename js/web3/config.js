@@ -2275,15 +2275,13 @@ const config = {
     "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
     "PRED": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
     "BUSD-PRED": "0x6db5a429398887567e99911b8fe035a636b8bc47",
-    // 0x5439645686228463132595f31d8173c6e634da6e",
     "BNB-PRED": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
-    //"0xf57567e5b648d7cf34fb87ec3f5f47609ae31413",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc"
 
   },
   pools: ["PRED", "BUSD-PRED", "BNB-PRED"],
   chainId: 97,
-  providerEndpoint: "https://data-seed-prebsc-1-s2.binance.org:8545/",
+  providerEndpoint: "https://bsc.getblock.io/testnet/?api_key=2c3ade13-931c-4a6a-b50b-8d42627d5afb",
 
   // Mainnet addresses
   // addresses : {
