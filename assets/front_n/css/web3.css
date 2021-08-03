@@ -122,12 +122,9 @@
   outline: none !important;
 }
 .web3-card__btn--harvest{
-  background-image: linear-gradient(rgba(14, 86, 192, 0.12), rgba(0, 113, 188, 0.17));
-  border: 1px solid transparent;
-  color: rgba(14, 86, 192, 0.56);
-}
-.web3-card__btn--harvest:hover{
-  border: 1px solid rgba(56, 162, 222, 0.6);
+  color: #0E56C0;
+  border: 1px solid #0E56C0;
+  background: #ffffff;
 }
 .web3-card__btn--blue{
   color: #ffffff;
