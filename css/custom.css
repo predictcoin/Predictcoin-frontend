@@ -1748,3 +1748,8 @@ header
     font-size: 12px;
 
 }
+
+/* for hiding and showing elements */
+.hide{
+	display: none;
+}
