@@ -1,6 +1,6 @@
 const config = { 
   abis: {
-    Farm: [
+    Farm:[
       {
         "anonymous": false,
         "inputs": [
@@ -198,6 +198,13 @@ const config = {
           }
         ],
         "name": "add",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "compound",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -667,7 +674,7 @@ const config = {
         "stateMutability": "nonpayable",
         "type": "function"
       }
-      ],
+    ],
     ERC20: [
       {
         "anonymous": false,
@@ -2259,24 +2266,22 @@ const config = {
   },
   // Testnet details
   addresses : {
-    "Farm": "0xd4c4098306F98A54B7FC3586B263d6Ae1C49a844",
-    "Wallet": "0x39A687956c1ec385F28AE3f93282A6BcC48A59DE",
-    "Implementation": "0xc509c61448999064e2e40128ebc238ce70639f50",
-    "Predcoin": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b",
+    "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
+    "Wallet": "0x5D103b6064935888fFAE0E5DC51BC7582Aa20E6a",
+    "Implementation": "0xe77a1b16f91dfc0d0737b6768f6096e663b793ec",
+    "Predcoin": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
     "BUSD": "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
     "WBNB": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
     "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
-    "Pred": "0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b",
-    "BUSDPRED": "0x7efaef62fddcca950418312c6c91aef321375a00",
+    "PRED": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
+    "BUSD-PRED": "0x6db5a429398887567e99911b8fe035a636b8bc47",
     // 0x5439645686228463132595f31d8173c6e634da6e",
-    "BNBPRED": "0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16",
+    "BNB-PRED": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     //"0xf57567e5b648d7cf34fb87ec3f5f47609ae31413",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc"
 
   },
-  pools: ["0xb77C24b4bcC8f978eBede5Aa221b9Fa8e0604E0b", 
-    "0x5439645686228463132595f31d8173c6e634da6e",
-    "0xf57567e5b648d7cf34fb87ec3f5f47609ae31413"],
+  pools: ["PRED", "BUSD-PRED", "BNB-PRED"],
   chainId: 97,
   providerEndpoint: "https://data-seed-prebsc-1-s2.binance.org:8545/",
 

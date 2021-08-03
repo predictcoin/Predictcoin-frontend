@@ -31,3 +31,7 @@ Farm.prototype.userInfo = async function (pId, address) {
 Farm.prototype.poolInfo = async function (index) {
   return await this.instance.poolInfo(index)
 }
+
+Farm.prototype.compound = async function (){
+  return await this.instance.compound();
+}

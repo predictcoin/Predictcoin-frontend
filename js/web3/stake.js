@@ -2,6 +2,15 @@ async function populateCard(card) {
   const pId = card.dataset.pool;
   let token = await util.getPoolToken(pId);
 
+  // dollar equivalent of rewards
+  let dollarValue = (
+    await util.getAmountsOut(
+      ethers.utils.parseUnits("1", 18),
+      config.addresses.PRED,
+      config.addresses.BUSD
+    )
+  )[1];
+
   // request for pair data
   const res = await (
     await fetch(
@@ -15,7 +24,7 @@ async function populateCard(card) {
           query: `
           query {
             pair(id: "${
-              pId === "1" ? config.addresses.BUSDPRED : config.addresses.BNBPRED
+              pId === "1" ? config.addresses["BUSD-PRED"] : config.addresses["BNB-PRED"]
             }"){
               reserveUSD,
               totalSupply,
@@ -31,7 +40,7 @@ async function populateCard(card) {
   ).json();
 
   // enter APR
-  await renderAPR(card, pId, res);
+  await renderAPR(card, pId, res, dollarValue);
 
   // enter reward
   let earnedEle = card.querySelector(".earned");
@@ -50,7 +59,7 @@ async function populateCard(card) {
   stakedEle.textContent = formatNumber(staked);
 
   // enter totalStaked
-  await renderTotalStaked(token, card, res);
+  await renderTotalStaked(token, card, dollarValue);
 
   // check if contracts enabled
   const allowance = ethers.utils.formatUnits(
@@ -65,14 +74,7 @@ async function populateCard(card) {
     card.classList.remove("enabled");
   }
 
-  // dollar equivalent of rewards
-  let dollarValue = (
-    await util.getAmountsOut(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.Pred,
-      config.addresses.BUSD
-    )
-  )[1];
+
   dollarValue = ethers.utils.formatUnits(dollarValue, token.decimals);
   let totalDollarValue = dollarValue * earned;
   card.querySelector(".dollar-value").textContent = `$${Number(
@@ -89,11 +91,11 @@ async function populateUI() {
   });
 }
 
-async function renderTotalStaked(token, card, res) {
+async function renderTotalStaked(token, card, dollarValue) {
   let totalEle = card.querySelector(".total-staked");
   let total = await util.totalStaked(token);
   if (card.dataset.pool !== "0") {
-    total = await getStakeValue(total, token, res, card.dataset.pool);
+    total = await getStakeValue(total, token, dollarValue);
     totalEle.textContent = `$${formatNumber(total, "per")}`;
     return;
   }
@@ -102,37 +104,24 @@ async function renderTotalStaked(token, card, res) {
   totalEle.textContent = formatNumber(total);
 }
 
-async function getStakeValue(total, token, res, id) {
-  // const totalSupply = await util.totalSupply(token);
-  // const token0 = await util.token0(token)
-  // const predPosition = (token0 === config.addresses.Pred) ? 0 : 1;
-  // const predLiquidity = (await util.getReserves(token))[predPosition];
-  // let dollarValue = (
-  //   await util.getAmountsOut(
-  //     ethers.utils.parseUnits("1"),
-  //     config.addresses.Pred,
-  //     config.addresses.BUSD
-  //   )
-  // )[1];
-  // return 
-
-  const pair = res.data.pair
-    ? res.data.pair
-    : { reserveUSD: 0, totalSupply: 1 };
-  total = ethers.utils.formatUnits(total, token.decimals);
-  total = (total / pair.totalSupply) * pair.reserveUSD;
-  return total;
+async function getStakeValue(total, token, dollarValue) {
+  const totalSupply = await util.totalSupply(token);
+  const token0 = await util.token0(token);
+  const predPosition = (token0 === config.addresses.Pred) ? 0 : 1;
+  const predLiquidity = (await util.getReserves(token))[predPosition];
+  const total$ = predLiquidity.mul(2).mul(total).div(totalSupply).mul(dollarValue);
+  return ethers.utils.formatUnits(total$, 18*2);
 }
 
-async function renderAPR(card, id, res) {
+async function renderAPR(card, id, res, dollarValue) {
   let token = await util.getPoolToken(id);
   let apr;
   if (id === "0") {
     (apr = await util.getStakeApr(id)), token.decimals;
   } else {
     const stake = await util.totalStaked(token);
-    const total$ = await getStakeValue(stake, token, res, id);
-    if (total$ === 0) {
+    const total$ = await getStakeValue(stake, token, dollarValue);
+    if (total$ === "0") {
       apr = 0;
     } else {
       const totalPredPerYr = util.farm.predPerBlock.mul(28800).mul(365);
@@ -141,7 +130,7 @@ async function renderAPR(card, id, res) {
       let dollarValue = (
         await util.getAmountsOut(
           ethers.utils.parseUnits("1"),
-          config.addresses.Pred,
+          config.addresses.PRED,
           config.addresses.BUSD
         )
       )[1];
@@ -249,7 +238,7 @@ async function checkBalance(modal, event) {
   }
 }
 
-async function sendTx(tx, message) {
+async function sendTx(tx, passMsg, failMsg) {
   try {
     tx = await tx();
   } catch (err) {
@@ -273,9 +262,9 @@ async function sendTx(tx, message) {
   updateNotificaion(1);
   provider.waitForTransaction(tx.hash).then((receipt) => {
     if (receipt.status) {
-      $.growl.notice({ message: `✓  ${message}`, title: "" });
+      $.growl.notice({ message: `✓  ${passMsg}`, title: "" });
     } else {
-      $.growl.error({ message: `Transaction failed to ${message}` });
+      $.growl.error({ message: `${failMsg}` });
     }
     updateNotificaion(-1);
   });
@@ -331,7 +320,8 @@ async function withdraw(event) {
   const input = parent.querySelector("input");
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
   let tx = async () => await util.withdraw(parent.dataset.pool, amount);
-  await sendTx(tx, "Withdrawal successful");
+  await sendTx(tx, `Successfully withdrew ${input.value} ${config.pools[parent.dataset.pool]}`, 
+   `Failed to withdraw ${input.value} ${config.pools[parent.dataset.pool]}`);
   closeModal("#unstake");
   input.value = "";
 }
@@ -340,7 +330,7 @@ async function harvest(event) {
   const parent = event.target.closest(".web3-card");
   if (event.target.classList.contains("disable-btn")) return;
   let tx = async () => await util.withdraw(parent.dataset.pool, 0);
-  await sendTx(tx, "Harvest successful");
+  await sendTx(tx, "Harvest successful", "Harvest Transaction failed");
 }
 
 async function deposit(event) {
@@ -355,7 +345,13 @@ async function deposit(event) {
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
 
   let tx = async () => await util.deposit(parent.dataset.pool, amount);
-  await sendTx(tx, "You successfully staked");
+  await sendTx(tx, `You successfully staked ${input.value} ${config.pools[parent.dataset.pool]}`,
+   `Transaction failed to stake ${input.value} ${config.pools[parent.dataset.pool]}`);
   closeModal("#stake");
   input.value = "";
+}
+
+async function compound(){
+  let tx = async () => await util.compound();
+  await sendTx(tx, "You successfully compounded", "Compounding Transaction failed");
 }

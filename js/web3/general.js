@@ -106,7 +106,7 @@ async function fillTotal_APR(){
         body: JSON.stringify({
           query: `
             query {
-              pair(id: "${id === "1" ? config.addresses.BUSDPRED: config.addresses.BNBPRED}"){
+              pair(id: "${id === "1" ? config.addresses["BUSD-PRED"]: config.addresses["BNB-PRED"]}"){
                 reserveUSD,
                 totalSupply,
                 pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
@@ -120,8 +120,16 @@ async function fillTotal_APR(){
       ).json())
     const token = await util.getPoolToken(id);
 
-    await renderAPR(ele, ele.dataset.pool, res);
-    await renderTotalStaked(token, ele, res);
+    let dollarValue = (
+      await util.getAmountsOut(
+        ethers.utils.parseUnits("1", 18),
+        config.addresses.PRED,
+        config.addresses.BUSD
+      )
+    )[1];
+
+    await renderAPR(ele, ele.dataset.pool, res, dollarValue);
+    await renderTotalStaked(token, ele, dollarValue);
     document.querySelector("body").classList.remove("loading");
     document.querySelector("body").classList.add("loaded");
   })
@@ -165,7 +173,9 @@ async function initUI(address) {
 
 async function establishEvents() {
   provider.removeAllListeners("accountsChanged", "chainChanged");
+  console.log("establishing");
   provider.on("accountsChanged", async () => {
+    console.log("me");
     try {
       await signer.getAddress();
     } catch (err) {
@@ -230,4 +240,9 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
   // add event to logout button
   document.querySelector(".btn--logout").addEventListener("click", disconnectWallet);
+  // add compounding event
+  let compBtn = document.querySelector(".compound");
+  if(compBtn) {
+    compBtn.addEventListener("click", compound)
+  }
 })

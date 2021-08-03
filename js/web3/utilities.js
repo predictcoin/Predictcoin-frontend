@@ -24,8 +24,15 @@ Util.prototype.withdraw = async function(id, amount) {
 }
 
 Util.prototype.deposit = async function(id, amount) {
-  const token = await util.getPoolToken(id);
   return await this.farm.deposit(id, amount);
+}
+
+Util.prototype.compound = async function(id, amount) {
+  return await this.farm.compound();
+}
+
+Util.prototype.token0 = async function(token) {
+  return await token.token0();
 }
 
 Util.prototype.getStakeApr = async function(id) {
