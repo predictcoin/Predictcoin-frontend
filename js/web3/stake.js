@@ -24,7 +24,9 @@ async function populateCard(card) {
           query: `
           query {
             pair(id: "${
-              pId === "1" ? config.addresses["BUSD-PRED"] : config.addresses["BNB-PRED"]
+              pId === "1"
+                ? config.addresses["BUSD-PRED"]
+                : config.addresses["BNB-PRED"]
             }"){
               reserveUSD,
               totalSupply,
@@ -49,7 +51,7 @@ async function populateCard(card) {
   earnedEle.textContent = formatNumber(earned);
   if (earned <= 0) {
     card.querySelector(".harvest").classList.add("disable-btn");
-  }else{
+  } else {
     card.querySelector(".harvest").classList.remove("disable-btn");
   }
   // enter staked
@@ -73,7 +75,6 @@ async function populateCard(card) {
     card.classList.add("not-enabled");
     card.classList.remove("enabled");
   }
-
 
   dollarValue = ethers.utils.formatUnits(dollarValue, token.decimals);
   let totalDollarValue = dollarValue * earned;
@@ -107,10 +108,14 @@ async function renderTotalStaked(token, card, dollarValue) {
 async function getStakeValue(total, token, dollarValue) {
   const totalSupply = await util.totalSupply(token);
   const token0 = await util.token0(token);
-  const predPosition = (token0 === config.addresses.Pred) ? 0 : 1;
+  const predPosition = token0 === config.addresses.Pred ? 0 : 1;
   const predLiquidity = (await util.getReserves(token))[predPosition];
-  const total$ = predLiquidity.mul(2).mul(total).div(totalSupply).mul(dollarValue);
-  return ethers.utils.formatUnits(total$, 18*2);
+  const total$ = predLiquidity
+    .mul(2)
+    .mul(total)
+    .div(totalSupply)
+    .mul(dollarValue);
+  return ethers.utils.formatUnits(total$, 18 * 2);
 }
 
 async function renderAPR(card, id, res, dollarValue) {
@@ -173,8 +178,9 @@ async function populateModal(event) {
   const modal = document.querySelector(`${modalId}`);
   modal.dataset.pool = pId;
   if (modal.querySelector(".name")) {
-    modal.querySelector(".name").textContent =
-      pId === "1" ? "BUSD-PRED LP" : "BNB-PRED LP";
+    modal.querySelectorAll(".name").forEach(
+      ele => ele.textContent = config.pools[pId]
+    );
   }
   let token = await util.getPoolToken(pId);
   // enter staked
@@ -320,8 +326,11 @@ async function withdraw(event) {
   const input = parent.querySelector("input");
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
   let tx = async () => await util.withdraw(parent.dataset.pool, amount);
-  await sendTx(tx, `Successfully withdrew ${input.value} ${config.pools[parent.dataset.pool]}`, 
-   `Failed to withdraw ${input.value} ${config.pools[parent.dataset.pool]}`);
+  await sendTx(
+    tx,
+    `Successfully withdrew ${formatNumber(input.value)} ${config.pools[parent.dataset.pool]}`,
+    `Failed to withdraw ${formatNumber(input.value)} ${config.pools[parent.dataset.pool]}`
+  );
   closeModal("#unstake");
   input.value = "";
 }
@@ -345,13 +354,24 @@ async function deposit(event) {
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
 
   let tx = async () => await util.deposit(parent.dataset.pool, amount);
-  await sendTx(tx, `You successfully staked ${input.value} ${config.pools[parent.dataset.pool]}`,
-   `Transaction failed to stake ${input.value} ${config.pools[parent.dataset.pool]}`);
+  await sendTx(
+    tx,
+    `You successfully staked ${formatNumber(input.value)} ${
+      config.pools[parent.dataset.pool]
+    }`,
+    `Transaction failed to stake ${formatNumber(input.value)} ${
+      config.pools[parent.dataset.pool]
+    }`
+  );
   closeModal("#stake");
   input.value = "";
 }
 
-async function compound(){
+async function compound() {
   let tx = async () => await util.compound();
-  await sendTx(tx, "You successfully compounded", "Compounding Transaction failed");
+  await sendTx(
+    tx,
+    "You successfully compounded",
+    "Compounding Transaction failed"
+  );
 }

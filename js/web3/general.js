@@ -173,9 +173,9 @@ async function initUI(address) {
   }
 }
 
-async function establishEvents(wallet) {
+async function establishEvents(walletProvider) {
   provider.removeAllListeners("accountsChanged", "chainChanged");
-  wallet.on("accountsChanged", async () => {
+  walletProvider.on("accountsChanged", async () => {
     try {
       await signer.getAddress();
     } catch (err) {
@@ -185,10 +185,10 @@ async function establishEvents(wallet) {
       return;
     }
 
-    start(localStorage.getItem("wallet"));
+    start(walletProvider);
     //window.location.reload();
   });
-  wallet.on("chainChanged", () => {
+  walletProvider.on("chainChanged", () => {
     window.location.reload();
   });
 
@@ -219,6 +219,7 @@ function clearInput(event){
     !event.target.closest("[data-dismiss=modal]") && 
     event.target !== event.currentTarget) return;
   event.currentTarget.querySelectorAll("input").forEach(ele => ele.value = "");
+  event.currentTarget.classList.remove("disable-modal");
 }
 
 function changeTheme(){

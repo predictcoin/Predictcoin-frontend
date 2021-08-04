@@ -62,6 +62,9 @@ $(document).ready(function () {
   $('.modal').on('shown.bs.modal', function() {
     $(this).find('[autofocus]').focus();
   });
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 
   // $(".modal input").each((_, input) => input.addEventListener("input", (event) => {
   //   const check = validate({duration: event.target.value}, {duration: {numericality: true}})

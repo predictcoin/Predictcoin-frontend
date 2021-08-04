@@ -132,12 +132,21 @@
 			<div class="inner card-container">
         <div class="web3-card not-enabled" data-pool="0">
           <div class="web3-card__heading">
-            <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
-            <h4>PRED</h4>
+            <div>
+              <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+            </div>
+            <div>
+              <h4>PRED</h4>
+              <span class="multiplier">20x</span>
+            </div>
           </div>
           <ul class="web3-card__user-reward">
             <li>
-              <span>APR</span>
+              <span data-toggle="tooltip" 
+                title="This pool rewards aren’t compounded automatically, so we show APR"
+                class="apr-title">
+                APR
+              </span>
               <span>
                   <div class="ph-item loading"><div class="ph-picture"></div></div>
                 <span  class="apr loaded">0%
@@ -347,7 +356,7 @@
               <p class="stake-input__balance balance">0</p>
               <div><input autofocus type="text" placeholder="0"> <button class="max">MAX</button></div>
             </div>
-            <span class="warning">You don't have enough PRED tokens to stake</span>
+            <span class="warning">You don't have enough tokens to stake</span>
             <div class="stake-btns">
               <button class="btn btn__cancel" data-dismiss="modal" aria-label="Close">CANCEL</button>
               <button class="btn btn__confirm disable-btn">CONFIRM</button>
