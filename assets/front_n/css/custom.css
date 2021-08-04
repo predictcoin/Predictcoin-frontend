@@ -1321,7 +1321,6 @@ header
     background-color: #ffffff;
 }
 
-
 .stCardRow {
     margin: 0 -5px;
 }
@@ -1816,6 +1815,8 @@ header
 .hide-display{
 	display: none;
 }
+
+/* styling for dark theme */
 .dark .inPageSec{
   background: #353535;
 }
@@ -1824,4 +1825,27 @@ header
 }
 .dark footer{
   background: #353535;
+}
+.pageBgGrdient.dark{
+  background-image: linear-gradient(0deg, #353535 0%, #353535 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.dark .walOptionBtns .btn{
+  background-color: #303030;
+	color: #F0F0F0;
+}
+.dark .walOptionBtns .btn:hover{
+	background: rgba(255, 255, 255, 0.3);
+}
+.dark .walOptText{
+	color: #F0F0F0;
+}
+.dark .headerNav.activeMenu{
+	background-color: rgb(53, 53, 53, 0.7);
+}
+body.dark.menuActive::after 
+{		
+	background-image: linear-gradient(0deg, rgb(53, 53, 53, 0.6) 0%, rgb(53, 53, 53, 0.6) 100%);;
 }

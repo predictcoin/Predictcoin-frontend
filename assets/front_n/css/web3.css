@@ -288,13 +288,23 @@ footer{
 .dark header,
 .dark footer,
 .dark .notifications.notifications--show,
-.dark .web3-card{
+.dark .web3-card,
+.dark .modal-content{
   background: #353535;
+}
+.pageBgGrdient.dark{
+  background-image: linear-gradient(0deg, #353535 0%, #353535 100%);
 }
 .dark .web3-card,
 .dark .notifications.notifications--show{
   color: #F0F0F0;
   border: 1px solid #868686;
+}
+.dark .modal-content,
+.dark .modal-content .btn,
+.dark .modal-content .btn path{
+  color: #F0F0F0;
+  fill: #F0F0F0;
 }
 .dark .web3-card__btn--blue{
   color: #303030;
