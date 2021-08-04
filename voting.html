@@ -271,7 +271,8 @@
      var socket              =   io.connect( 'https://'+window.location.hostname+':2053',{transports:['websocket'], upgrade: false}, {'force new connection': true} );
     } 
    
-   
+    document.querySelector("body").classList
+      .add(localStorage.getItem("theme"));
    </script>
    <script type="text/javascript">
 $(function () {

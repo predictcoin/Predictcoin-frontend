@@ -2,6 +2,8 @@
 let provider, signer;
 
 window.addEventListener("load", async () => {
+  document.querySelector("body").classList
+    .add(localStorage.getItem("theme"));
   let wallet = localStorage.getItem("wallet");
   if (wallet === null) {
     useDefaultProvider()
@@ -173,7 +175,6 @@ async function initUI(address) {
 
 async function establishEvents(wallet) {
   provider.removeAllListeners("accountsChanged", "chainChanged");
-  console.log(wallet);
   wallet.on("accountsChanged", async () => {
     try {
       await signer.getAddress();
@@ -203,6 +204,15 @@ function closeModal(modal){
   document.querySelector(`${modal} .close`).click();
 }
 
+function closeModal2(event){
+  if(event.keyCode === 27){
+    let openModal = document.querySelector(".modal.show");
+    if(openModal){
+      openModal.click();
+    }
+  }
+}
+
 
 function clearInput(event){
   if (event.target.dataset.dismiss !== "modal" &&
@@ -211,6 +221,14 @@ function clearInput(event){
   event.currentTarget.querySelectorAll("input").forEach(ele => ele.value = "");
 }
 
+function changeTheme(){
+  let present = document.querySelector("body").classList.toggle("dark");
+  if(present){
+    localStorage.setItem("theme", "dark");
+  }else{
+    localStorage.removeItem("theme");
+  }
+}
 
 // add event listeners
 window.addEventListener("load", () => {
@@ -235,6 +253,8 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".harvest").forEach(ele => ele.addEventListener("click", harvest));
   // add events to clear input when modal is closed
   document.querySelectorAll(".modal").forEach(ele => ele.addEventListener("click", clearInput));
+  //close modals
+  document.querySelector("body").addEventListener("keydown", closeModal2);
   // enable contract
   document.querySelectorAll(".enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
   // add event to logout button
@@ -244,4 +264,6 @@ window.addEventListener("load", () => {
   if(compBtn) {
     compBtn.addEventListener("click", compound)
   }
+  // add events to theme button
+  document.querySelector(".theme-btn").addEventListener("click", changeTheme);
 })

@@ -1611,7 +1611,7 @@ header
 .modal-backdrop.show 
 {
     opacity: 0.8;
-    background-image: linear-gradient( 180deg , rgb(46 89 242 / 92%) 15.1%, rgb(237 38 38 / 92%) 100%);
+    /* background-image: linear-gradient( 180deg , rgb(46 89 242 / 92%) 15.1%, rgb(237 38 38 / 92%) 100%); */
 }
 
 .modal .close{
@@ -1815,4 +1815,13 @@ header
 
 .hide-display{
 	display: none;
+}
+.dark .inPageSec{
+  background: #353535;
+}
+.dark header{
+  background: #353535;
+}
+.dark footer{
+  background: #353535;
 }

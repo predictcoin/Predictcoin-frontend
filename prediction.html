@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -283,29 +283,31 @@
    
    </script>
    <script type="text/javascript">
-$(function () {
-    $('.add').on('click',function(){
-        var qty=$("#predict_price").val();
-        var currentVal = parseInt(qty);
-        if (!isNaN(currentVal)) {
-          $("#predict_price").val(currentVal + 1);
-        }
-    });
-    $('.minus').on('click',function(){
-        var qty=$("#predict_price").val();
-        var currentVal = parseInt(qty);
-        if (!isNaN(currentVal) && currentVal > 0) {
-         $("#predict_price").val(currentVal - 1);
-        }
-    });
-});
-   </script> 
- <script type="text/javascript">
- if(current_page == 'stack' || current_page == 'staking' || current_page == 'farm' || current_page == 'farming' ){
-  $('.load_stake').hide(0);
- start_loader(); 
- } 
-  </script>  
+     document.querySelector("body").classList
+    .add(localStorage.getItem("theme"));
+          $(function () {
+              $('.add').on('click',function(){
+                  var qty=$("#predict_price").val();
+                  var currentVal = parseInt(qty);
+                  if (!isNaN(currentVal)) {
+                    $("#predict_price").val(currentVal + 1);
+                  }
+              });
+              $('.minus').on('click',function(){
+                  var qty=$("#predict_price").val();
+                  var currentVal = parseInt(qty);
+                  if (!isNaN(currentVal) && currentVal > 0) {
+                  $("#predict_price").val(currentVal - 1);
+                  }
+              });
+          });
+            </script> 
+          <script type="text/javascript">
+          if(current_page == 'stack' || current_page == 'staking' || current_page == 'farm' || current_page == 'farming' ){
+            $('.load_stake').hide(0);
+          start_loader(); 
+          } 
+            </script>  
 <!-- <script type="text/javascript">
 
      $('#create_prediction').validate({
