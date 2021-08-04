@@ -173,8 +173,8 @@ async function initUI(address) {
 
 async function establishEvents(wallet) {
   provider.removeAllListeners("accountsChanged", "chainChanged");
+  console.log(wallet);
   wallet.on("accountsChanged", async () => {
-    console.log("me");
     try {
       await signer.getAddress();
     } catch (err) {

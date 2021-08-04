@@ -121,7 +121,7 @@ async function renderAPR(card, id, res, dollarValue) {
   } else {
     const stake = await util.totalStaked(token);
     const total$ = await getStakeValue(stake, token, dollarValue);
-    if (total$ === "0") {
+    if (Number(total$) <= 0) {
       apr = 0;
     } else {
       const totalPredPerYr = util.farm.predPerBlock.mul(28800).mul(365);
