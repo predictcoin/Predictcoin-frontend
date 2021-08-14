@@ -459,6 +459,12 @@ header
 		background-image: linear-gradient(180deg, rgb(46 89 242 / 92%) 15.1%, rgb(237 38 38 / 92%) 100%);
 	}
 
+	body.dark.menuActive::after {
+		background-image: linear-gradient(
+			180deg
+			, rgb(53,53,53, 70%) 15.1%, rgb(53,53,53, 70%) 100%);
+	}
+
 	.headerNavbar ul a 
 	{
 		text-align: left;
