@@ -2274,12 +2274,12 @@ const config = {
     "WBNB": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
     "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
     "PRED": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
-    "BUSD-PRED": "0x6db5a429398887567e99911b8fe035a636b8bc47",
-    "BNB-PRED": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
+    "BUSD-PRED LP": "0x6db5a429398887567e99911b8fe035a636b8bc47",
+    "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc"
 
   },
-  pools: ["PRED", "BUSD-PRED", "BNB-PRED"],
+  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   chainId: 97,
   providerEndpoint: "https://bsc.getblock.io/testnet/?api_key=2c3ade13-931c-4a6a-b50b-8d42627d5afb",
 

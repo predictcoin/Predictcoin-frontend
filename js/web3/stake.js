@@ -25,8 +25,8 @@ async function populateCard(card) {
           query {
             pair(id: "${
               pId === "1"
-                ? config.addresses["BUSD-PRED"]
-                : config.addresses["BNB-PRED"]
+                ? config.addresses["BUSD-PRED LP"]
+                : config.addresses["BNB-PRED LP"]
             }"){
               reserveUSD,
               totalSupply,

@@ -108,7 +108,7 @@ async function fillTotal_APR(){
         body: JSON.stringify({
           query: `
             query {
-              pair(id: "${id === "1" ? config.addresses["BUSD-PRED"]: config.addresses["BNB-PRED"]}"){
+              pair(id: "${id === "1" ? config.addresses["BUSD-PRED LP"]: config.addresses["BNB-PRED LP"]}"){
                 reserveUSD,
                 totalSupply,
                 pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
@@ -265,6 +265,5 @@ window.addEventListener("load", () => {
   if(compBtn) {
     compBtn.addEventListener("click", compound)
   }
-  // add events to theme button
-  document.querySelector(".theme-btn").addEventListener("click", changeTheme);
+
 })

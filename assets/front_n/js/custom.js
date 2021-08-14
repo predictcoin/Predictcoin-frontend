@@ -93,4 +93,18 @@ $(document).ready(function () {
       return Number(Number(num).toFixed(5)).toString();
     }
   }
+
+	//add listener to theme button
+	document.querySelector(".theme-btn").addEventListener("click", changeTheme);
 });
+
+
+//change page theme
+function changeTheme(){
+  let present = document.querySelector("body").classList.toggle("dark");
+  if(present){
+    localStorage.setItem("theme", "dark");
+  }else{
+    localStorage.removeItem("theme");
+  }
+}
