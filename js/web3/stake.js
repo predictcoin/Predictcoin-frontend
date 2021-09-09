@@ -244,52 +244,6 @@ async function checkBalance(modal, event) {
   }
 }
 
-async function sendTx(tx, passMsg, failMsg) {
-  try {
-    tx = await tx();
-  } catch (err) {
-    switch (err.code) {
-      case 4001:
-        $.growl.error({ message: "User rejected transaction" });
-        break;
-      case -32602:
-        $.growl.error({ message: "Invalid parameters" });
-        break;
-      case -32603:
-        $.growl.error({ message: "Internal error" });
-        break;
-      default:
-        $.growl.error({ message: "Something went wrong" });
-    }
-    console.log(err);
-    return;
-  }
-
-  updateNotificaion(1);
-  provider.waitForTransaction(tx.hash).then((receipt) => {
-    if (receipt.status) {
-      $.growl.notice({ message: `✓  ${passMsg}`, title: "" });
-    } else {
-      $.growl.error({ message: `${failMsg}` });
-    }
-    updateNotificaion(-1);
-  });
-}
-
-function updateNotificaion(dir) {
-  const countEle = document.querySelector(".notifications__status");
-  let count = Number(countEle.textContent);
-  count += dir;
-  countEle.textContent = count;
-
-  const notificationEle = document.querySelector(".notifications");
-  if (count > 0) {
-    notificationEle.classList.add("notifications--show");
-  } else {
-    notificationEle.classList.remove("notifications--show");
-  }
-}
-
 async function putMax(event) {
   const parent = event.target.closest(".modal");
   const pId = parent.dataset.pool;
