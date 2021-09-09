@@ -2263,7 +2263,7 @@ const config = {
         "type": "function"
       }
     ],
-    IPO: [
+    IPO:  [
       {
         "inputs": [
           {
@@ -2415,6 +2415,21 @@ const config = {
         ],
         "payable": false,
         "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "newClosingTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "extendTime",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
@@ -2649,7 +2664,7 @@ const config = {
     "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
     // IPO
-    "IPO1": "0x6804A969d54c64761162dfEC717Df94E5997cF2f"
+    "IPO1": "0xC7BA371BB775F14999Fa3084197aA3722048a318"
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   chainId: 97,
