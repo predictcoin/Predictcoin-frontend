@@ -2649,11 +2649,12 @@ const config = {
     "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
     // IPO
-    "IPO1": "0xbd3ff2883dB3f6384D2cfe2C050E4bf1e73194f1"
+    "IPO1": "0xf997a2E0d0f28fB2c099a33eE023D203DB2c8d0C"
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   chainId: 97,
-  providerEndpoint: "https://bsc.getblock.io/testnet/?api_key=2c3ade13-931c-4a6a-b50b-8d42627d5afb",
+  providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545"
+  // providerEndpoint: "https://bsc.getblock.io/testnet/?api_key=2c3ade13-931c-4a6a-b50b-8d42627d5afb",
 
   // Mainnet addresses
   // addresses : {

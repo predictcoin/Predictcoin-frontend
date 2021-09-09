@@ -1,8 +1,8 @@
-body.live .past{
+body.live .past {
   display: none;
 }
 
-body:not(.live) .live{
+body:not(.live) .live {
   display: none;
 }
 
@@ -54,6 +54,8 @@ body:not(.live) .ipo_heading span.past-tab {
   font-weight: 600;
   color: rgba(97, 97, 97, 1);
 }
+
+
 
 .first-section,
 .second-section,
@@ -149,18 +151,20 @@ body:not(.live) .ipo_heading span.past-tab {
   background: transparent;
 }
 
-.input .eq{
+.input .eq {
   text-align: center;
   display: inline-block;
   border-left: 1px solid rgba(196, 196, 196, 1);
   padding-left: 2px;
 }
 
-.input_error{
+.input_error {
   color: red;
 }
 
-.claim_button, .buy_button, .enable_button{
+.claim_button,
+.buy_button,
+.enable_button {
   display: block;
   width: fit-content;
   margin: auto;
@@ -172,71 +176,104 @@ body:not(.live) .ipo_heading span.past-tab {
   width: 70%;
 }
 
-.buy_button.disable{
+.buy_button.disable {
   cursor: not-allowed;
 }
 
-hr{
+hr {
   width: 90%;
 }
 
-.web3-card__bottom{
+.web3-card__bottom {
   background: transparent;
 }
-.separated_text{
+
+.separated_text {
   display: flex;
   justify-content: space-between;
 }
 
-.dashed_cover{
+.dashed_cover {
   margin: 2rem 0 0;
   border: 2px dashed rgba(14, 86, 192, 0.5);
   padding: 5px;
 }
 
-.past .fourth-section{
+.past .fourth-section {
   text-align: center;
   color: rgba(134, 134, 134, 1);
 }
 
-.fourth-section .first{
+.fourth-section .first {
   font-size: 24px;
 }
+
 .fourth-section .second {
   display: inline-block;
   margin-bottom: 1rem;
 }
 
-.past .first-section{
+.past .first-section {
   margin-top: 2rem;
 }
 
-.notifications.notifications--show{
+.notifications.notifications--show {
   margin-bottom: 1rem;
 }
 
-.web3-card.ended{
+.web3-card.ended {
   display: none;
 }
 
 .live .web3-card:not(.started) .fourth-section,
-.web3-card:not(.started) .buy_button{
+.web3-card:not(.started) .buy_button {
   display: none;
 }
 
-.web3-card.started .start-IPO{
+.web3-card.started .start-IPO {
   display: none;
 }
 
-.web3-card:not(.started) .end-IPO{
+.web3-card:not(.started) .end-IPO {
   display: none;
 }
 
-.no-IPOs.hide{
+.no-IPOs.hide {
   display: none;
   color: #fff;
 }
 
-.web3-card.ended + .no-IPOs.hide{
+.web3-card.ended+.no-IPOs.hide {
   display: block;
+}
+
+.web3-card.sold-out .not-sold-out {
+  display: none;
+}
+
+.web3-card .sold-out {
+  margin-top: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.web3-card.sold-out .sold-out {
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .timer {
+    font-size: 18px;
+  }
+
+  .claim_button,
+  .buy_button,
+  .enable_button {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .layered_text .bottom, .progress_text-top, .progress_text-bottom, .web3-card__bottom{
+    font-size: 14px;
+  }
 }

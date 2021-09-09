@@ -6,6 +6,7 @@ async function populateUI() {
   await renderProgress();
   await renderBalance();
   await renderClaim();
+  await checkSoldOut();
 
   setInterval(startCountDown, 60000);
   document.querySelector("body").classList.remove("loading");
@@ -55,8 +56,15 @@ async function renderBalance(){
 async function renderClaim(){
   const claimBtn = document.querySelector(".claim_button");
   const bal = ethers.utils.formatUnits(await util.balanceOf());
-  console.log(bal);
   claimBtn.textContent = `CLAIM ${formatNumber(bal)} PRED`;
+}
+
+async function checkSoldOut(){
+  const weiRaised = util.weiRaised();
+  const cap = util.cap()
+  if(weiRaised.eq(cap)){
+    document.querySelector(".live .web3-card").classList.add("sold-out");
+  }
 }
 
 async function checkInput(e){
@@ -107,7 +115,7 @@ function startCountDown(){
   let [ duration, status ] = getDuration();
 
   if (status !== ""){
-    document.querySelector(".live").classList.add(status);
+    document.querySelector(".live .web3-card").classList.add(status);
     document.querySelector(".past .web3-card").classList.add("ended");
   }
   else{

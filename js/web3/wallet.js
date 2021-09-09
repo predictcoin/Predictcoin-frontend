@@ -142,9 +142,9 @@ async function establishEvents(walletProvider) {
     window.location.reload();
   });
 
-  provider.on("block", async () => {
-    await populateUI();
-  });
+  // provider.on("block", async () => {
+  //   await populateUI();
+  // });
 }
 
 async function sendTx(tx, passMsg, failMsg) {
