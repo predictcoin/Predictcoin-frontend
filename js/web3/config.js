@@ -2664,11 +2664,11 @@ const config = {
     "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
     // IPO
-    "IPO1": "0xC7BA371BB775F14999Fa3084197aA3722048a318"
+    "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0"
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
-  chainId: 97,
-  providerEndpoint: "https://bsc-testnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K"
+  chainId: 56,
+  providerEndpoint: "https://bsc-mainnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K"
 
   // Mainnet addresses
   // addresses : {
