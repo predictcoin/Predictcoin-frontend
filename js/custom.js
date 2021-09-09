@@ -49,4 +49,20 @@ $(document).ready(function()
 	/* ------- Trigger modal when page is loaded ------- */
 	$(window.location.hash).modal('toggle');	
 
+	//add listener to theme button
+	document.querySelector(".theme-btn").addEventListener("click", changeTheme);
+
+	// add current theme
+	document.querySelector("body").classList
+	.add(localStorage.getItem("theme"));
 });
+
+//change page theme
+function changeTheme(){
+  let present = document.querySelector("body").classList.toggle("dark");
+  if(present){
+    localStorage.setItem("theme", "dark");
+  }else{
+    localStorage.removeItem("theme");
+  }
+}

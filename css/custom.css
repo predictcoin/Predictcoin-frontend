@@ -459,6 +459,12 @@ header
 		background-image: linear-gradient(180deg, rgb(46 89 242 / 92%) 15.1%, rgb(237 38 38 / 92%) 100%);
 	}
 
+	body.dark.menuActive::after {
+		background-image: linear-gradient(
+			180deg
+			, rgb(53,53,53, 70%) 15.1%, rgb(53,53,53, 70%) 100%);
+	}
+
 	.headerNavbar ul a 
 	{
 		text-align: left;
@@ -1176,6 +1182,13 @@ header
     padding: 12.25rem 0 0;
 }
 
+.theme-btn{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
 .socialLinks {
     margin: 0.75rem 0 0;
 }
@@ -1682,6 +1695,28 @@ header
     color: #000000;
 }
 
+body.dark .indexFooter,
+body.dark .banner{
+	background-image: linear-gradient( 180deg , #353535  15.1%, #353535  100%);
+}
+body.dark .headerFix.headerFix.headerSticky,
+body.dark,
+body.dark .faqAcc .card-header,
+body.dark .card-body,
+body.dark .faqCont,
+body.dark .faqAcc .card-body p,
+body.dark .aboutCon,
+body.dark .marketCapCon,
+body.dark .dbTable table tbody tr:nth-child(even){
+	background-color: #353535;
+	color: white;
+}
+
+body.dark .marketCapPara p,
+body.dark .marketCapTable th,
+body.dark .dbTable table td {
+	color: white;
+}
 
 
 @media only screen and (max-width: 575px)
@@ -1747,4 +1782,9 @@ header
     margin-left: 4px;
     font-size: 12px;
 
+}
+
+/* for hiding and showing elements */
+.hide{
+	display: none;
 }
