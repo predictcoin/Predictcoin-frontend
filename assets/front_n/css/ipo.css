@@ -9,6 +9,10 @@ body:not(.live) .live {
 .web3-card {
   border: none;
   max-width: 40rem;
+  border-radius: 29px;
+  -webkit-box-shadow: 5px 4px 19px 9px rgba(0,0,0,0.35); 
+box-shadow: 5px 4px 19px 9px rgba(0,0,0,0.35);
+
 }
 
 .ipo_heading {
@@ -41,6 +45,7 @@ body:not(.live) .ipo_heading span.past-tab {
   padding: 30px;
   display: flex;
   justify-content: center;
+  border-radius: 25px 25px 0px 0px;
 }
 
 .web3-card__heading img {
@@ -98,8 +103,10 @@ body:not(.live) .ipo_heading span.past-tab {
   display: flex;
   flex-direction: column;
 }
-
-.layered_text .top {}
+/* along */
+.layered_text .top {
+  margin: auto;
+}
 
 .layered_text .bottom {
   font-weight: 600;
@@ -277,3 +284,36 @@ hr {
     font-size: 14px;
   }
 }
+
+
+.offering{
+  padding-bottom: 40px;
+}
+
+/* gradient */
+/* .gradient-card {
+  border: none;
+  max-width: 40rem;
+  border-radius: 29px;
+
+} */
+
+/* .granimate {
+  background-color: #2ecc71;
+  animation: hue 11s linear 0s infinite reverse;
+  border-radius: 29px;
+  padding-top: 140px;
+  height: 200px; 
+  }*/
+
+
+/* .granimate::before {
+  background: linear-gradient(105deg, rgba(255, 190, 0, 0), #ffbe00);
+  animation: hue 12s linear 1s infinite;
+}
+
+@keyframes hue {
+  to {
+    filter: hue-rotate(1turn);
+  }
+} */
