@@ -49,7 +49,7 @@
                   </span>
                 </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item">
                 <a class="nav-link" href="farming.html">
                   <span class="navIcon">
                     <img src="assets/front_n/images/icons/farming.png" alt="farming" />
@@ -76,6 +76,16 @@
                   </span>
                   <span class="navText">
                     Price Prediction
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item  ">
+                <a class="nav-link" href="ipo.html">
+                  <span class="navIcon">
+                    <img src="assets/front_n/images/icons/chart2.png" alt="prediction" />
+                  </span>
+                  <span class="navText">
+                    IPO
                   </span>
                 </a>
               </li>
@@ -114,7 +124,8 @@
 <div class="timepicker"></div> 
 <div class="inPageSec">
   <div class="container inner">
-    <img src="images/coming.jpg" alt="download" />
+    <p id="timerdown"></p>
+    <img src="images/wtmg.png" alt="download" class="sizeimg"/>
 
   </div>
 </div>
@@ -124,7 +135,7 @@
         <div class="row align-items-center py-2">
           <div class="col-sm-12 col-md-6 col-lg-6 my-2">
             <p class="text-white font-12 mb-0 text-center text-md-left">
-              Copyright &copy; 2021Predictcoin | All Rights Reserved
+              Copyright &copy; 2021 Predictcoin | All Rights Reserved
             </p>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6 my-2">
@@ -264,6 +275,50 @@
     <script src="assets/front_n/js/jquery.validate.min.js"></script>
     <script src="assets/front_n/js/predict.js"></script>
     <script src="assets/front_n/js/vote.js"></script>
+    <script>
+      var countDownDate = new Date("Oct 4, 2021 16:00:00").getTime();
+      var x = setInterval(function() {
+      
+        // Get today's date and time
+        var now = new Date().getTime();
+          
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+          
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        // Output the result in an element with id="demo"
+        document.getElementById("timerdown").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+          
+        // If the count down is over, write some text 
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("timerdown").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+      </script>
+    <style>
+      #timerdown {
+        text-align: center;
+        font-size: 60px;
+        margin-top: 0px;
+        color: #fff;
+      }
+
+      @media only screen and (max-width: 600px) {
+  #timerdown{
+          text-align: center;
+          font-size: 40px;
+          margin-top: 0px;
+          color: #fff;
+  }
+}
+      </style> 
 
     <script type="text/javascript">
 
@@ -378,6 +433,5 @@
 
   </body> 
 
-<!-- Mirrored from predictcoin.osiztechnologies.in/prediction by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Jul 2021 21:24:20 GMT -->
 </html>
 

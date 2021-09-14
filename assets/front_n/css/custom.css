@@ -1849,3 +1849,11 @@ body.dark.menuActive::after
 {		
 	background-image: linear-gradient(0deg, rgb(53, 53, 53, 0.6) 0%, rgb(53, 53, 53, 0.6) 100%);;
 }
+
+.sizeimg{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+  }
+  
