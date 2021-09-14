@@ -108,7 +108,7 @@ async function renderTotalStaked(token, card, dollarValue) {
 async function getStakeValue(total, token, dollarValue) {
   const totalSupply = await util.totalSupply(token);
   const token0 = await util.token0(token);
-  const predPosition = token0 === config.addresses.Pred ? 0 : 1;
+  const predPosition = token0 === config.addresses.Pred ? 1 : 0;
   const predLiquidity = (await util.getReserves(token))[predPosition];
   const total$ = predLiquidity
     .mul(2)
