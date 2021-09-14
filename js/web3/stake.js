@@ -115,10 +115,6 @@ async function getStakeValue(total, token, dollarValue) {
     .mul(total)
     .div(totalSupply)
     .mul(dollarValue);
-    console.log(ethers.utils.formatUnits(total), 
-      ethers.utils.formatUnits(totalSupply), 
-      ethers.utils.formatUnits(dollarValue), 
-      ethers.utils.formatUnits(predLiquidity), token0, predPosition);
   return ethers.utils.formatUnits(total$, 18 * 2);
 }
 
