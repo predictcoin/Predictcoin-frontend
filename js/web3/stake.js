@@ -108,13 +108,17 @@ async function renderTotalStaked(token, card, dollarValue) {
 async function getStakeValue(total, token, dollarValue) {
   const totalSupply = await util.totalSupply(token);
   const token0 = await util.token0(token);
-  const predPosition = token0 === config.addresses.Pred ? 1 : 0;
+  const predPosition = token0 === config.addresses.PRED ? 0 : 1;
   const predLiquidity = (await util.getReserves(token))[predPosition];
   const total$ = predLiquidity
     .mul(2)
     .mul(total)
     .div(totalSupply)
     .mul(dollarValue);
+    console.log(ethers.utils.formatUnits(total), 
+      ethers.utils.formatUnits(totalSupply), 
+      ethers.utils.formatUnits(dollarValue), 
+      ethers.utils.formatUnits(predLiquidity), token0, predPosition);
   return ethers.utils.formatUnits(total$, 18 * 2);
 }
 
