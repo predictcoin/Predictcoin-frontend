@@ -2683,6 +2683,8 @@ const config = {
     "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
     "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
+      // IPO
+      "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0"
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   chainId: 56,
