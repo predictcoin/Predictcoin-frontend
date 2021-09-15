@@ -1808,6 +1808,9 @@ padding: 20px;
 	text-align: center;
 }
 
+.footlogo{
+	width: 50%;
+}
 
 .caddress{
 	color: #fff;
