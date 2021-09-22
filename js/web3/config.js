@@ -2682,11 +2682,13 @@ const config = {
     "PRED": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
     "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
     "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
+    "USDT-PRED LP": "0x47893dc78be9231a031e594eb29636d3fcda09b9",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
+    "BabyFactory": "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd",
       // IPO
       "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0"
   },
-  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
+  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP", "USDT-PRED LP"],
   chainId: 56,
   providerEndpoint: "https://bsc-mainnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K"
 }
