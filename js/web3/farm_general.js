@@ -31,7 +31,7 @@ async function fillTotal_APR(){
         config.addresses.BUSD
       )
     )[1];
-
+    
     await renderAPR(ele, ele.dataset.pool, res, dollarValue);
     await renderTotalStaked(token, ele, dollarValue);
     document.querySelector("body").classList.remove("loading");

@@ -155,12 +155,12 @@ async function renderAPR(card, id, res, dollarValue) {
     }
     apr = Number(apr) + Number(await getLiqFeeApr(id, res));
   }
-
   const aprEle = card.querySelector(".apr");
   aprEle.textContent = `${formatNumber(apr, "per")}%`;
 }
 
 async function getLiqFeeApr(id, res) {
+  if( id !== 1 || id !== 2) return 0;
   const volume24 = res.data.pair
     ? res.data.pair.pairHourData
         .slice(1)
