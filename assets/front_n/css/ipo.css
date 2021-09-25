@@ -314,6 +314,39 @@ hr {
     width: 100%;
   }
 }
+
+
+.launch{
+	text-align: center;
+}
+
+
+.damn{
+  padding-left: 319px;
+  padding-right:313px;
+  margin-bottom: 30px; 
+}
+
+@media only screen and (max-width: 600px) {
+  .damn {
+    padding-left: 13px;
+    padding-right:15px;
+    margin-bottom: 30px; 
+  }
+}
+
+
+
+.launcher p{
+  color: #fff;
+}
+
+.launcher h5{
+  color: #fff;
+}
+.bg-card{
+  background-color: rgba(196, 196, 196, 0.233);
+}
 /* gradient */
 /* .gradient-card {
   border: none;
