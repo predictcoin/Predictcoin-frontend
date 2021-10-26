@@ -1816,3 +1816,11 @@ padding: 20px;
 	color: #fff;
 	font-size: 13px;
 }
+
+.predchart{
+	margin: auto;
+	/* width: 50%; */
+	padding: 10px;
+	text-align: center;
+
+}
