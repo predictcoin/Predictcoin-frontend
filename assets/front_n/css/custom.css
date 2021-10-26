@@ -1862,4 +1862,11 @@ body.dark.menuActive::after
 	font-size: 13px;
 }
 
+.predchart{
+	margin: auto;
+	/* width: 50%; */
+	padding: 10px;
+	text-align: center;
+
+}
   
