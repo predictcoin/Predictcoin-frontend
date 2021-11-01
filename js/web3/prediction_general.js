@@ -29,7 +29,7 @@ function setNextRoundCountdown(){
     const d = new Date();
     const addDays = d.getHours() < 13 ? 0 : 7;
     d.setDate(d.getDate() + (((1 + 7 - d.getDay()) % 7) || addDays));
-    d.setHours(13, 0, 0)
+    d.setUTCHours(13, 0, 0)
     const duration = (d.getTime() - Date.now())/1000;
     const [days, hours, mins, secs] = getCountDown(duration.toFixed());
     const cont = document.querySelector(".round-ended .timer");
