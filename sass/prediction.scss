@@ -1,0 +1,430 @@
+$primary-color: #0E56C0;
+$primary-text-color: #292929;
+$secondary-text-color: #6586B2;
+$primary-bg-color: #E2EBF769;
+$secondary-bg-color: #0E56C036;
+
+$green: #00A660;
+$red: #C8304D;
+
+@mixin predict-section-heading {
+  color: $primary-text-color;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+@mixin show($width) {
+  @media only screen and (min-width: $width) {
+    display: block;
+  }
+}
+
+@mixin hide($width) {
+  @media only screen and (min-width: $width) {
+    display: none;
+  }
+}
+
+%predict-btn {
+  border-radius: 4px;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+
+  img {
+    margin-right: 0.5rem;
+  }
+}
+
+%main-btn{
+  background-color: $primary-color;
+  color: #ffffff;
+  border: none;
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+%top-level-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+
+#prediction-section {
+  color: $primary-text-color;
+
+  .connect-wallet{
+    @extend %main-btn;
+    display: block;
+    margin: auto initial;
+  }
+
+  .first-container{
+    @media only screen and (min-width: 965px) {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  .predict {
+    position: relative;
+    @media only screen and (min-width: 965px) {
+      max-width: 500px;
+    }
+    @extend %top-level-container;
+
+    .progress {
+      height: 0.3rem;
+    }
+
+    .progress-bar {
+      width: 20%;
+      background-color: $green;
+    }
+
+    .timer {
+      display: block;
+      text-align: end;
+    }
+
+    .tokens {
+      margin: 2rem 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+
+      .token {
+        cursor: pointer;
+        padding: 0.5rem;
+        border: 1px $secondary-bg-color solid;
+        border-radius: 10px;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+
+        &.active {
+          background-color: $secondary-bg-color;
+          color: $primary-color;
+        }
+
+        img {
+          width: 2rem;
+        }
+      }
+    }
+
+    .locked-position {
+      margin-bottom: 2rem;
+      color: $primary-color;
+
+      .heading {
+        @include predict-section-heading;
+      }
+
+      .bar {
+        background: $primary-bg-color;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+
+        &>div {
+          vertical-align: middle;
+        }
+
+        img {
+          width: 2.5rem;
+          margin-right: 0.3rem;
+        }
+
+        .price {
+          font-weight: 600;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .predict {
+      margin: 0;
+      padding: 0;
+      display: none;
+
+      .heading {
+        @include predict-section-heading
+      }
+
+      .predict-box {
+        background: $primary-bg-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        padding: 1rem;
+        font-weight: 500;
+
+        .pred-needed {
+          font-size: 18px;
+          color: $primary-color;
+        }
+
+        .pred-balance {
+          font-size: 12px;
+          color: $secondary-text-color;
+        }
+      }
+
+      .error {
+        color: $red;
+        font-weight: 500;
+      }
+    }
+
+    .predict-btns {
+      margin: 1rem;
+      text-align: center;
+      display: none;
+
+      .up {
+        @extend %predict-btn;
+        background-color: $green;
+        margin-right: 1rem;
+        width: 186px;
+      }
+
+      .down {
+        @extend %predict-btn;
+        background-color: $red;
+      }
+    }
+
+    .round-ended{
+      display: none;
+      position: absolute;
+      padding: 2rem;
+      backdrop-filter: blur(5px);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      &.show{
+        display: block;
+      }
+      .emoji-container{
+        .emoji{
+          display: block;
+          margin: auto;
+        }
+        height: 30%;
+        display: flex;
+        align-items: center;
+      }
+
+      .title{
+        font-weight: 600;
+        text-align: center;
+      }
+      .description{
+        text-align: center;
+      }
+
+      .time{
+        text-align: center;
+        padding: 1rem;
+        background: #F0F4F7;
+        border-radius: 11px;
+        border: 1px dashed #0E56C057;
+        .title{
+          font-weight: 600;
+        }
+        .timer{
+          color: #616161;
+          text-align: center;
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+
+  .chart{
+    @media only screen and (min-width: 965px) {
+      width: 100%;
+      margin-right: 0;
+    }
+   
+    margin: 2rem;
+    #tradingview_c2432{
+      iframe{
+        width: 100% !important;
+        @media only screen and (min-width: 965px) {
+          height: 610px !important;
+        }
+      }
+      .tv-widget-chart__nav{
+        display: none !important;
+      }
+      .tv-widget-chart__container{
+        padding-top: 0;
+      }
+    }
+
+    .tradingview-widget-copyright{
+      @include hide(0px);
+    }
+  }
+
+  .predictions {
+    @extend %top-level-container;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .withdraw {
+      @extend %main-btn;
+      display: none;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 0.4rem;
+      border-radius: 24px;
+    }
+
+    .unsuccessfull {
+      background: #C4C4C473
+    }
+
+    .won {
+      background-color: #00A66070;
+    }
+
+    .lost {
+      background: #FF5A5A73;
+    }
+
+    .earn {
+      border: none;
+      border-radius: 6px;
+      padding: 0.2rem;
+
+      &.won {
+        background: #0E56C08F;
+        color: #ffffff;
+      }
+
+      &.lost {
+        background: #F0B90B;
+      }
+    }
+
+    .my-predictions{
+      display: none;
+    }
+
+    .my-prediction-table {
+      text-align: center;
+      overflow-x: scroll;
+      @include show(965px);
+      display: none;
+
+      .table-head {
+        padding: 1rem;
+        background: #E2EBF75C;
+        color: #0071BC94;
+
+        th {
+          padding: 1rem;
+        }
+      }
+
+      td {
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+      }
+    }
+
+    .my-prediction-card {
+      background-color: #F0F4F7;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      @include hide(965px);
+      display: none;
+
+      .earn {
+        display: inline-block;
+        margin: auto;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .no-prediction{
+      text-align: center;
+      display: none;
+    }
+  }
+}
+
+
+//wallet is connected
+body.connected{
+  #prediction-section{
+    // button.withdraw
+    // .my-predictions,
+    .predict,
+    .predict-btns,
+    .no-prediction
+    {
+      display: block;
+    }
+
+    #tradingview_c2432{
+      iframe{
+        width: 100% !important;
+        @media only screen and (min-width: 965px) {
+          height: 737.969px !important;
+        }
+      }
+    }
+    
+    .connect-wallet{
+      display: none;
+    }
+  }
+}
+
+//prediction ended
+#prediction-section{
+  .predict.ended{
+    .round-ended{
+      display: block;
+    }
+  }
+}
+
+//betting ended
+#prediction-section{
+  .predict.betting-ended{
+    .predict{
+      display: none;
+    }
+    .predict-btns{
+      display: none;
+    }
+
+    .closeTime-info{
+      display: none;
+    }
+  }
+}
+
+
+/*# sourceMappingURL=prediction.scss.map */
