@@ -21,7 +21,7 @@ window.addEventListener("load", async () => {
 async function useDefaultProvider(){
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
-  fillTotal_APR();
+  typeof(fillTotal_APR) === 'function' ? fillTotal_APR() : "";
 }
 
 async function start(walletProvider) {
@@ -142,9 +142,9 @@ async function establishEvents(walletProvider) {
     window.location.reload();
   });
 
-  provider.on("block", async () => {
-    await populateUI();
-  });
+  // provider.on("block", async () => {
+  //   await populateUI();
+  // });
 }
 
 async function sendTx(tx, passMsg, failMsg) {
