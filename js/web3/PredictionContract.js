@@ -1,0 +1,43 @@
+function Prediction(){
+  this.instance = null;
+}
+
+Prediction.prototype.initialize = async function (address, abi, signer) {
+  this.instance = await new ethers.Contract(address, abi, signer);
+}
+
+Prediction.prototype.getCurrentRound = async function (){
+  return await this.instance.currentEpoch();
+}
+
+Prediction.prototype.getRound = async function (round) {
+  return await this.instance.getRound(round);
+}
+
+Prediction.prototype.intervalSeconds = async function () {
+  return await this.instance.intervalSeconds();
+}
+
+Prediction.prototype.bufferSeconds = async function () {
+  return await this.instance.bufferSeconds();
+}
+
+Prediction.prototype.betSeconds = async function () {
+  return await this.instance.betSeconds();
+}
+
+Prediction.prototype.betAmount = async function () {
+  return await this.instance.betAmount();
+}
+
+Prediction.prototype.predictBull = async function(address, epoch){
+  return await this.instance.predictBull( epoch, address);
+}
+
+Prediction.prototype.predictBear = async function(address, epoch){
+  return await this.instance.predictBear(epoch, address);
+}
+
+Prediction.prototype.tokenMaxBet = async function(){
+  return await this.instance.tokenMaxBet();
+}
