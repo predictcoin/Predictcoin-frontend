@@ -142,7 +142,7 @@
       </div>  
     </header>    
     <input type="hidden" id="base_url" value="https://predictcoin.finance">
-    <title>Predictcoin - Staking </title>
+    <title>Predictcoin - Farming </title>
     <div class="inPageSec">
       <div class="notifications"> 
         <div class="spinner-border text-secondary" role="status">
@@ -152,13 +152,27 @@
       </div>
 	            <img src="images/4.jpg" class="img-fluid sizeimg" alt="">
 	    <p class="ipop">
-	                    <a href="http://pancakeswap.finance/swap?outputCurrency=0xbdd2e3fdb879aa42748e9d47b7359323f226ba22" target="_blank" id="ipobtn">Buy PRED</a></p>
+	                    <a href="https://pancakeswap.finance/add/0xbdd2e3fdb879aa42748e9d47b7359323f226ba22/BNB" target="_blank" id="ipobtn">Add Liquidity</a></p>
+	    
+	        <div class="container">
+      <div class="row">
+        <div class="predchart">
+          <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
+          <div class="livecoinwatch-widget-6" lcw-coin="PRED" lcw-base="USD" lcw-period="d" lcw-color-tx="#000000"
+            lcw-color-bg="#ffffff" lcw-border-w="0"></div>
+        </div>
+      </div>
+    </div>
+	    
 			<div class="inner card-container">
         <div class="web3-card not-enabled" data-pool="3">
           <div class="web3-card__heading">
             <div class="lpimg">
-              <img src="assets/front_n/images/coins/usdt.svg" class="first-lpimg" alt="usdt">
+		 <img src="images/ener.png" class="first-lpimg lefticn" alt="usdt">
+<!--               <img src="assets/front_n/images/coins/usdt.svg" class="first-lpimg" alt="usdt">
               <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
+              <img src="assets/front_n/images/coins/baby.svg" class="first-lpimg" alt="usdt"> -->
+
             </div>
             <div>
               <h4>USDT-PRED LP</h4>
@@ -214,8 +228,11 @@
         <div class="web3-card not-enabled" data-pool="1">
           <div class="web3-card__heading">
             <div class="lpimg">
-              <img src="assets/front_n/images/coins/busd.png" class="first-lpimg" alt="busd">
+		      <img src="images/busdpred.png" class="first-lpimg lefticn" alt="busd">
+<!--               <img src="assets/front_n/images/coins/busd.png" class="first-lpimg" alt="busd">
               <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
+              <img src="assets/front_n/images/coins/pan.svg" class="first-lpimg" alt="busd"> -->
+
             </div>
             <div>
               <h4>BUSD-PRED LP</h4>
@@ -271,8 +288,11 @@
         <div class="web3-card not-enabled" data-pool="2">
           <div class="web3-card__heading">
             <div class="lpimg">
-              <img src="assets/front_n/images/coins/bnb.png" class="first-lpimg" alt="busd">
+		      <img src="images/bnbpred.png" class="first-lpimg lefticn" alt="bnb">
+<!--               <img src="assets/front_n/images/coins/bnb.png" class="first-lpimg" alt="busd">
               <img src="assets/front_n/images/coins/pred.svg" class="second-lpimg" alt="pred">
+              <img src="assets/front_n/images/coins/pan.svg" class="first-lpimg" alt="busd"> -->
+
             </div>
             <div>
               <h4>BNB-PRED LP</h4>
@@ -589,6 +609,20 @@ padding: 20px;
 text-align: center;
 padding-top: 30px;
 }
+		    
+.lefticn{
+  width: 135px!important;
+  padding-top: 85px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .lefticn {
+  width: 115px!important;
+  padding-top: 50px;
+  }
+}
+
     </style>
 
   </body> 
