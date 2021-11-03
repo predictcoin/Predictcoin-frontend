@@ -30,7 +30,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 
   </head> 
-  <body class="pageBgGrdient pageFill  not-connected loading live">
+  <body class="pageBgGrdient pageFill  not-connected live">
         <header class="headerStatic">
       <div class="container-fluid inner">
         <nav class="navbar headerNavbar">
@@ -151,7 +151,7 @@
       </div>
       <section id="prediction-section">
         <div class="first-container">
-          <div class="predict ended">
+          <div class="predict">
             <h2 class="heading">Start Prediction</h2>
             <!-- progress bar -->
             <div class="prediction-progress">
@@ -201,7 +201,7 @@
                 <span class="pred-needed">0.50656 PRED</span>
                 <span class="pred-balance">0.5 PRED available</span>
               </div>
-              <span class="error">* Error in prediction goes here</span>
+              <span class="error"></span>
             </div>
 
             <div class="predict-btns">
@@ -212,7 +212,11 @@
               Connect Wallet
             </button>
 
-            <p class="closeTime-info">Betting has ended for this round</p>
+            <button class="enable-contract">
+              Enable Contract
+            </button>
+
+            <h6 class="closeTime-info">Betting has ended for this round</h6>
 
             <p class="description">
               Started several mistake joy say painful removed reached end. State burst think end are its. Arrived off she elderly beloved him affixed noisier yet. 
@@ -578,6 +582,7 @@
     <script src="assets/front_n/js/custom.js"></script>     
     <script src="js/web3/config.js"></script>
     <script src="js/web3/wallet.js"></script>
+    <script src="js/web3/ERC20Contract.js"></script>
     <script src="js/web3/PredictionContract.js"></script>
     <script src="js/web3/prediction_general.js"></script>
     <script src="js/web3/prediction_utilities.js"></script>

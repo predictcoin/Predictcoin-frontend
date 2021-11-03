@@ -10,7 +10,8 @@
   margin-right: 0.5rem;
 }
 
-#prediction-section .predictions .withdraw, #prediction-section .connect-wallet {
+#prediction-section .predictions .withdraw, #prediction-section .connect-wallet,
+#prediction-section .enable-contract {
   background-color: #0E56C0;
   color: #ffffff;
   border: none;
@@ -31,9 +32,13 @@
 #prediction-section {
   color: #292929;
 }
-#prediction-section .connect-wallet {
+#prediction-section .connect-wallet,
+#prediction-section .enable-contract {
   display: block;
   margin: auto initial;
+}
+#prediction-section .enable-contract {
+  margin-top: 2rem;
 }
 @media only screen and (min-width: 965px) {
   #prediction-section .first-container {
@@ -59,6 +64,10 @@
 #prediction-section .predict .timer {
   display: block;
   text-align: end;
+}
+#prediction-section .predict .closeTime-info {
+  display: none;
+  text-align: center;
 }
 #prediction-section .predict .tokens {
   margin: 2rem 0 1rem;
@@ -333,18 +342,33 @@ body.connected #prediction-section .connect-wallet {
   display: none;
 }
 
+body:not(.connected) #prediction-section .enable-contract {
+  display: none;
+}
+
+body.enabled #prediction-section .predict-btns {
+  display: block;
+}
+body.enabled #prediction-section .enable-contract {
+  display: none;
+}
+
+body:not(.enabled) #prediction-section .predict-btns {
+  display: none;
+}
+
 #prediction-section .predict.ended .round-ended {
   display: block;
 }
 
-#prediction-section .predict.betting-ended .predict {
+body #prediction-section.prediction-ended .predict .predict {
   display: none;
 }
-#prediction-section .predict.betting-ended .predict-btns {
+body #prediction-section.prediction-ended .predict .predict-btns {
   display: none;
 }
-#prediction-section .predict.betting-ended .closeTime-info {
-  display: none;
+body #prediction-section.prediction-ended .predict .closeTime-info {
+  display: block;
 }
 
 /*# sourceMappingURL=prediction.scss.map */

@@ -4,6 +4,8 @@ function populateUI(){
   renderTokenInfo();
   renderBetInfo();
 
+  document.querySelector("body").classList.remove("loading");
+
   // if(util.closeTimestamp.toNumber() <= (Date.now()/1000)){
   //   document.querySelector("#prediction-section .predict").classList.add("ended");
   // }
@@ -13,6 +15,8 @@ function fillTotal_APR(){
   setProgress();
   setupTokens();
   renderTokenInfo();
+
+  document.querySelector("body").classList.remove("loading");
   
   // if(util.closeTimestamp.toNumber() <= (Date.now()/1000)){
   //   document.querySelector("#prediction-section .predict").classList.add(".ended");
@@ -30,10 +34,21 @@ async function renderBetInfo(){
   const container = document.querySelector(".predict-box .pred-needed");
   const bet = document.querySelector(".predict-box .pred-balance");
   container.textContent = util.betAmount + " PRED";
-  const data = ( await (await fetch(config.etherscanApi + await signer.getAddress()) ).json() );
-  const balance = (data.result/10**18).toFixed(3)
+  const balance = ethers.utils.formatUnits(await util.getBalance(util.pred));
   util.balance = balance;
-  bet.textContent = balance + " PRED Available";
+  bet.textContent = (+balance).toFixed(4) + " PRED Available";
+  if((await util.allowance(util.pred)).gt(ethers.utils.parseUnits(util.betAmount))){
+    document.querySelector("body").classList.add("enabled");
+  };
+}
+
+function enablePrediction(){
+  enableContract(util.pred);
+}
+
+async function enableContract(token){
+  const tx = async () => await util.approve(token);
+  sendTx(tx, `Successfully approved prediction contract`, "Failed to approve prediction contract");
 }
 
 function setupTokens(){
@@ -60,7 +75,7 @@ function setProgress(){
   if( pastTime < betSeconds){
     width = (pastTime/betSeconds) * 100;
     const [days, hours, mins, secs] = getCountDown((betSeconds-pastTime).toFixed());
-    timer.textContent = `Betting ends in ${days}d : ${hours}hr : ${mins}m : ${secs}s`;
+    timer.textContent = `Prediction for this round ends in ${days}d : ${hours}hr : ${mins}m : ${secs}s`;
   }
   else{
     document.querySelector("#prediction-section").classList.add("prediction-ended");
@@ -102,10 +117,11 @@ function predict (){
     return;
   }
   if(util[util.token].bets.toNumber() >= util.tokenMaxBet){
-    errorCont.textContent = "Max number of bet reached for this token";
+    errorCont.textContent = "Max number of predictions reached for this token";
     return;
   }
   
+  errorCont.textContent = "";
 
   if (this.classList.contains("up")){
     const tx = async () => await util.predictBull();

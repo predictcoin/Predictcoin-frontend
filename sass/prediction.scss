@@ -60,10 +60,15 @@ $red: #C8304D;
 #prediction-section {
   color: $primary-text-color;
 
-  .connect-wallet{
+  .connect-wallet,
+  .enable-contract{
     @extend %main-btn;
     display: block;
     margin: auto initial;
+  }
+
+  .enable-contract{
+    margin-top: 2rem;
   }
 
   .first-container{
@@ -92,6 +97,11 @@ $red: #C8304D;
     .timer {
       display: block;
       text-align: end;
+    }
+
+    .closeTime-info{
+      display: none;
+      text-align: center;
     }
 
     .tokens {
@@ -414,6 +424,33 @@ body.connected{
   }
 }
 
+//wallet not connected
+body:not(.connected){
+  #prediction-section{
+    .enable-contract{
+      display: none;
+    }
+  }
+}
+
+//wallet not enabled
+body.enabled{
+  #prediction-section{
+    .predict-btns{
+      display: block;
+    }
+    .enable-contract{
+      display: none;
+    }
+  }
+}
+
+body:not(.enabled){
+  #prediction-section .predict-btns{
+    display: none;
+  }
+}
+
 //prediction ended
 #prediction-section{
   .predict.ended{
@@ -424,20 +461,23 @@ body.connected{
 }
 
 //betting ended
-#prediction-section{
-  .predict.betting-ended{
+body{
+  #prediction-section.prediction-ended{
     .predict{
-      display: none;
-    }
-    .predict-btns{
-      display: none;
-    }
-
-    .closeTime-info{
-      display: none;
+      .predict{
+        display: none;
+      }
+      .predict-btns{
+        display: none;
+      }
+  
+      .closeTime-info{
+        display: block;
+      }
     }
   }
 }
+
 
 
 /*# sourceMappingURL=prediction.scss.map */
