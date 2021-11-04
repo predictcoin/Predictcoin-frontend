@@ -56,7 +56,9 @@ async function select_network(wallet) {
   let walletProvider = getWalletProvider(wallet);
    
   provider = new ethers.providers.Web3Provider(walletProvider);
+  alert("here");
   try {
+    alert("here2");
     await walletProvider.request({ method: "eth_requestAccounts" });
     localStorage.setItem("wallet", wallet);
   } catch (err) {
@@ -66,6 +68,7 @@ async function select_network(wallet) {
     }
   }
 
+  alert("here3");
   signer = provider.getSigner();
   try {
     await start(walletProvider);

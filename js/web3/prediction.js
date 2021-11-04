@@ -190,7 +190,7 @@ function setPredictionRows(predictions){
   }
 
   const rows = predictions.map(prediction => {
-    console.log(prediction.lockedPrice)
+    console.log(prediction.lockedPrice, prediction.closePrice)
     return ` 
       <td>
         ${prediction.round}
