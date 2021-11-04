@@ -41,3 +41,12 @@ Prediction.prototype.predictBear = async function(address, epoch){
 Prediction.prototype.tokenMaxBet = async function(){
   return await this.instance.tokenMaxBet();
 }
+
+Prediction.prototype.claim = async function(rounds){
+  return await this.instance.claim(rounds);
+}
+
+Prediction.prototype.getUserRound = async function (address){
+  const length = await this.instance.getUserRoundsLength(address);
+  return await this.instance.getUserRounds(address, 0, length)
+}

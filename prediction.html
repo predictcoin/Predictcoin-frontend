@@ -30,7 +30,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 
   </head> 
-  <body class="pageBgGrdient pageFill  not-connected live">
+  <body class="pageBgGrdient pageFill  not-connected live loading">
         <header class="headerStatic">
       <div class="container-fluid inner">
         <nav class="navbar headerNavbar">
@@ -183,6 +183,15 @@
                 CAKE
               </div>
             </div>
+            <div class="skeleton">
+              <div class="ph-item loading">
+                <div class="ph-picture"></div>
+              </div>
+              <br>
+              <div class="ph-item loading">
+                <div class="ph-picture"></div>
+              </div>
+            </div>
 
             <div class="locked-position">
               <span class="heading">Locked position</span>
@@ -194,8 +203,7 @@
                 <span class="price">$56,800.65</span>
               </div>
             </div>
-
-            <div class="predict">
+            <div class="predict inner">
               <span class="heading">Prediction</span>
               <div class="predict-box">
                 <span class="pred-needed">0.50656 PRED</span>
@@ -203,7 +211,7 @@
               </div>
               <span class="error"></span>
             </div>
-
+            
             <div class="predict-btns">
               <button class="up"><img src="assets/front_n/images/icons/trending-up.svg" alt="up"> ENTER UP</button>
               <button class="down"><img src="assets/front_n/images/icons/trending-down.svg" alt="down"> ENTER DOWN</button>
@@ -216,7 +224,7 @@
               Enable Contract
             </button>
 
-            <h6 class="closeTime-info">Betting has ended for this round</h6>
+            <h5 class="closeTime-info">Betting has ended for this round</h5>
 
             <p class="description">
               Started several mistake joy say painful removed reached end. State burst think end are its. Arrived off she elderly beloved him affixed noisier yet. 
@@ -296,9 +304,10 @@
           </div>
         </div>
         <div class="predictions">
-          <div>
+          <div class="heading">
             <h2>My predictions</h2>
             <button class="withdraw">Withdraw unsuccessful tokens</button>
+            <span class="error"></span>
           </div>
           <button class="connect-wallet" data-toggle="modal" data-target="#walConnect">
             Connect Wallet
@@ -314,92 +323,24 @@
                 <th>PREDICTION STAT</th>
                 <th>STATUS</th>
                 <th>ACTION</th>
-              </tr>
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>BTC</td>
-                <td>$58,900.34</td>
-                <td>$58,900.34</td>
-                <td><img src="assets/front_n/images/icons/trending-red-down.svg" alt=""></td>
-                <td>
-                  <img src="assets/front_n/images/icons/trending-red-down.svg" alt="">
-                  10%
-                  <img src="assets/front_n/images/icons/trending-green-up.svg" alt="">
-                  90%
-                </td>
-                <td>
-                  <span class="status unsuccessfull">Unsuccessful</span>
-                  <!-- <span class="status won">Won</span>
-                  <span class="status lost">Lost</span> -->
-                </td>
-                <td>
-                  <a href="" class="earn lost">Earn BNB</a> 
-                  <!-- <a href="" class="earn won">Earn PRED</a> 
-                  <span>-</span> -->
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>BTC</td>
-                <td>$58,900.34</td>
-                <td>$58,900.34</td>
-                <td><img src="assets/front_n/images/icons/trending-red-down.svg" alt=""></td>
-                <td>
-                  <img src="assets/front_n/images/icons/trending-red-down.svg" alt="">
-                  10%
-                  <img src="assets/front_n/images/icons/trending-green-up.svg" alt="">
-                  90%
-                </td>
-                <td>
-                  <span class="status unsuccessfull">Unsuccessful</span>
-                  <!-- <span class="status won">Won</span>
-                  <span class="status lost">Lost</span> -->
-                </td>
-                <td>
-                  <a href="" class="earn lost">Earn BNB</a> 
-                  <!-- <a href="" class="earn won">Earn PRED</a> 
-                  <span>-</span> -->
-                </td>
-              </tr>
-            </table> 
-            <div class="my-prediction-cards">
-              <div class="my-prediction-card">
-                <div><span>Round</span> <span>1</span></div>
-                <div><span>COIN</span><span>BTC</span></div>
-                <div><span>Locked Price</span><span>$58,900.34</span></div>
-                <div><span>Closing Price</span><span>$60,000.45</span></div>
-                <div><span>My prediction</span><img src="assets/front_n/images/icons/trending-red-down.svg" alt=""></div>
-                <div><span>Stats</span><span><img src="assets/front_n/images/icons/trending-green-up.svg" alt=""> 90% <img src="assets/front_n/images/icons/trending-red-down.svg" alt=""> 10% </span></div>
-                <div><span>Status</span><span >Unsuccessfull</span></div>
-              </div>
-              <div class="my-prediction-card">
-                <div><span>Round</span> <span>1</span></div>
-                <div><span>COIN</span><span>BTC</span></div>
-                <div><span>Locked Price</span><span>$58,900.34</span></div>
-                <div><span>Closing Price</span><span>$60,000.45</span></div>
-                <div><span>My prediction</span><img src="" alt=""></div>
-                <div><span>Stats</span><span><img src="" alt=""> 90% <img src="" alt=""> 10% </span></div>
-                <div><span>Status</span><span>Won</span></div>
-                <a class="earn won" href="">
-                  Earn PRED
-                </a>
-              </div>
 
-              <div class="my-prediction-card">
-                <div><span>Round</span> <span>1</span></div>
-                <div><span>COIN</span><span>BTC</span></div>
-                <div><span>Locked Price</span><span>$58,900.34</span></div>
-                <div><span>Closing Price</span><span>$60,000.45</span></div>
-                <div><span>My prediction</span><img src="" alt=""></div>
-                <div><span>Stats</span><span><img src="" alt=""> 90% <img src="" alt=""> 10% </span></div>
-                <div><span>Status</span><span>Lost</span></div>
-                <a class="earn lost" href="">
-                  Earn BNB
-                </a>
+            </table> 
+            <div class="skeleton">
+              <div class="ph-item loading">
+                <div class="ph-picture"></div>
+              </div>
+              <div class="ph-item loading">
+                <div class="ph-picture"></div>
+              </div>
+            </div>
+            <div class="my-prediction-cards">
+              <div class="skeleton">
+                <div class="ph-item loading">
+                  <div class="ph-picture"></div>
+                </div>
+                <div class="ph-item loading">
+                  <div class="ph-picture"></div>
+                </div>
               </div>
             </div>
           </div>

@@ -57,6 +57,18 @@ Util.prototype.approve = async function(token){
   return token.approve(config.addresses.Prediction);
 }
 
+Util.prototype.getUserRounds = async function(){
+  return this.prediction.getUserRound(await this.signer.getAddress());
+}
+
+Util.prototype.getRound = async function(round){
+  return this.prediction.getRound(round);
+}
+
+Util.prototype.claim = async function(rounds){
+  return this.prediction.claim(rounds);
+}
+
 async function initContracts(signer, provider){
   util = new Util(signer, provider);
   await util.initialize();

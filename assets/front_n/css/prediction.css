@@ -31,6 +31,8 @@
 
 #prediction-section {
   color: #292929;
+  max-width: 1140px;
+  margin: auto;
 }
 #prediction-section .connect-wallet,
 #prediction-section .enable-contract {
@@ -53,6 +55,9 @@
   #prediction-section .predict {
     max-width: 500px;
   }
+}
+#prediction-section .predict .ph-item {
+  height: 4rem;
 }
 #prediction-section .predict .progress {
   height: 0.3rem;
@@ -243,11 +248,15 @@
     display: none;
   }
 }
+#prediction-section .predictions .heading {
+  margin-bottom: 1rem;
+}
 #prediction-section .predictions h2 {
   margin-bottom: 1rem;
 }
 #prediction-section .predictions .withdraw {
-  display: none;
+  margin: auto;
+  display: block;
 }
 #prediction-section .predictions .status {
   display: inline-block;
@@ -266,7 +275,8 @@
 #prediction-section .predictions .earn {
   border: none;
   border-radius: 6px;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  cursor: pointer;
 }
 #prediction-section .predictions .earn.won {
   background: #0E56C08F;
@@ -275,8 +285,11 @@
 #prediction-section .predictions .earn.lost {
   background: #F0B90B;
 }
-#prediction-section .predictions .my-predictions {
-  display: none;
+#prediction-section .predictions .error {
+  color: #C8304D;
+  font-weight: 500;
+  text-align: center;
+  display: block;
 }
 #prediction-section .predictions .my-prediction-table {
   text-align: center;
@@ -300,17 +313,16 @@
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 }
+@media only screen and (min-width: 965px) {
+  #prediction-section .predictions .my-prediction-cards {
+    display: none;
+  }
+}
 #prediction-section .predictions .my-prediction-card {
   background-color: #F0F4F7;
   padding: 1rem;
   margin: 1.5rem 0;
   text-align: center;
-  display: none;
-}
-@media only screen and (min-width: 965px) {
-  #prediction-section .predictions .my-prediction-card {
-    display: none;
-  }
 }
 #prediction-section .predictions .my-prediction-card .earn {
   display: inline-block;
@@ -326,8 +338,7 @@
 }
 
 body.connected #prediction-section .predict,
-body.connected #prediction-section .predict-btns,
-body.connected #prediction-section .no-prediction {
+body.connected #prediction-section .predict-btns {
   display: block;
 }
 body.connected #prediction-section #tradingview_c2432 iframe {
@@ -345,6 +356,9 @@ body.connected #prediction-section .connect-wallet {
 body:not(.connected) #prediction-section .enable-contract {
   display: none;
 }
+body:not(.connected) #prediction-section .my-predictions {
+  display: none;
+}
 
 body.enabled #prediction-section .predict-btns {
   display: block;
@@ -354,6 +368,9 @@ body.enabled #prediction-section .enable-contract {
 }
 
 body:not(.enabled) #prediction-section .predict-btns {
+  display: none;
+}
+body:not(.enabled) #prediction-section .withdraw {
   display: none;
 }
 
@@ -369,6 +386,20 @@ body #prediction-section.prediction-ended .predict .predict-btns {
 }
 body #prediction-section.prediction-ended .predict .closeTime-info {
   display: block;
+}
+
+body.loading #prediction-section .predict.inner,
+body.loading #prediction-section .predict-btns,
+body.loading #prediction-section .locked-position,
+body.loading #prediction-section .withdraw,
+body.loading #prediction-section .my-prediction-card,
+body.loading #prediction-section .my-prediction-cards,
+body.loading #prediction-section .enable-contract {
+  display: none;
+}
+
+body:not(.loading) .skeleton {
+  display: none;
 }
 
 /*# sourceMappingURL=prediction.scss.map */

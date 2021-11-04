@@ -59,6 +59,8 @@ $red: #C8304D;
 
 #prediction-section {
   color: $primary-text-color;
+  max-width: 1140px;
+  margin: auto;
 
   .connect-wallet,
   .enable-contract{
@@ -85,6 +87,9 @@ $red: #C8304D;
     }
     @extend %top-level-container;
 
+    .ph-item{
+      height: 4rem;
+    }
     .progress {
       height: 0.3rem;
     }
@@ -302,13 +307,19 @@ $red: #C8304D;
   .predictions {
     @extend %top-level-container;
 
+    .heading {
+      margin-bottom: 1rem;
+    }
+
     h2 {
       margin-bottom: 1rem;
     }
 
     .withdraw {
       @extend %main-btn;
-      display: none;
+      margin: auto;
+      display: block;
+      
     }
 
     .status {
@@ -332,7 +343,8 @@ $red: #C8304D;
     .earn {
       border: none;
       border-radius: 6px;
-      padding: 0.2rem;
+      padding: 0.3rem;
+      cursor: pointer;
 
       &.won {
         background: #0E56C08F;
@@ -344,8 +356,11 @@ $red: #C8304D;
       }
     }
 
-    .my-predictions{
-      display: none;
+    .error {
+      color: $red;
+      font-weight: 500;
+      text-align: center;
+      display: block;
     }
 
     .my-prediction-table {
@@ -370,13 +385,16 @@ $red: #C8304D;
       }
     }
 
+    .my-prediction-cards{
+      @include hide(965px);
+    }
+
     .my-prediction-card {
       background-color: #F0F4F7;
       padding: 1rem;
       margin: 1.5rem 0;
       text-align: center;
-      @include hide(965px);
-      display: none;
+      
 
       .earn {
         display: inline-block;
@@ -397,14 +415,15 @@ $red: #C8304D;
 }
 
 
+
+
 //wallet is connected
 body.connected{
   #prediction-section{
     // button.withdraw
     // .my-predictions,
     .predict,
-    .predict-btns,
-    .no-prediction
+    .predict-btns
     {
       display: block;
     }
@@ -430,6 +449,9 @@ body:not(.connected){
     .enable-contract{
       display: none;
     }
+    .my-predictions{
+      display: none;
+    }
   }
 }
 
@@ -446,8 +468,13 @@ body.enabled{
 }
 
 body:not(.enabled){
-  #prediction-section .predict-btns{
-    display: none;
+  #prediction-section {
+    .predict-btns{
+      display: none;
+    }
+    .withdraw{
+      display: none;
+    }
   }
 }
 
@@ -478,6 +505,27 @@ body{
   }
 }
 
+body.loading{
+  #prediction-section{
+    .predict.inner,
+    .predict-btns,
+    .locked-position,
+    .withdraw,
+    .my-prediction-card,
+    .my-prediction-cards,
+    .enable-contract{
+      display: none;
+    }
+  }
+
+}
+
+body:not(.loading){
+  .skeleton{
+    display: none;
+  }
+  
+}
 
 
 /*# sourceMappingURL=prediction.scss.map */
