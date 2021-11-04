@@ -45,6 +45,7 @@ function getWalletProvider(wallet){
     case "metamask":
       alert("here")
       alert(window)
+      alert(window.ethereum);
       walletProvider = window.ethereum;
       break;
     case "binance":
