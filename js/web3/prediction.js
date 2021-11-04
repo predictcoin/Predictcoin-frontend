@@ -6,6 +6,10 @@ async function populateUI(){
   const predictions = await getPredictions();
   setPredictionRows(predictions);
   setPredictionCards(predictions);
+  
+  if(predictions.length === 0){
+    document.querySelector(".predictions").classList.add("no-predictions");
+  }
 
   document.querySelector("body").classList.remove("loading");
 
@@ -167,7 +171,7 @@ async function getPredictions(){
         await util.prediction.instance.filters.BetBear(null, predictions.epochs[i], predictions.betInfo[i].token, null)
       )
     )
-    console.log(bears, bulls, predictions.epochs[i], predictions.betInfo[i].token,);
+    //console.log(bears, bulls, predictions.epochs[i], predictions.betInfo[i].token,);
     bets[i].bulls = (bulls.length*100)/(bulls.length + bears.length);
     bets[i].bears = (bears.length*100)/(bulls.length + bears.length);
     // bets[i].lockedPrice = round.lockedPrice.toString()
@@ -177,6 +181,12 @@ async function getPredictions(){
 
 function setPredictionRows(predictions){
   ele = document.createElement("div");
+  const oldRows = document.querySelectorAll("table.my-prediction-table tr");
+
+  for (let i = 1; i < oldRows.length ; i++){
+    oldRows[i].remove();
+  }
+
   const rows = predictions.map(prediction => {
     return ` 
       <td>
@@ -232,6 +242,12 @@ function setPredictionRows(predictions){
 
 function setPredictionCards(predictions){
   ele = document.createElement("div");
+  const oldCards = document.querySelectorAll("my-prediction-card");
+
+  for (let i = 0; i < oldCards.length ; i++){
+    oldCards[i].remove();
+  }
+
   const cards = predictions.map(prediction => {
     return ` 
     <div><span>Round</span> <span>${prediction.round}</span></div>

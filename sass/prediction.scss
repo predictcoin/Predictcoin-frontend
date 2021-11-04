@@ -87,6 +87,10 @@ $red: #C8304D;
     }
     @extend %top-level-container;
 
+    .skeleton{
+      margin-bottom: 2rem;
+    }
+
     .ph-item{
       height: 4rem;
     }
@@ -446,7 +450,8 @@ body.connected{
 //wallet not connected
 body:not(.connected){
   #prediction-section{
-    .enable-contract{
+    .enable-contract,
+    .withdraw{
       display: none;
     }
     .my-predictions{
@@ -505,6 +510,17 @@ body{
   }
 }
 
+//noprediction
+body{
+  #prediction-section{
+    .no-predictions.predictions{
+      .no-prediction{
+        display: block;
+      }
+  }}
+}
+
+//loading
 body.loading{
   #prediction-section{
     .predict.inner,
@@ -513,6 +529,7 @@ body.loading{
     .withdraw,
     .my-prediction-card,
     .my-prediction-cards,
+    .my-prediction-table,
     .enable-contract{
       display: none;
     }

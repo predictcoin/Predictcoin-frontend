@@ -41,7 +41,6 @@ Util.prototype.predictBear = async function() {
 }
 
 Util.prototype.predictBull = async function() {
-  console.log(this.currentRound.epoch.toString(), this.closeTimestamp);
   return await this.prediction.predictBull(config.predictionTokens[this.token], this.currentRound.epoch);
 }
 
