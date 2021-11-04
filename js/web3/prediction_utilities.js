@@ -13,10 +13,13 @@ function Util(signer, provider){
   this.betAmount = null;
   this.balance = null;
   this.tokenMaxBet = null;
+  this.pred = null;
 }
 
 Util.prototype.initialize = async function() {
   this.prediction = new Prediction();
+  this.pred = await new ERC20( );
+  await this.pred.initialize(config.addresses.PRED, config.abis.ERC20, this.signer);
   await this.prediction.initialize(config.addresses.Prediction, config.abis.Prediction, this.signer);
   const currentRound = await this.prediction.getCurrentRound();
   this.currentRound = await this.prediction.getRound(currentRound);
@@ -26,7 +29,7 @@ Util.prototype.initialize = async function() {
   this.bufferSeconds = await this.prediction.bufferSeconds();
   this.betSeconds = await this.prediction.betSeconds();
   this.betAmount = await ethers.utils.formatUnits(await this.prediction.betAmount());
-  this.tokenMaxBet = await this.prediction.tokenMaxBet()
+  this.tokenMaxBet = await this.prediction.tokenMaxBet();
 }
 
 Util.prototype.setToken = function(token) {
@@ -34,12 +37,36 @@ Util.prototype.setToken = function(token) {
 }
 
 Util.prototype.predictBear = async function() {
-  console.log(this)
-  await this.prediction.predictBear(config.predictionTokens[this.token], this.currentRound.epoch);
+  return await this.prediction.predictBear(config.predictionTokens[this.token], this.currentRound.epoch);
 }
 
 Util.prototype.predictBull = async function() {
-  await this.prediction.predictBull(config.predictionTokens[this.token], this.currentRound.epoch);
+  console.log(this.currentRound.epoch.toString(), this.closeTimestamp);
+  return await this.prediction.predictBull(config.predictionTokens[this.token], this.currentRound.epoch);
+}
+
+Util.prototype.getBalance = async function(token){
+  return token.balanceOf(await this.signer.getAddress());
+}
+
+Util.prototype.allowance = async function(token){
+  return token.allowance(await this.signer.getAddress(), config.addresses.Prediction);
+}
+
+Util.prototype.approve = async function(token){
+  return token.approve(config.addresses.Prediction);
+}
+
+Util.prototype.getUserRounds = async function(){
+  return this.prediction.getUserRound(await this.signer.getAddress());
+}
+
+Util.prototype.getRound = async function(round){
+  return this.prediction.getRound(round);
+}
+
+Util.prototype.claim = async function(rounds){
+  return this.prediction.claim(rounds);
 }
 
 async function initContracts(signer, provider){

@@ -13,7 +13,7 @@ ERC20.prototype.balanceOf = async function (address) {
 }
 
 ERC20.prototype.approve = async function (spender){
-  return this.instance.approve(spender, ethers.constants.MaxUint256)
+  return this.instance.approve(spender, ethers.constants.MaxUint256);
 }
 
 ERC20.prototype.allowance = async function (owner, spender){
