@@ -9,6 +9,8 @@ async function populateUI(){
   
   if(predictions.length === 0){
     document.querySelector(".predictions").classList.add("no-predictions");
+  } else{
+    document.querySelector(".predictions").classList.remove("no-predictions");
   }
 
   document.querySelector("body").classList.remove("loading");
@@ -156,8 +158,8 @@ async function getPredictions(){
     const round = await util.getRound(bets[i].round);
     const tokens = {};
     await setupTokens(round, tokens);
-    bets[i].lockedPrice = tokens[bets[i].token].lockedPrice.div(10**8).toString();
-    bets[i].closePrice = tokens[bets[i].token].closePrice.div(10**8).toString();
+    bets[i].lockedPrice = tokens[bets[i].token].lockedPrice.toNumber()/(10**8);
+    bets[i].closePrice = tokens[bets[i].token].closePrice.toNumber()/(10**8);
     bets[i].closeTimestamp = round.closeTimestamp.toString();
     const bulls = 
       await (
@@ -188,13 +190,14 @@ function setPredictionRows(predictions){
   }
 
   const rows = predictions.map(prediction => {
+    console.log(prediction.lockedPrice)
     return ` 
       <td>
         ${prediction.round}
       </td>
       <td>${prediction.token}</td>
-      <td>$${prediction.lockedPrice}</td>
-      <td>$${prediction.closePrice}</td>
+      <td>$${prediction.lockedPrice.toFixed(2)}</td>
+      <td>$${prediction.closePrice.toFixed(2)}</td>
       <td>${ prediction.bet === "0" ?
         '<img src="assets/front_n/images/icons/trending-green-up.svg" alt="up">' :
         '<img src="assets/front_n/images/icons/trending-red-down.svg" alt="down">'
@@ -252,8 +255,8 @@ function setPredictionCards(predictions){
     return ` 
     <div><span>Round</span> <span>${prediction.round}</span></div>
     <div><span>COIN</span><span>${prediction.token}</span></div>
-    <div><span>Locked Price</span><span>$${prediction.lockedPrice}</span></div>
-    <div><span>Closing Price</span><span>$${prediction.closePrice}</span></div>
+    <div><span>Locked Price</span><span>$${prediction.lockedPrice.toFixed(2)}</span></div>
+    <div><span>Closing Price</span><span>$${prediction.closePrice.toFixed(2)}</span></div>
     <div><span>My prediction</span>${ prediction.bet === "0" ?
       '<img src="assets/front_n/images/icons/trending-green-up.svg" alt="up">' :
       '<img src="assets/front_n/images/icons/trending-red-down.svg" alt="down">'
