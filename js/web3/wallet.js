@@ -45,7 +45,7 @@ function getWalletProvider(wallet){
     case "metamask":
       alert("here")
       alert(window)
-      alert(window.ethereum);
+      alert(window.ethereum)
       walletProvider = window.ethereum;
       break;
     case "binance":
@@ -57,8 +57,6 @@ function getWalletProvider(wallet){
 
 async function select_network(wallet) {
   let walletProvider = getWalletProvider(wallet);
-  alert(wallet);
-  alert(walletProvider)
   console.log("second", wallet, walletProvider);
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
