@@ -55,7 +55,7 @@ function getWalletProvider(wallet){
 async function select_network(wallet) {
   alert("first")
   let walletProvider = getWalletProvider(wallet);
-  alert("second")
+  alert("second", wallet, walletProvider);
   provider = new ethers.providers.Web3Provider(walletProvider);
   alert("here");
   try {
