@@ -56,6 +56,9 @@
     max-width: 500px;
   }
 }
+#prediction-section .predict .skeleton {
+  margin-bottom: 2rem;
+}
 #prediction-section .predict .ph-item {
   height: 4rem;
 }
@@ -353,7 +356,8 @@ body.connected #prediction-section .connect-wallet {
   display: none;
 }
 
-body:not(.connected) #prediction-section .enable-contract {
+body:not(.connected) #prediction-section .enable-contract,
+body:not(.connected) #prediction-section .withdraw {
   display: none;
 }
 body:not(.connected) #prediction-section .my-predictions {
@@ -388,12 +392,17 @@ body #prediction-section.prediction-ended .predict .closeTime-info {
   display: block;
 }
 
+body #prediction-section .no-predictions.predictions .no-prediction {
+  display: block;
+}
+
 body.loading #prediction-section .predict.inner,
 body.loading #prediction-section .predict-btns,
 body.loading #prediction-section .locked-position,
 body.loading #prediction-section .withdraw,
 body.loading #prediction-section .my-prediction-card,
 body.loading #prediction-section .my-prediction-cards,
+body.loading #prediction-section .my-prediction-table,
 body.loading #prediction-section .enable-contract {
   display: none;
 }
