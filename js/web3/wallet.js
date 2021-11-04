@@ -38,6 +38,8 @@ async function start(walletProvider) {
 
 function getWalletProvider(wallet){
   let walletProvider;
+  alert(1+wallet);
+  alert()
   switch (wallet){
     case "mathwallet":
     case "trustwallet":
