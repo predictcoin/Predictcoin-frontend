@@ -37,12 +37,12 @@ Util.prototype.setToken = function(token) {
 }
 
 Util.prototype.predictBear = async function() {
-  await this.prediction.predictBear(config.predictionTokens[this.token], this.currentRound.epoch);
+  return await this.prediction.predictBear(config.predictionTokens[this.token], this.currentRound.epoch);
 }
 
 Util.prototype.predictBull = async function() {
   console.log(this.currentRound.epoch.toString(), this.closeTimestamp);
-  await this.prediction.predictBull(config.predictionTokens[this.token], this.currentRound.epoch);
+  return await this.prediction.predictBull(config.predictionTokens[this.token], this.currentRound.epoch);
 }
 
 Util.prototype.getBalance = async function(token){
