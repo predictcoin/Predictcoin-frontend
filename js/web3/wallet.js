@@ -53,6 +53,7 @@ function getWalletProvider(wallet){
 }
 
 async function select_network(wallet) {
+  alert("first")
   let walletProvider = getWalletProvider(wallet);
    
   provider = new ethers.providers.Web3Provider(walletProvider);
