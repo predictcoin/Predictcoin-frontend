@@ -4013,7 +4013,7 @@ const config = {
     "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
   },
   chainId: 97,
-  providerEndpoint: "https://bsc-testnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K",
+  providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
   etherscanApi: "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
 
   // Mainnet addresses
