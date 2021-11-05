@@ -146,7 +146,7 @@ async function predict (){
     }
   })
   if (stop) {
-    errorCont.textContent = "You can only bet once per round";
+    errorCont.textContent = "You can only predict once per round";
     return;
   };
   
@@ -189,7 +189,6 @@ async function getPredictions(){
       )
     )
     //console.log(bears, bulls, predictions.epochs[i], predictions.betInfo[i].token,);
-    console.log(bets[i]);
     bets[i].bulls = (bulls.length*100)/(bulls.length + bears.length);
     bets[i].bears = (bears.length*100)/(bulls.length + bears.length);
     // bets[i].lockedPrice = round.lockedPrice.toString()
@@ -225,23 +224,23 @@ function setPredictionRows(predictions){
         ${prediction.bulls}%
       </td>
       <td>
-        ${prediction.closePrice !== "0" ?(
+        ${prediction.closePrice !== 0 ?(
           ( prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
           || ( prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
           '<span class="status won">Won</span>' :
           '<span class="status lost">Lost</span>'
         ) :
           prediction.closeTimestamp < Date.now() ?
-          '<span class="status unsuccessfull">Pending</span>' :
-          '<span class="status unsuccessfull">Unsuccessful</span>'
+          '<span class="status unsuccessful">Pending</span>' :
+          '<span class="status unsuccessful">Unsuccessful</span>'
         }
       </td>
       <td>
-      ${prediction.closePrice !== "0" ?(
+      ${prediction.closePrice !== 0 ?(
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
-        '<a href="" class="earn won">Earn PRED</a>' :
-        '<a href="" class="earn lost">Earn BNB</a>' 
+        '<a href="./staking.html" class="earn won">Earn PRED</a>' :
+        '<a href="./staking.html" class="earn lost">Earn BNB</a>' 
       ) :
         '<span>-</span>'
       }
@@ -260,7 +259,7 @@ function setPredictionRows(predictions){
 
 function setPredictionCards(predictions){
   ele = document.createElement("div");
-  const oldCards = document.querySelectorAll("my-prediction-card");
+  const oldCards = document.querySelectorAll(".my-prediction-card");
 
   for (let i = 0; i < oldCards.length ; i++){
     oldCards[i].remove();
@@ -283,13 +282,30 @@ function setPredictionCards(predictions){
         10% 
       </span></div>
     <div>
-      ${prediction.closePrice !== "0" ?(
+      <span>
+        Status
+      </span>
+      <span>
+        ${prediction.closePrice !== 0 ?(
+          ( prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
+          || ( prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
+          '<span class="status won">Won</span>' :
+          '<span class="status lost">Lost</span>'
+        ) :
+          prediction.closeTimestamp < Date.now() ?
+          '<span class="status unsuccessful">Pending</span>' :
+          '<span class="status unsuccessful">Unsuccessful</span>'
+        }
+      </span>
+    </div>
+    <div>
+      ${prediction.closePrice !== 0 ?(
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
-        '<a class="earn won" href="">Earn PRED</a>' :
-        '<a href="" class="earn lost">Earn BNB</a>' 
+        '<a class="earn won" href="./staking.html">Earn PRED</a>' :
+        '<a href="./staking.html" class="earn lost">Earn BNB</a>' 
       ) :
-        '<span>-</span>'
+        ''
       }  
     </div>`
     })
@@ -313,7 +329,7 @@ async function withdrawTokens() {
     }
   })
   if(rounds.length === 0){
-    document.querySelector(".predictions .error").textContent = "You don't have any tokens in unsuccessfull rounds";
+    document.querySelector(".predictions .error").textContent = "You don't have any tokens in unsuccessful rounds";
     return;
   }else{
     document.querySelector(".predictions .error").textContent = "";
