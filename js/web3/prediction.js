@@ -31,7 +31,7 @@ function fillTotal_APR(){
   document.querySelector("body").classList.remove("loading");
   
   if(util.closeTimestamp.toNumber() <= (Date.now()/1000)){
-    document.querySelector("#prediction-section .predict").classList.add(".ended");
+    document.querySelector("#prediction-section .predict").classList.add("ended");
   }
 
   let h = document.querySelector(".predict").offsetHeight;
