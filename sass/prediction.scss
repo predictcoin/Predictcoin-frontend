@@ -38,7 +38,7 @@ $red: #C8304D;
   }
 }
 
-%main-btn{
+%main-btn {
   background-color: $primary-color;
   color: #ffffff;
   border: none;
@@ -63,17 +63,17 @@ $red: #C8304D;
   margin: auto;
 
   .connect-wallet,
-  .enable-contract{
+  .enable-contract {
     @extend %main-btn;
     display: block;
     margin: auto initial;
   }
 
-  .enable-contract{
+  .enable-contract {
     margin-top: 2rem;
   }
 
-  .first-container{
+  .first-container {
     @media only screen and (min-width: 965px) {
       display: flex;
       flex-direction: row-reverse;
@@ -82,18 +82,21 @@ $red: #C8304D;
 
   .predict {
     position: relative;
+
     @media only screen and (min-width: 965px) {
       max-width: 500px;
     }
+
     @extend %top-level-container;
 
-    .skeleton{
+    .skeleton {
       margin-bottom: 2rem;
     }
 
-    .ph-item{
+    .ph-item {
       height: 4rem;
     }
+
     .progress {
       height: 0.3rem;
     }
@@ -108,7 +111,7 @@ $red: #C8304D;
       text-align: end;
     }
 
-    .closeTime-info{
+    .closeTime-info {
       display: none;
       text-align: center;
     }
@@ -221,7 +224,7 @@ $red: #C8304D;
       }
     }
 
-    .round-ended{
+    .round-ended {
       display: none;
       position: absolute;
       padding: 2rem;
@@ -229,81 +232,105 @@ $red: #C8304D;
       right: 0;
       z-index: 20;
       bottom: 0;
+
       @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-        &{
+        & {
           -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(5px);
         }
       }
-      
+
       /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
       @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-        &{
+        & {
           background-color: rgba(255, 255, 255, .8);
         }
       }
-      &.show{
+
+      &.show {
         display: block;
       }
-      .emoji-container{
-        .emoji{
+
+      .emoji-container {
+        .emoji {
           display: block;
           margin: auto;
         }
+
         height: 30%;
         display: flex;
         align-items: center;
+        @media screen and  (max-width: 400px) {
+          height: 15%;
+        }
       }
 
-      .title{
+      .title {
         font-weight: 600;
         text-align: center;
       }
-      .description{
+
+      .description {
         text-align: center;
       }
 
-      .time{
+      .time {
         text-align: center;
         padding: 1rem;
         background: #F0F4F7;
         border-radius: 11px;
         border: 1px dashed #0E56C057;
-        .title{
+        @media screen and  (max-width: 400px) {
+          padding: 0.5rem;
+        }
+
+        .title {
           font-weight: 600;
         }
-        .timer{
+
+        .timer {
           color: #616161;
           text-align: center;
           font-size: 2rem;
+          white-space: nowrap;
+          @media screen and  (max-width: 400px) {
+            font-size: 1.5rem;
+          }
         }
       }
     }
   }
 
-  .chart{
+  .chart {
     @media only screen and (min-width: 965px) {
       width: 100%;
       margin-right: 0;
     }
-   
+
     margin: 2rem;
-    #tradingview_c2432{
-      iframe{
-        width: 100% !important;
-        @media only screen and (min-width: 965px) {
-          height: 610px !important;
+    
+    .tradingview-widget-container{
+      height: 100%;
+      #tradingview_c2432 {
+        height: 100%;
+
+        iframe {
+          width: 100% !important;
+          height: 100% !important;
+          min-height: 25rem;
         }
-      }
-      .tv-widget-chart__nav{
-        display: none !important;
-      }
-      .tv-widget-chart__container{
-        padding-top: 0;
+  
+        .tv-widget-chart__nav {
+          display: none !important;
+        }
+  
+        .tv-widget-chart__container {
+          padding-top: 0;
+        }
       }
     }
 
-    .tradingview-widget-copyright{
+    .tradingview-widget-copyright {
       @include hide(0px);
     }
   }
@@ -323,7 +350,7 @@ $red: #C8304D;
       @extend %main-btn;
       margin: auto;
       display: block;
-      
+
     }
 
     .status {
@@ -389,7 +416,7 @@ $red: #C8304D;
       }
     }
 
-    .my-prediction-cards{
+    .my-prediction-cards {
       @include hide(965px);
     }
 
@@ -398,7 +425,7 @@ $red: #C8304D;
       padding: 1rem;
       margin: 1.5rem 0;
       text-align: center;
-      
+
 
       .earn {
         display: inline-block;
@@ -411,7 +438,7 @@ $red: #C8304D;
       }
     }
 
-    .no-prediction{
+    .no-prediction {
       text-align: center;
       display: none;
     }
@@ -422,88 +449,90 @@ $red: #C8304D;
 
 
 //wallet is connected
-body.connected{
-  #prediction-section{
+body.connected {
+  #prediction-section {
+
     // button.withdraw
     // .my-predictions,
     .predict,
-    .predict-btns
-    {
+    .predict-btns {
       display: block;
     }
 
-    #tradingview_c2432{
-      iframe{
+    #tradingview_c2432 {
+      iframe {
         width: 100% !important;
-        @media only screen and (min-width: 965px) {
-          height: 737.969px !important;
-        }
       }
     }
-    
-    .connect-wallet{
+
+    .connect-wallet {
       display: none;
     }
   }
 }
 
 //wallet not connected
-body:not(.connected){
-  #prediction-section{
+body:not(.connected) {
+  #prediction-section {
+
     .enable-contract,
-    .withdraw{
+    .withdraw {
       display: none;
     }
-    .my-predictions{
+
+    .my-predictions {
       display: none;
     }
   }
 }
 
 //wallet not enabled
-body.enabled{
-  #prediction-section{
-    .predict-btns{
+body.enabled {
+  #prediction-section {
+    .predict-btns {
       display: block;
     }
-    .enable-contract{
+
+    .enable-contract {
       display: none;
     }
   }
 }
 
-body:not(.enabled){
+body:not(.enabled) {
   #prediction-section {
-    .predict-btns{
+    .predict-btns {
       display: none;
     }
-    .withdraw{
+
+    .withdraw {
       display: none;
     }
   }
 }
 
 //prediction ended
-#prediction-section{
-  .predict.ended{
-    .round-ended{
+#prediction-section {
+  .predict.ended {
+    .round-ended {
       display: block;
     }
   }
 }
 
 //betting ended
-body{
-  #prediction-section.prediction-ended{
-    .predict{
-      .predict{
+body {
+  #prediction-section.prediction-ended {
+    .predict {
+      .predict {
         display: none;
       }
-      .predict-btns{
+
+      .predict-btns {
         display: none;
       }
-  
-      .closeTime-info{
+
+      .closeTime-info {
         display: block;
       }
     }
@@ -511,18 +540,20 @@ body{
 }
 
 //noprediction
-body{
-  #prediction-section{
-    .no-predictions.predictions{
-      .no-prediction{
+body {
+  #prediction-section {
+    .no-predictions.predictions {
+      .no-prediction {
         display: block;
       }
-  }}
+    }
+  }
 }
 
 //loading
-body.loading{
-  #prediction-section{
+body.loading {
+  #prediction-section {
+
     .predict.inner,
     .predict-btns,
     .locked-position,
@@ -530,18 +561,18 @@ body.loading{
     .my-prediction-card,
     .my-prediction-cards,
     .my-prediction-table,
-    .enable-contract{
+    .enable-contract {
       display: none;
     }
   }
 
 }
 
-body:not(.loading){
-  .skeleton{
+body:not(.loading) {
+  .skeleton {
     display: none;
   }
-  
+
 }
 
 

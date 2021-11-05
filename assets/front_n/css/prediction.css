@@ -201,6 +201,11 @@
   display: block;
   margin: auto;
 }
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .emoji-container {
+    height: 15%;
+  }
+}
 #prediction-section .predict .round-ended .title {
   font-weight: 600;
   text-align: center;
@@ -215,6 +220,11 @@
   border-radius: 11px;
   border: 1px dashed #0E56C057;
 }
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .time {
+    padding: 0.5rem;
+  }
+}
 #prediction-section .predict .round-ended .time .title {
   font-weight: 600;
 }
@@ -222,6 +232,12 @@
   color: #616161;
   text-align: center;
   font-size: 2rem;
+  white-space: nowrap;
+}
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .time .timer {
+    font-size: 1.5rem;
+  }
 }
 #prediction-section .chart {
   margin: 2rem;
@@ -232,18 +248,21 @@
     margin-right: 0;
   }
 }
-#prediction-section .chart #tradingview_c2432 iframe {
+#prediction-section .chart .tradingview-widget-container {
+  height: 100%;
+}
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 {
+  height: 100%;
+}
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 iframe {
   width: 100% !important;
+  height: 100% !important;
+  min-height: 25rem;
 }
-@media only screen and (min-width: 965px) {
-  #prediction-section .chart #tradingview_c2432 iframe {
-    height: 610px !important;
-  }
-}
-#prediction-section .chart #tradingview_c2432 .tv-widget-chart__nav {
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 .tv-widget-chart__nav {
   display: none !important;
 }
-#prediction-section .chart #tradingview_c2432 .tv-widget-chart__container {
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 .tv-widget-chart__container {
   padding-top: 0;
 }
 @media only screen and (min-width: 0px) {
@@ -346,11 +365,6 @@ body.connected #prediction-section .predict-btns {
 }
 body.connected #prediction-section #tradingview_c2432 iframe {
   width: 100% !important;
-}
-@media only screen and (min-width: 965px) {
-  body.connected #prediction-section #tradingview_c2432 iframe {
-    height: 737.969px !important;
-  }
 }
 body.connected #prediction-section .connect-wallet {
   display: none;

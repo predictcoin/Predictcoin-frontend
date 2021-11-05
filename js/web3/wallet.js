@@ -43,9 +43,6 @@ function getWalletProvider(wallet){
     case "trustwallet":
     case "tokenpocket":
     case "metamask":
-      alert("here")
-      alert(window)
-      alert(window.ethereum)
       walletProvider = window.ethereum;
       break;
     case "binance":
@@ -145,9 +142,9 @@ async function establishEvents(walletProvider) {
     window.location.reload();
   });
 
-  // provider.on("block", async () => {
-  //   await populateUI();
-  // });
+  provider.on("block", async () => {
+    await populateUI();
+  });
 }
 
 async function sendTx(tx, passMsg, failMsg) {

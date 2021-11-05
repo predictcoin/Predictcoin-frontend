@@ -1,5 +1,6 @@
 async function populateUI(){
   setProgress();
+  setInterval(setProgress, 2000);
   setupTokens(util.currentRound, util);
   renderTokenInfo();
   renderBetInfo();
@@ -124,7 +125,7 @@ function zeroPad(num) {
   return Array(+(zero > 0 && zero)).join("0") + num;
 }
 
-function predict (){
+async function predict (){
   const errorCont = document.querySelector(".predict .error");
   if(util.balance < util.betAmount){
     errorCont.textContent = "Not enough PRED to predict";
@@ -134,6 +135,20 @@ function predict (){
     errorCont.textContent = "Max number of predictions reached for this token";
     return;
   }
+
+  predictions = await util.getUserRounds();
+  stop = false;
+  predictions[0].forEach(epoch => {
+    console.log(epoch, util.currentRound);
+    if(epoch.eq(util.currentRound.epoch) ){
+      stop = true;
+      return;
+    }
+  })
+  if (stop) {
+    errorCont.textContent = "You can only bet once per round";
+    return;
+  };
   
   errorCont.textContent = "";
 
@@ -174,6 +189,7 @@ async function getPredictions(){
       )
     )
     //console.log(bears, bulls, predictions.epochs[i], predictions.betInfo[i].token,);
+    console.log(bets[i]);
     bets[i].bulls = (bulls.length*100)/(bulls.length + bears.length);
     bets[i].bears = (bears.length*100)/(bulls.length + bears.length);
     // bets[i].lockedPrice = round.lockedPrice.toString()
