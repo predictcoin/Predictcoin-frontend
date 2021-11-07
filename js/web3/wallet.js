@@ -142,6 +142,8 @@ async function establishEvents(walletProvider) {
     window.location.reload();
   });
 
+  setInterval(populateUI, 3000);
+
   // provider.on("block", async () => {
   //   await populateUI();
   // });

@@ -1,4 +1,5 @@
 async function populateUI(){
+  console.log("wgmi");
   await setProgress();
   setInterval(setProgress, 2000);
   setupTokens(util.currentRound, util);
