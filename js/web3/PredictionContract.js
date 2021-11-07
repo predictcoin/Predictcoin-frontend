@@ -46,6 +46,14 @@ Prediction.prototype.claim = async function(rounds){
   return await this.instance.claim(rounds);
 }
 
+Prediction.prototype.refundable = async function(round, address){
+  return await this.instance.refundable(round, address);
+}
+
+Prediction.prototype.getStats = async function(round){
+  return await this.instance.getStats(round);
+}
+
 Prediction.prototype.getUserRound = async function (address){
   const length = await this.instance.getUserRoundsLength(address);
   return await this.instance.getUserRounds(address, 0, length)

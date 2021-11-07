@@ -1,5 +1,5 @@
 async function populateUI(){
-  setProgress();
+  await setProgress();
   setInterval(setProgress, 2000);
   setupTokens(util.currentRound, util);
   renderTokenInfo();
@@ -66,9 +66,11 @@ async function enableContract(token){
   sendTx(tx, `Successfully approved prediction contract`, "Failed to approve prediction contract");
 }
 
-function setupTokens(round, ref){
+async function setupTokens(round, ref){
   for([k, v] of Object.entries(config.predictionTokens)){
     const index = round._tokens.indexOf(v);
+    //const [bulls, bears] = await getStatus(round, v);
+    //console.log(bulls, bears);
     ref[k] = {
       address: v,
       bets: round.bets[index],
@@ -78,7 +80,7 @@ function setupTokens(round, ref){
   }
 }
 
-function setProgress(){
+async function setProgress(){
   const currentTime = Date.now()/1000;
   const lockedTimestamp = util.lockedTimestamp.toNumber();
   const interval = util.intervalSeconds.toNumber();
@@ -168,32 +170,37 @@ async function getPredictions(){
   for(i = 0; i< predictions.epochs.length; i++){
     bets[i] = {};
     bets[i].round = predictions.epochs[i].toString();
-    bets[i].token = config.predictionTokens[predictions.betInfo[i].token];
+    bets[i].token = config.predictionTokenAddresses[predictions.betInfo[i].token];
     bets[i].bet = predictions.betInfo[i].position.toString();
     const round = await util.getRound(bets[i].round);
     const tokens = {};
     await setupTokens(round, tokens);
     bets[i].lockedPrice = tokens[bets[i].token].lockedPrice.toNumber()/(10**8);
     bets[i].closePrice = tokens[bets[i].token].closePrice.toNumber()/(10**8);
-    bets[i].closeTimestamp = round.closeTimestamp.toString();
-    const bulls = 
-      await (
-        util.provider.getLogs(
-          await util.prediction.instance.filters.BetBull(null, predictions.epochs[i], predictions.betInfo[i].token, null)
-        )
-      )
-    const bears = 
-    await (
-      util.provider.getLogs(
-        await util.prediction.instance.filters.BetBear(null, predictions.epochs[i], predictions.betInfo[i].token, null)
-      )
-    )
-    //console.log(bears, bulls, predictions.epochs[i], predictions.betInfo[i].token,);
-    bets[i].bulls = (bulls.length*100)/(bulls.length + bears.length);
-    bets[i].bears = (bears.length*100)/(bulls.length + bears.length);
-    // bets[i].lockedPrice = round.lockedPrice.toString()
+    bets[i].closeTimestamp = round.closeTimestamp.toNumber();
+    const {bulls, bears} = await getTokenStats(bets[i].round, bets[i].token);
+    console.log(bulls, bears, bulls/(bears+bulls), +bears+bulls);
+    bets[i].bulls = parseInt(bulls/(+bulls+bears)*100);
+    bets[i].bears = parseInt(bears/(+bears+bulls)*100);
   }
   return bets;
+}
+
+async function getTokenStats(epoch, token){
+  const stats = await getStats(epoch);
+  return stats[token];
+}
+
+async function getStats(epoch){
+  const stats = {...config.predictionTokens};
+  const _stats = await util.getStats(epoch);
+  _stats._tokens.forEach((_token, index) => {
+    const token = config.predictionTokenAddresses[_token];
+    stats[token] = {};
+    stats[token].bulls = _stats.bulls[index].toNumber();
+    stats[token].bears = _stats.bears[index].toNumber();
+  })
+  return stats;
 }
 
 function setPredictionRows(predictions){
@@ -230,7 +237,7 @@ function setPredictionRows(predictions){
           '<span class="status won">Won</span>' :
           '<span class="status lost">Lost</span>'
         ) :
-          prediction.closeTimestamp < Date.now() ?
+          prediction.closeTimestamp + util.bufferSeconds.toNumber() > (Date.now()/1000) ?
           '<span class="status unsuccessful">Pending</span>' :
           '<span class="status unsuccessful">Unsuccessful</span>'
         }
@@ -292,7 +299,7 @@ function setPredictionCards(predictions){
           '<span class="status won">Won</span>' :
           '<span class="status lost">Lost</span>'
         ) :
-          prediction.closeTimestamp < Date.now() ?
+          prediction.closeTimestamp + util.bufferSeconds.toNumber() > Date.now()/1000 ?
           '<span class="status unsuccessful">Pending</span>' :
           '<span class="status unsuccessful">Unsuccessful</span>'
         }
@@ -322,12 +329,15 @@ function setPredictionCards(predictions){
 async function withdrawTokens() {
   rounds = [];
   predictions = await util.getUserRounds();
-  predictions[0].forEach(async (_round, index) => {
-    const round = await util.getRound(_round)
-    if(!round.oraclesCalled){
-      rounds.push(prediction.epochs[index]);
+
+  for(i=0; i < predictions[0].length; i++){
+    const _round = predictions[0][i];
+    const refundable = await util.refundable(_round);
+    if( refundable ){
+      rounds.push(_round);
     }
-  })
+  }
+
   if(rounds.length === 0){
     document.querySelector(".predictions .error").textContent = "You don't have any tokens in unsuccessful rounds";
     return;

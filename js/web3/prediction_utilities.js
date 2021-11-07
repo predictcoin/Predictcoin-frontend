@@ -68,6 +68,14 @@ Util.prototype.claim = async function(rounds){
   return this.prediction.claim(rounds);
 }
 
+Util.prototype.refundable = async function(round){
+  return this.prediction.refundable(round, await this.signer.getAddress());
+}
+
+Util.prototype.getStats = async function(round){
+  return this.prediction.getStats(round);
+}
+
 async function initContracts(signer, provider){
   util = new Util(signer, provider);
   await util.initialize();
