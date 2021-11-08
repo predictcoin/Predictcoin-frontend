@@ -28,12 +28,23 @@ function closeModal(modal){
 
 function setNextRoundCountdown(){
   const repeat = () => {
-    const d = new Date();
-    const addDays = d.getHours() < 13 ? 0 : 7;
-    d.setDate(d.getDate() + (((1 + 7 - d.getDay()) % 7) || addDays));
-    d.setUTCHours(13, 0, 0)
-    const duration = (d.getTime() - Date.now())/1000;
-    const [days, hours, mins, secs] = getCountDown(duration.toFixed());
+    const originStamp = 1635771600;
+    const currentStamp = parseInt(Date.now()/1000);
+    const interval = 604800;
+    const elapsed = currentStamp - originStamp;
+    const past = Math.floor(elapsed/interval);
+
+    const remainder = elapsed%interval;
+    let futureStamp
+    if(remainder === 0){
+      futureStamp = originStamp + (past*interval);
+    }else{
+      futureStamp = originStamp + ((past+1)*interval)
+    }
+
+    const duration = futureStamp - parseInt(Date.now()/1000);
+
+    const [days, hours, mins, secs] = getCountDown(duration);
     const cont = document.querySelector(".round-ended .timer");
     cont.textContent = `${days}d : ${hours}hr : ${mins}m : ${secs}s`
   }
