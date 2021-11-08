@@ -285,9 +285,9 @@ function setPredictionCards(predictions){
     }</div>
     <div><span>Stats</span><span>
       <img src="assets/front_n/images/icons/trending-red-down.svg" alt="down"> 
-        90%
-      <img src="<img src="assets/front_n/images/icons/trending-green-up.svg" alt=""> 
-        10% 
+        ${prediction.bears}%
+      <img src="assets/front_n/images/icons/trending-green-up.svg" alt="up"> 
+        ${prediction.bulls}%
       </span></div>
     <div>
       <span>
