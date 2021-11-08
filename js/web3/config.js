@@ -2698,68 +2698,6 @@ const config = {
             "type": "uint256"
           },
           {
-            "indexed": true,
-            "internalType": "address",
-            "name": "token",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "BetBear",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "uint256",
-            "name": "epoch",
-            "type": "uint256"
-          },
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "token",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "BetBull",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "uint256",
-            "name": "epoch",
-            "type": "uint256"
-          },
-          {
             "indexed": false,
             "internalType": "uint256",
             "name": "amount",
@@ -2946,6 +2884,68 @@ const config = {
           }
         ],
         "name": "Paused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "epoch",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "PredictBear",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "epoch",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "PredictBull",
         "type": "event"
       },
       {
@@ -3269,6 +3269,35 @@ const config = {
           {
             "internalType": "uint256[]",
             "name": "bets",
+            "type": "uint256[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_round",
+            "type": "uint256"
+          }
+        ],
+        "name": "getStats",
+        "outputs": [
+          {
+            "internalType": "address[]",
+            "name": "_tokens",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "bulls",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "bears",
             "type": "uint256[]"
           }
         ],
@@ -3997,7 +4026,7 @@ const config = {
   //   "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
   //   // InPO
   //   "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
-  //   "Prediction": "0xaE581DcDA061032677dd10aDe0b9F18268f02509"
+  //   "Prediction": "0xb021c3fFbA6E88802790603Ec96411F5b5BBF234"
   // },
   // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   // predictionTokens: {
@@ -4005,11 +4034,18 @@ const config = {
   //   "ETH": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
   //   "DOGE": "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
   //   "CAKE": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
-  //   "BTC": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c"
+  //   "BTC": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+  // },
+  // predictionTokenAddresses:{
+  //   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "BNB",
+  //   "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": "ETH",
+  //   "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": "DOGE",
+  //   "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
+  //   "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
   // },
   // chainId: 97,
-  // providerEndpoint: "https://bsc-testnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K",
-  // etherscaApi: "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
+  // providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+  // etherscanApi: "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
 
   // Mainnet addresses
   addresses : {
@@ -4027,10 +4063,24 @@ const config = {
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
     "BabyFactory": "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd",
       // IPO
-      "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0"
+    "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
+    "Prediction": "0xBf9C36E0852B62Ac730E6BA8EAa5022Ed97cBBE8"
   },
-  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP", "USDT-PRED LP"],
+  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
+  predictionTokens: {
+    "BNB": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+    "ETH": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+    "DOGE": "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
+    "CAKE": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+    "BTC": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+  },
+  predictionTokenAddresses:{
+    "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "BNB",
+    "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": "ETH",
+    "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": "DOGE",
+    "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
+    "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
+  },
   chainId: 56,
   providerEndpoint: "https://bsc-mainnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K",
-  etherscanApi: "https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
 }

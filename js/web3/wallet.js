@@ -54,7 +54,7 @@ function getWalletProvider(wallet){
 
 async function select_network(wallet) {
   let walletProvider = getWalletProvider(wallet);
-   
+  console.log("second", wallet, walletProvider);
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
     await walletProvider.request({ method: "eth_requestAccounts" });
@@ -141,6 +141,8 @@ async function establishEvents(walletProvider) {
   walletProvider.on("chainChanged", () => {
     window.location.reload();
   });
+
+  setInterval(populateUI, 3000);
 
   // provider.on("block", async () => {
   //   await populateUI();

@@ -5,6 +5,8 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".tokens .token").forEach(token => token.addEventListener("click", setToken))
   setNextRoundCountdown();
   document.querySelectorAll(".predict-btns button").forEach(button => button.addEventListener("click", predict));
+  document.querySelector(".enable-contract").addEventListener("click", enablePrediction);
+  document.querySelector(".withdraw").addEventListener("click", withdrawTokens);
 })
 
 async function setToken(){
