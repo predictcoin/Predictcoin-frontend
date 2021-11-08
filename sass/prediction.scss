@@ -210,17 +210,21 @@ $red: #C8304D;
       margin: 1rem;
       text-align: center;
       display: none;
+      justify-content: space-around;
+      flex-wrap: wrap;
 
       .up {
         @extend %predict-btn;
         background-color: $green;
-        margin-right: 1rem;
         width: 186px;
       }
 
       .down {
         @extend %predict-btn;
         background-color: $red;
+        @media screen and (max-width: 480px) {
+          width: 186px;
+        }
       }
     }
 
@@ -458,6 +462,9 @@ body.connected {
     .predict-btns {
       display: block;
     }
+    .predict-btns {
+      display: flex;
+    }
 
     #tradingview_c2432 {
       iframe {
@@ -490,7 +497,7 @@ body:not(.connected) {
 body.enabled {
   #prediction-section {
     .predict-btns {
-      display: block;
+      display: flex;
     }
 
     .enable-contract {

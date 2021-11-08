@@ -159,14 +159,20 @@
   margin: 1rem;
   text-align: center;
   display: none;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 #prediction-section .predict .predict-btns .up {
   background-color: #00A660;
-  margin-right: 1rem;
   width: 186px;
 }
 #prediction-section .predict .predict-btns .down {
   background-color: #C8304D;
+}
+@media screen and (max-width: 480px) {
+  #prediction-section .predict .predict-btns .down {
+    width: 186px;
+  }
 }
 #prediction-section .predict .round-ended {
   display: none;
@@ -363,6 +369,9 @@ body.connected #prediction-section .predict,
 body.connected #prediction-section .predict-btns {
   display: block;
 }
+body.connected #prediction-section .predict-btns {
+  display: flex;
+}
 body.connected #prediction-section #tradingview_c2432 iframe {
   width: 100% !important;
 }
@@ -379,7 +388,7 @@ body:not(.connected) #prediction-section .my-predictions {
 }
 
 body.enabled #prediction-section .predict-btns {
-  display: block;
+  display: flex;
 }
 body.enabled #prediction-section .enable-contract {
   display: none;

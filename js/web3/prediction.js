@@ -1,5 +1,4 @@
 async function populateUI(){
-  console.log("wgmi");
   await setProgress();
   setInterval(setProgress, 2000);
   setupTokens(util.currentRound, util);
@@ -142,7 +141,6 @@ async function predict (){
   predictions = await util.getUserRounds();
   stop = false;
   predictions[0].forEach(epoch => {
-    console.log(epoch, util.currentRound);
     if(epoch.eq(util.currentRound.epoch) ){
       stop = true;
       return;
@@ -180,7 +178,6 @@ async function getPredictions(){
     bets[i].closePrice = tokens[bets[i].token].closePrice.toNumber()/(10**8);
     bets[i].closeTimestamp = round.closeTimestamp.toNumber();
     const {bulls, bears} = await getTokenStats(bets[i].round, bets[i].token);
-    console.log(bulls, bears, bulls/(bears+bulls), +bears+bulls);
     bets[i].bulls = parseInt(bulls/(+bulls+bears)*100);
     bets[i].bears = parseInt(bears/(+bears+bulls)*100);
   }
