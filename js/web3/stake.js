@@ -85,9 +85,9 @@ async function populateCard(card) {
 }
 
 async function populateUI() {
-  // await document.querySelectorAll(".web3-card.farm").forEach(async (ele, index) => {
-  //   await populateCard(ele);
-  // });
+  await document.querySelectorAll(".web3-card.farm").forEach(async (ele, index) => {
+    await populateCard(ele);
+  });
   predValue = (
     await util.getAmountsOut(
       ethers.utils.parseUnits("1", 18),
@@ -95,7 +95,8 @@ async function populateUI() {
       config.addresses.BUSD
     )
   )[1];
-
+  
+  if(typeof populatePredictionUI === "undefined") return;
   await populatePredictionUI();
 }
 

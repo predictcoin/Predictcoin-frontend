@@ -1,41 +1,42 @@
 async function fillTotal_APR(){
-  // document.querySelectorAll(".web3-card.farm").forEach(async ele => {
-  //   const id = ele.dataset.pool;
-  //   const res = await( (
-  //     await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         query: `
-  //           query {
-  //             pair(id: "${id === "1" ? config.addresses["BUSD-PRED LP"]: config.addresses["BNB-PRED LP"]}"){
-  //               reserveUSD,
-  //               totalSupply,
-  //               pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
-  //                 hourlyVolumeUSD
-  //               }
-  //             }
-  //           }
-  //         `,
-  //         }),
-  //       })
-  //     ).json())
-  //   const token = await util.getPoolToken(id);
+  document.querySelectorAll(".web3-card.farm").forEach(async ele => {
+    const id = ele.dataset.pool;
+    const res = await( (
+      await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              pair(id: "${id === "1" ? config.addresses["BUSD-PRED LP"]: config.addresses["BNB-PRED LP"]}"){
+                reserveUSD,
+                totalSupply,
+                pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
+                  hourlyVolumeUSD
+                }
+              }
+            }
+          `,
+          }),
+        })
+      ).json())
+    const token = await util.getPoolToken(id);
 
-  //   let dollarValue = (
-  //     await util.getAmountsOut(
-  //       ethers.utils.parseUnits("1", 18),
-  //       config.addresses.PRED,
-  //       config.addresses.BUSD
-  //     )
-  //   )[1];
+    let dollarValue = (
+      await util.getAmountsOut(
+        ethers.utils.parseUnits("1", 18),
+        config.addresses.PRED,
+        config.addresses.BUSD
+      )
+    )[1];
     
-  //   await renderAPR(ele, ele.dataset.pool, res, dollarValue);
-  //   await renderTotalStaked(token, ele, dollarValue);
-  // })
+    await renderAPR(ele, ele.dataset.pool, res, dollarValue);
+    await renderTotalStaked(token, ele, dollarValue);
+  })
 
+  if(typeof fillPrediction_APR === "undefined") return;
   await fillPrediction_APR();
 }
 
@@ -113,6 +114,7 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".staking-section--headings span").forEach(ele => ele.addEventListener("click", changeTab));
 
   //add 
+  if(typeof fillPrediction_APR === "undefined") return;
   document.querySelector(".web3-card.prediction-pool.winner .enable-contract")
     .addEventListener("click", (e) => enablePredictionContract(e, winnerUtil));
   document.querySelector(".web3-card.prediction-pool.loser .enable-contract")
