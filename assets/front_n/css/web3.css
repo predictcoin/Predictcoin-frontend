@@ -309,3 +309,75 @@ footer{
 .dark .web3-card__btn--blue{
   color: #303030;
 }
+
+/* additional styles for prediction pools */
+.staking-section--headings {
+  margin: auto;
+  width: fit-content;
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 1.2rem 0.4rem;
+  margin-bottom: 4rem;
+}
+
+.staking-section--headings span {
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 30px;
+}
+
+body.live .staking-section--headings span.live-tab {
+  background: rgba(165, 165, 165, 0.52);
+}
+
+body:not(.live) .staking-section--headings span.past-tab {
+  background: rgba(165, 165, 165, 0.52);
+}
+
+.live-pools, .past-pools{
+  display: none;
+}
+
+body:not(.live) .past-pools{
+  display: block;
+}
+
+body.live .live-pools{
+  display: flex;
+}
+
+.past-pools .page{
+  display: flex;
+  justify-content: center;
+}
+
+.past-pools .page-nos{
+  text-align: center;
+  color: #fff;
+}
+
+.prediction-pool .title{
+  text-align: end;
+}
+
+.past-pools .page{
+  display: none;
+}
+.past-pools .page.active{
+  display: flex;
+}
+
+.past-pools .page-nos span{
+  display: inline-block;
+  width: 0.7rem;
+  cursor: pointer;
+}
+.past-pools .page-nos span.active{
+  text-decoration: underline;
+  color: #0E56C0;
+}
+
+.past-pools .empty{
+  text-align: center;
+  color: #fff;
+}

@@ -1,3 +1,4 @@
+
 async function populateCard(card) {
   const pId = card.dataset.pool;
   let token = await util.getPoolToken(pId);
@@ -84,12 +85,18 @@ async function populateCard(card) {
 }
 
 async function populateUI() {
-  await document.querySelectorAll(".web3-card").forEach(async (ele, index) => {
-    await populateCard(ele);
-    if (document.querySelectorAll(".web3-card").length - 1 !== index) return;
-    document.querySelector("body").classList.remove("loading");
-    document.querySelector("body").classList.add("loaded");
-  });
+  // await document.querySelectorAll(".web3-card.farm").forEach(async (ele, index) => {
+  //   await populateCard(ele);
+  // });
+  predValue = (
+    await util.getAmountsOut(
+      ethers.utils.parseUnits("1", 18),
+      config.addresses.PRED,
+      config.addresses.BUSD
+    )
+  )[1];
+
+  await populatePredictionUI();
 }
 
 async function renderTotalStaked(token, card, dollarValue) {
@@ -227,14 +234,33 @@ function validateNumber(event) {
 
 async function checkBalance(modal, event) {
   const poolId = modal.dataset.pool;
-  let balance;
-  let token = await util.getPoolToken(poolId);
+  const predictionStatus = modal.dataset.prediction;
+  let balance, leftOver;
+  let _util, token;
+  if( predictionStatus){
+    token = {decimals: 18}
+    _util = predictionStatus === "winner" ? winnerUtil : loserUtil;
+  }
+  else{
+    _util = util;
+    token = await _util.getPoolToken(poolId);
+  }
+  
   if (modal.id === "stake") {
-    balance = await util.getBalance(poolId);
+    balance = await _util.getBalance(poolId);
+    leftOver = await _util.maxPred.sub( await _util.userStake(poolId));
   } else if (modal.id === "unstake") {
-    balance = await util.userStake(poolId);
+    balance = await _util.userStake(poolId);
   }
   let value = event.target.value;
+  if(leftOver && value && leftOver.lt(ethers.utils.parseUnits(value, 18))){
+    modal.classList.add("disable-modal");
+    modal.querySelector(".warning").textContent = "You have exceeded the max PRED deposit";
+    return;
+  } else{
+    modal.querySelector(".warning").textContent = "You don't have enough tokens to stake";
+  }
+
   if (value === "") value = "0";
   value = ethers.utils.parseUnits(value, token.decimals);
   if (balance.lt(value)) {
@@ -247,15 +273,35 @@ async function checkBalance(modal, event) {
 async function putMax(event) {
   const parent = event.target.closest(".modal");
   const pId = parent.dataset.pool;
+  const predictionStatus = parent.dataset.prediction;
   const input = parent.querySelector("input");
-  const token = await util.getPoolToken(pId);
-  let bal;
+  let token;
+  let _util;  
+  if (predictionStatus) {
+    token = {decimals: 18};
+    _util = predictionStatus === "winner" ? winnerUtil : loserUtil;
+  }else{
+    token = await util.getPoolToken(pId);
+    _util = util;
+  }
+  
+  let bal, leftOver;
   if (parent.id === "unstake") {
-    bal = await util.userStake(pId);
+    bal = await _util.userStake(pId);
   } else {
-    bal = await util.getBalance(pId);
+    bal = await _util.getBalance(pId);
+    leftOver = await _util.maxPred.sub( await _util.userStake(pId));
   }
   input.value = ethers.utils.formatUnits(bal, token.decimals);
+
+  if(leftOver && input.value && leftOver.lt(ethers.utils.parseUnits(input.value, 18))){
+    parent.classList.add("disable-modal");
+    parent.querySelector(".warning").textContent = "You have exceeded the max PRED deposit";
+    return;
+  } else{
+    parent.querySelector(".warning").textContent = "You don't have enough tokens to stake";
+  }
+
   if (bal.gt(0)) {
     parent.querySelector(".btn__confirm").classList.remove("disable-btn");
     parent.classList.remove("disable-modal");
@@ -276,14 +322,24 @@ async function withdraw(event) {
     parent.classList.contains("disable-modal")
   )
     return;
-  const token = await util.getPoolToken(parent.dataset.pool);
+
+  const predictionStatus = parent.dataset.prediction;
+  let token, _util;
+  if (predictionStatus) {
+    token = {decimals: 18};
+    _util = predictionStatus === "winner" ? winnerUtil : loserUtil;
+  }else{
+    token = await util.getPoolToken(parent.dataset.pool);
+    _util = util;
+  }
+  
   const input = parent.querySelector("input");
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
-  let tx = async () => await util.withdraw(parent.dataset.pool, amount);
+  let tx = async () => await _util.withdraw(parent.dataset.pool, amount);
   await sendTx(
     tx,
-    `Successfully withdrew ${formatNumber(input.value)} ${config.pools[parent.dataset.pool]}`,
-    `Failed to withdraw ${formatNumber(input.value)} ${config.pools[parent.dataset.pool]}`
+    `Successfully withdrew ${formatNumber(input.value)} ${predictionStatus ? "PRED" : config.pools[parent.dataset.pool]}`,
+    `Failed to withdraw ${formatNumber(input.value)} ${predictionStatus ? "PRED" : config.pools[parent.dataset.pool]}`
   );
   closeModal("#unstake");
   input.value = "";
@@ -292,7 +348,13 @@ async function withdraw(event) {
 async function harvest(event) {
   const parent = event.target.closest(".web3-card");
   if (event.target.classList.contains("disable-btn")) return;
-  let tx = async () => await util.withdraw(parent.dataset.pool, 0);
+  let _util;
+  if (parent.classList.contains("winner") || parent.classList.contains("loser")) {
+    _util = parent.classList.contains("winner") ? winnerUtil : loserUtil;
+  }else{
+    _util = util;
+  }
+  let tx = async () => await _util.withdraw(parent.dataset.pool, 0);
   await sendTx(tx, "Harvest successful", "Harvest Transaction failed");
 }
 
@@ -303,18 +365,27 @@ async function deposit(event) {
     parent.classList.contains("disable-modal")
   )
     return;
-  const token = await util.getPoolToken(parent.dataset.pool);
+  const predictionStatus = parent.dataset.prediction;
+  let token, _util;
+  if (predictionStatus) {
+    token = {decimals: 18};
+    _util = predictionStatus === "winner" ? winnerUtil : loserUtil;
+  }else{
+    token = await util.getPoolToken(parent.dataset.pool);
+    _util = util;
+  }
+  
   const input = parent.querySelector("input");
   const amount = ethers.utils.parseUnits(input.value, token.decimals);
 
-  let tx = async () => await util.deposit(parent.dataset.pool, amount);
+  let tx = async () => await _util.deposit(parent.dataset.pool, amount);
   await sendTx(
     tx,
     `You successfully staked ${formatNumber(input.value)} ${
-      config.pools[parent.dataset.pool]
+      predictionStatus ? "PRED" : config.pools[parent.dataset.pool]
     }`,
     `Transaction failed to stake ${formatNumber(input.value)} ${
-      config.pools[parent.dataset.pool]
+      predictionStatus ? "PRED" : config.pools[parent.dataset.pool]
     }`
   );
   closeModal("#stake");
