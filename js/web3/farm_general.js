@@ -22,6 +22,7 @@ async function fillTotal_APR(){
           }),
         })
       ).json())
+    
     const token = await util.getPoolToken(id);
 
     let dollarValue = (

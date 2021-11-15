@@ -28,14 +28,14 @@ window.addEventListener("load", async () => {
 
 async function useDefaultProvider(){
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
-  // await initContracts(provider, provider);
+  await initContracts(provider, provider);
   if(typeof initPredictionPool !== "undefined"){
     
     winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
     loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
   }
 
-  typeof(fillTotal_APR) === 'function' ? fillTotal_APR() : "";
+  if(typeof(fillTotal_APR) === 'function') await fillTotal_APR();
 }
 
 async function start(walletProvider) {
