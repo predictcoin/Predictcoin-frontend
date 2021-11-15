@@ -30,7 +30,7 @@
     <!-- Validate -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   </head> 
-  <body class="pageBgGrdient pageFill not-connected loading">
+  <body class="pageBgGrdient pageFill not-connected loading live">
         <header class="headerStatic">
       <div class="container-fluid inner">
         <nav class="navbar headerNavbar">
@@ -172,15 +172,20 @@
       </div>
     </div>
 	     
-			<div class="inner card-container">
-        <div class="web3-card not-enabled" data-pool="0">
+      <section class="staking-section--headings">
+        <span class="live-tab">Live Pools</span>
+        <span class="past-tab">Past Pools</span>
+      </section>
+
+			<div class="inner card-container live-pools">
+        <div class="web3-card farm not-enabled" data-pool="0">
           <div class="web3-card__heading">
             <div>
               <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
             </div>
             <div>
               <h4>PRED</h4>
-              <span class="multiplier">20x</span>
+              <span class="multiplier">5x</span>
             </div>
           </div>
           <ul class="web3-card__user-reward">
@@ -234,6 +239,319 @@
             <a href="http://BscScan.com/" class="contract-link">View contract</a>
           </div>
         </div>
+        <div class="web3-card not-enabled prediction-pool winner" data-pool="0">
+          <div class="web3-card__heading">
+            <div>
+              <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+            </div>
+            <div>
+              <h4 class="title">Round <span class="epoch">#0</span></h4>
+              <span class="multiplier">75x</span>
+            </div>
+          </div>
+          <ul class="web3-card__user-reward">
+            <li>
+              <span data-toggle="tooltip" 
+                title="This pool rewards aren’t compounded automatically, so we show APR"
+                class="apr-title">
+                APR
+              </span>
+              <span>
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span  class="apr loaded">0%
+                </span>
+              </span>
+            </li>  
+            <li>
+              <span>Stake</span><span>PRED
+              </span>
+            </li>
+            <li><span>Earn</span><span>PRED</span></li>
+            <li class="wallet-connected "><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+            <li class="wallet-connected "><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+          </ul>
+          <div class="web3-card__amount contract-enabled wallet-connected ">
+            <div>
+              <span>PRED Staked</span>
+              <span class="staked">0.001</span>
+            </div>
+            <div>
+              <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                -
+              </span>
+              <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                +
+              </span>
+            </div>
+          </div>
+          <div class="web3-card__btns">
+            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected ">HARVEST</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract ">ENABLE</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+          </div>
+          
+          <div class="web3-card__bottom">
+            <p>Details</p>
+            <div>Total stacked:
+                <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span class="loaded total-staked">0</span>
+            </div>
+            <a href="http://BscScan.com/" class="contract-link">View contract</a>
+          </div>
+        </div>
+        <div class="web3-card not-enabled prediction-pool loser" data-pool="0">
+          <div class="web3-card__heading">
+            <div>
+              <img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">
+            </div>
+            <div>
+              <h4 class="title">Round <span class="epoch">#0</span></h4>
+            </div>
+          </div>
+          <ul class="web3-card__user-reward">
+            <li>
+              <span data-toggle="tooltip" 
+                title="This pool rewards aren’t compounded automatically, so we show APR"
+                class="apr-title">
+                APR
+              </span>
+              <span>
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span  class="apr loaded">0%
+                </span>
+              </span>
+            </li>  
+            <li>
+              <span>Stake</span><span>PRED
+              </span>
+            </li>
+            <li><span>Earn</span><span>BNB</span></li>
+            <li class="wallet-connected "><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+            <li class="wallet-connected "><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+          </ul>
+          <div class="web3-card__amount contract-enabled wallet-connected ">
+            <div>
+              <span>PRED Staked</span>
+              <span class="staked">0.001</span>
+            </div>
+            <div>
+              <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                -
+              </span>
+              <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                +
+              </span>
+            </div>
+          </div>
+          <div class="web3-card__btns">
+            <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected ">HARVEST</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract ">ENABLE</button>
+            <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+          </div>
+          
+          <div class="web3-card__bottom">
+            <p>Details</p>
+            <div>Total stacked:
+                <div class="ph-item loading"><div class="ph-picture"></div></div>
+                <span class="loaded total-staked">0</span>
+            </div>
+            <a href="http://BscScan.com/" class="contract-link">View contract</a>
+          </div>
+        </div>
+			</div>
+
+      <div class="inner card-container past-pools pages">
+        <h2 class="empty">No past pools yet</h2>
+        <!-- <div class="page active">
+          <div class="web3-card not-enabled prediction-pool" data-pool="0">
+            <div class="web3-card__heading">
+              <div>
+                <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+              </div>
+              <div>
+                <h4 class="title">Loser Prediction Pool <span class="epoch">#3</span></h4>
+                <span class="multiplier">20x</span>
+              </div>
+            </div>
+            <ul class="web3-card__user-reward">
+              <li>
+                <span data-toggle="tooltip" 
+                  title="This pool rewards aren’t compounded automatically, so we show APR"
+                  class="apr-title">
+                  APR
+                </span>
+                <span>
+                    <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span  class="apr loaded">0%
+                  </span>
+                </span>
+              </li>  
+              <li>
+                <span>Stake</span><span>PRED
+                </span>
+              </li>
+              <li><span>Earn</span><span>BNB</span></li>
+              <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+              <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+            </ul>
+            <div class="web3-card__amount contract-enabled wallet-connected">
+              <div>
+                <span>PRED Staked</span>
+                <span class="staked">0.001</span>
+              </div>
+              <div>
+                <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                  -
+                </span>
+                <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                  +
+                </span>
+              </div>
+            </div>
+            <div class="web3-card__btns">
+              <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected">HARVEST</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+            </div>
+            
+            <div class="web3-card__bottom">
+              <p>Details</p>
+              <div>Total stacked:
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span class="loaded total-staked">0</span>
+              </div>
+              <a href="http://BscScan.com/" class="contract-link">View contract</a>
+            </div>
+          </div>
+          <div class="web3-card not-enabled prediction-pool" data-pool="0">
+            <div class="web3-card__heading">
+              <div>
+                <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+              </div>
+              <div>
+                <h4 class="title">Winner Prediction Pool <span class="epoch">#3</span></h4>
+                <span class="multiplier">20x</span>
+              </div>
+            </div>
+            <ul class="web3-card__user-reward">
+              <li>
+                <span data-toggle="tooltip" 
+                  title="This pool rewards aren’t compounded automatically, so we show APR"
+                  class="apr-title">
+                  APR
+                </span>
+                <span>
+                    <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span  class="apr loaded">0%
+                  </span>
+                </span>
+              </li>  
+              <li>
+                <span>Stake</span><span>PRED
+                </span>
+              </li>
+              <li><span>Earn</span><span>PRED</span></li>
+              <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+              <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+            </ul>
+            <div class="web3-card__amount contract-enabled wallet-connected">
+              <div>
+                <span>PRED Staked</span>
+                <span class="staked">0.001</span>
+              </div>
+              <div>
+                <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                  -
+                </span>
+                <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                  +
+                </span>
+              </div>
+            </div>
+            <div class="web3-card__btns">
+              <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected">HARVEST</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+              <button class="web3-card__btn web3-card__btn--blue contract-enabled wallet-connected compound">COMPOUND</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+            </div>
+            
+            <div class="web3-card__bottom">
+              <p>Details</p>
+              <div>Total stacked:
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span class="loaded total-staked">0</span>
+              </div>
+              <a href="http://BscScan.com/" class="contract-link">View contract</a>
+            </div>
+          </div>
+        </div>  
+        <div class="page">
+          <div class="web3-card not-enabled prediction-pool" data-pool="0">
+            <div class="web3-card__heading">
+              <div>
+                <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
+              </div>
+              <div>
+                <h4 class="title">Winner Prediction Pool <span class="epoch">#3</span></h4>
+                <span class="multiplier">20x</span>
+              </div>
+            </div>
+            <ul class="web3-card__user-reward">
+              <li>
+                <span data-toggle="tooltip" 
+                  title="This pool rewards aren’t compounded automatically, so we show APR"
+                  class="apr-title">
+                  APR
+                </span>
+                <span>
+                    <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span  class="apr loaded">0%
+                  </span>
+                </span>
+              </li>  
+              <li>
+                <span>Stake</span><span>PRED
+                </span>
+              </li>
+              <li><span>Earn</span><span>PRED</span></li>
+              <li class="wallet-connected"><span>Earned</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="loaded earned">0.0</span></span></li>
+              <li class="wallet-connected"><span>~ USD</span><span><div class="ph-item loading"><div class="ph-picture"></div></div><span class="dollar-value loaded">$0.00</span></span></li>
+            </ul>
+            <div class="web3-card__amount contract-enabled wallet-connected">
+              <div>
+                <span>PRED Staked</span>
+                <span class="staked">0.001</span>
+              </div>
+              <div>
+                <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                  -
+                </span>
+                <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                  +
+                </span>
+              </div>
+            </div>
+            <div class="web3-card__btns">
+              <button class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected">HARVEST</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+              <button class="web3-card__btn web3-card__btn--blue contract-enabled wallet-connected compound">COMPOUND</button>
+              <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve" data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+            </div>
+            
+            <div class="web3-card__bottom">
+              <p>Details</p>
+              <div>Total stacked:
+                  <div class="ph-item loading"><div class="ph-picture"></div></div>
+                  <span class="loaded total-staked">0</span>
+              </div>
+              <a href="http://BscScan.com/" class="contract-link">View contract</a>
+            </div>
+          </div>
+        </div> 
+        <div class="page-nos">
+          <span class="active">1</span>
+          <span>2</span>
+        </div> -->
 			</div>
 		</div>
     <div class="inPageSec">
@@ -455,6 +773,10 @@
     <script src="js/web3/PancakeRouterContract.js"></script>
     <script src="js/web3/farm_utilities.js"></script>
     <script src="js/web3/stake.js"></script>
+    <script src="js/web3/PredictionPoolContracts.js"></script>
+    <script src="js/web3/predictionPool_general.js"></script>
+    <script src="js/web3/predictionPool.js"></script>
+    <script src="js/web3/predictionPool_utilities.js"></script>
     <script src="js/web3/wallet.js"></script>
     <script src="js/web3/farm_general.js"></script>
 	        <style>

@@ -2,36 +2,54 @@
 let provider, signer;
 
 window.addEventListener("load", async () => {
+  document.querySelector("body").classList.add("loading");
+  document.querySelector("body").classList.remove("loaded");
+
   let wallet = localStorage.getItem("wallet");
   if (wallet === null) {
-    useDefaultProvider()
+    await useDefaultProvider()
+    document.querySelector("body").classList.remove("loading");
+    document.querySelector("body").classList.add("loaded");
     return;
   }
   let walletProvider = getWalletProvider(wallet);
   // render APR and total staked/liquidity
   try {
+    
     await checkConnection(walletProvider);
     await start(walletProvider);
   } catch (err) {
     console.log(err);
-    useDefaultProvider();
+    await useDefaultProvider();
   }
+  document.querySelector("body").classList.remove("loading");
+  document.querySelector("body").classList.add("loaded");
 });
 
 async function useDefaultProvider(){
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
-  await initContracts(provider, provider);
+  // await initContracts(provider, provider);
+  if(typeof initPredictionPool !== "undefined"){
+    
+    winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
+    loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
+  }
+
   typeof(fillTotal_APR) === 'function' ? fillTotal_APR() : "";
 }
 
 async function start(walletProvider) {
   provider.off("block");
-  document.querySelector("body").classList.add("loading");
-  document.querySelector("body").classList.remove("loaded");
 
   const proceed = await initUI(await signer.getAddress());
   if (proceed === false) return;
   await initContracts(signer, provider);
+
+  if(typeof initPredictionPool !== "undefined"){
+    winnerUtil = await initPredictionPool(signer, provider, WinnerPool, "winnerPool");
+    loserUtil = await initPredictionPool(signer, provider, LoserPool, "loserPool");
+  }
+
   await populateUI();
   await establishEvents(walletProvider);
 }

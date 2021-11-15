@@ -1,5 +1,5 @@
 async function fillTotal_APR(){
-  document.querySelectorAll(".web3-card").forEach(async ele => {
+  document.querySelectorAll(".web3-card.farm").forEach(async ele => {
     const id = ele.dataset.pool;
     const res = await( (
       await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
@@ -34,9 +34,10 @@ async function fillTotal_APR(){
     
     await renderAPR(ele, ele.dataset.pool, res, dollarValue);
     await renderTotalStaked(token, ele, dollarValue);
-    document.querySelector("body").classList.remove("loading");
-    document.querySelector("body").classList.add("loaded");
   })
+
+  if(typeof fillPrediction_APR === "undefined") return;
+  await fillPrediction_APR();
 }
 
 function closeModal(modal){
@@ -70,7 +71,7 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".max").forEach(
     ele => ele.addEventListener("click", (event) => putMax(event))
   );
-  document.querySelectorAll(".mutate-btn").forEach(ele => 
+  document.querySelectorAll(".web3-card.farm .mutate-btn").forEach(ele => 
     ele.addEventListener("click", (event) => populateModal(event))
   );
   // add events to validateNumber and check balance in modal
@@ -90,7 +91,7 @@ window.addEventListener("load", () => {
   //close modals
   document.querySelector("body").addEventListener("keydown", closeModal2);
   // enable contract
-  document.querySelectorAll(".enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
+  document.querySelectorAll(".web3-card.farm .enable-contract").forEach(ele => ele.addEventListener("click", enableContract));
   // add event to logout button
   document.querySelector(".btn--logout").addEventListener("click", disconnectWallet);
   // add compounding event
@@ -106,4 +107,23 @@ window.addEventListener("load", () => {
       (ele.href = `http://BscScan.com/address/${config.addresses.Farm}`)
   );
 
+  //Prediction handlers
+  // add page event listener to page buttons
+  document.querySelectorAll(".page-nos span").forEach(page_no => page_no.addEventListener("click", changePage));
+  //add function to changeTab
+  document.querySelectorAll(".staking-section--headings span").forEach(ele => ele.addEventListener("click", changeTab));
+
+  //add 
+  if(typeof fillPrediction_APR === "undefined") return;
+  document.querySelector(".web3-card.prediction-pool.winner .enable-contract")
+    .addEventListener("click", (e) => enablePredictionContract(e, winnerUtil));
+  document.querySelector(".web3-card.prediction-pool.loser .enable-contract")
+    .addEventListener("click", (e) => enablePredictionContract(e, loserUtil));
+
+  document.querySelectorAll(".web3-card.prediction-pool.winner .mutate-btn").forEach(ele => 
+      ele.addEventListener("click", (event) => populatePredictionModal(event, winnerUtil))
+    );
+  document.querySelectorAll(".web3-card.prediction-pool.loser .mutate-btn").forEach(ele => 
+      ele.addEventListener("click", (event) => populatePredictionModal(event, loserUtil))
+    );
 })
