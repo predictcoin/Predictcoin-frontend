@@ -1804,6 +1804,21 @@ padding: 20px;
 
 }
 
+#ipobtnblue{
+	border-radius: 6px;
+    background: linear-gradient(
+133deg,#2449e8,#021a88);
+	border: 1px solid #fff;
+padding: 20px;
+	width: 200px;
+	transition: all 0.5s;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+
+}
+
+
 .ipop{
 	text-align: center;
 }
@@ -1819,9 +1834,9 @@ padding: 20px;
 
 .predchart{
 	margin: auto;
-	/* width: 50%; */
+	width: 100%;
 	padding: 10px;
 	text-align: center;
 	overflow: auto;
-
 }
+
