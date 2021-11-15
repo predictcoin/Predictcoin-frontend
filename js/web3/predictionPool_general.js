@@ -15,6 +15,25 @@ function changePage(event) {
 }
 
 async function fillPrediction_APR(){
+  let predPrice = (
+    await util.getAmountsOut(
+      ethers.utils.parseUnits("1", 18),
+      config.addresses.PRED,
+      config.addresses.BUSD
+    )
+  )[1];
+  
+  let bnbPrice = (
+    await util.getAmountsOut(
+      ethers.utils.parseUnits("1", 18),
+      config.addresses.WBNB,
+      config.addresses.BUSD
+    )
+  )[1];
+  
+  const pred_bnbPrice = bnbPrice.div(predPrice);
+  predPrice = ethers.utils.formatUnits(predPrice, 18);
+  bnbPrice = ethers.utils.formatUnits(bnbPrice, 18);
 
   const loserEle = document.querySelector(".prediction-pool.loser");
   const winnerEle = document.querySelector(".prediction-pool.winner");
@@ -24,7 +43,7 @@ async function fillPrediction_APR(){
   eles.forEach( async (ele, index) => {
     const pId = utils[index].farm.poolLength.toNumber()-1;
     ele.dataset.pool = pId;
-    await renderPredictionAPR(ele, pId, utils[index]);
+    await renderPredictionAPR(ele, pId, utils[index], pred_bnbPrice);
     await renderPredictionStaked(ele, pId, utils[index]);
     ele.querySelector(".epoch").textContent = `#${utils[index].pools[pId].epoch}`;
   })
