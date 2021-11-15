@@ -241,9 +241,9 @@
         </div>
         <div class="web3-card not-enabled prediction-pool winner" data-pool="0">
           <div class="web3-card__heading">
-            <div>
-              <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
-            </div>
+          <div class="lpimg">
+            <img src="images/pp.png" class="first-lpimg lefticn" alt="predictpool">
+          </div>
             <div>
               <h4 class="title">Round <span class="epoch">#0</span></h4>
               <span class="multiplier">75x</span>
@@ -301,9 +301,9 @@
         </div>
         <div class="web3-card not-enabled prediction-pool loser" data-pool="0">
           <div class="web3-card__heading">
-            <div>
-              <img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">
-            </div>
+        <div class="lpimg">
+            <img src="images/bb.png" class="first-lpimg lefticn" alt="predictpool">
+          </div>
             <div>
               <h4 class="title">Round <span class="epoch">#0</span></h4>
             </div>
@@ -826,6 +826,19 @@ padding: 20px;
 text-align: center;
 padding-top: 30px;
 }
+			
+			    .lefticn {
+        width: 135px !important;
+        padding-top: 55px;
+      }
+
+
+      @media only screen and (max-width: 600px) {
+        .lefticn {
+          width: 115px !important;
+          /* padding-top: 6px; */
+        }
+      }
     </style>
 
   </body> 
