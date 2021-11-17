@@ -1,29 +1,35 @@
 async function fillTotal_APR(){
-  document.querySelectorAll(".web3-card.farm").forEach(async ele => {
+  const cards = document.querySelectorAll(".web3-card.farm");
+  for(i=0; i< cards.length; i++){
+    const ele = cards[i];
     const id = ele.dataset.pool;
-    const res = await( (
-      await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
-            query {
-              pair(id: "${id === "1" ? config.addresses["BUSD-PRED LP"]: config.addresses["BNB-PRED LP"]}"){
-                reserveUSD,
-                totalSupply,
-                pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
-                  hourlyVolumeUSD
-                }
-              }
-            }
-          `,
-          }),
-        })
-      ).json())
+    // const res = await( (
+    //   await fetch('https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query: `
+    //         query {
+    //           pair(id: "${id === "1" ? config.addresses["BUSD-PRED LP"]: config.addresses["BNB-PRED LP"]}"){
+    //             reserveUSD,
+    //             totalSupply,
+    //             pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
+    //               hourlyVolumeUSD
+    //             }
+    //           }
+    //         }
+    //       `,
+    //       }),
+    //     })
+    //   ).json())
     
+    //   console.log(res); 
+
+    res = "";
     const token = await util.getPoolToken(id);
+    
 
     let dollarValue = (
       await util.getAmountsOut(
@@ -34,8 +40,9 @@ async function fillTotal_APR(){
     )[1];
     
     await renderAPR(ele, ele.dataset.pool, res, dollarValue);
+    
     await renderTotalStaked(token, ele, dollarValue);
-  })
+  }
 
   if(typeof fillPrediction_APR === "undefined") return;
   await fillPrediction_APR();

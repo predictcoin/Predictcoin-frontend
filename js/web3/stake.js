@@ -13,35 +13,36 @@ async function populateCard(card) {
   )[1];
 
   // request for pair data
-  const res = await (
-    await fetch(
-      "https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: `
-          query {
-            pair(id: "${
-              pId === "1"
-                ? config.addresses["BUSD-PRED LP"]
-                : config.addresses["BNB-PRED LP"]
-            }"){
-              reserveUSD,
-              totalSupply,
-              pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
-                hourlyVolumeUSD
-              }
-            }
-          }
-              `,
-        }),
-      }
-    )
-  ).json();
+  // const res = await (
+  //   await fetch(
+  //     "https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         query: `
+  //         query {
+  //           pair(id: "${
+  //             pId === "1"
+  //               ? config.addresses["BUSD-PRED LP"]
+  //               : config.addresses["BNB-PRED LP"]
+  //           }"){
+  //             reserveUSD,
+  //             totalSupply,
+  //             pairHourData(first: 25, orderDirection: desc, orderBy: hourStartUnix){
+  //               hourlyVolumeUSD
+  //             }
+  //           }
+  //         }
+  //             `,
+  //       }),
+  //     }
+  //   )
+  // ).json();
 
+  const res = "";
   // enter APR
   await renderAPR(card, pId, res, dollarValue);
 
@@ -88,13 +89,6 @@ async function populateUI() {
   await document.querySelectorAll(".web3-card.farm").forEach(async (ele, index) => {
     await populateCard(ele);
   });
-  predValue = (
-    await util.getAmountsOut(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.PRED,
-      config.addresses.BUSD
-    )
-  )[1];
   
   if(typeof populatePredictionUI === "undefined") return;
   await populatePredictionUI();
@@ -161,7 +155,7 @@ async function renderAPR(card, id, res, dollarValue) {
 
       apr = (dollarValue / total$) * 100;
     }
-    apr = Number(apr) + Number(await getLiqFeeApr(id, res));
+    apr = Number(apr) //+ Number(await getLiqFeeApr(id, res));
   }
   const aprEle = card.querySelector(".apr");
   aprEle.textContent = `${formatNumber(apr, "per")}%`;
