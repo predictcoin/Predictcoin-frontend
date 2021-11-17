@@ -7,7 +7,9 @@ window.addEventListener("load", async () => {
 
   let wallet = localStorage.getItem("wallet");
   if (wallet === null) {
+    
     await useDefaultProvider()
+    
     document.querySelector("body").classList.remove("loading");
     document.querySelector("body").classList.add("loaded");
     return;
@@ -20,6 +22,7 @@ window.addEventListener("load", async () => {
     await start(walletProvider);
   } catch (err) {
     console.log(err);
+
     await useDefaultProvider();
   }
   document.querySelector("body").classList.remove("loading");
@@ -27,15 +30,17 @@ window.addEventListener("load", async () => {
 });
 
 async function useDefaultProvider(){
+  
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
+  
   if(typeof initPredictionPool !== "undefined"){
     
     winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
     loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
   }
-
-  if(typeof(fillTotal_APR) === 'function') await fillTotal_APR();
+  
+  await fillTotal_APR();
 }
 
 async function start(walletProvider) {
