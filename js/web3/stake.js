@@ -83,6 +83,9 @@ async function populateCard(card) {
   card.querySelector(".dollar-value").textContent = `$${Number(
     totalDollarValue
   ).toFixed(2)}`;
+
+  card.classList.remove("loading");
+  card.classList.add("loaded");
 }
 
 async function populateUI() {
