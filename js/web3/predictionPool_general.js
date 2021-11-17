@@ -46,6 +46,8 @@ async function fillPrediction_APR(){
     await renderPredictionAPR(ele, pId, utils[index], pred_bnbPrice);
     await renderPredictionStaked(ele, pId, utils[index]);
     ele.querySelector(".epoch").textContent = `#${utils[index].pools[pId].epoch}`;
+    ele.classList.remove("loading");
+    ele.classList.add("loaded");
   })
 }
 
@@ -107,5 +109,8 @@ async function populatePredictionUI(){
       ele.classList.add("not-enabled");
       ele.classList.remove("enabled");
     }
+
+    ele.classList.remove("loading");
+    ele.classList.add("loaded");
   })
 }

@@ -2,16 +2,12 @@
 let provider, signer;
 
 window.addEventListener("load", async () => {
-  document.querySelector("body").classList.add("loading");
-  document.querySelector("body").classList.remove("loaded");
 
   let wallet = localStorage.getItem("wallet");
   if (wallet === null) {
     
     await useDefaultProvider()
     
-    document.querySelector("body").classList.remove("loading");
-    document.querySelector("body").classList.add("loaded");
     return;
   }
   let walletProvider = getWalletProvider(wallet);
@@ -25,8 +21,6 @@ window.addEventListener("load", async () => {
 
     await useDefaultProvider();
   }
-  document.querySelector("body").classList.remove("loading");
-  document.querySelector("body").classList.add("loaded");
 });
 
 async function useDefaultProvider(){

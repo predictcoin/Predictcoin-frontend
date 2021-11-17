@@ -42,6 +42,9 @@ async function fillTotal_APR(){
     await renderAPR(ele, ele.dataset.pool, res, dollarValue);
     
     await renderTotalStaked(token, ele, dollarValue);
+
+    ele.classList.remove("loading");
+    ele.classList.add("loaded");
   }
 
   if(typeof fillPrediction_APR === "undefined") return;
