@@ -33,7 +33,7 @@
   padding-top: 2rem;
 }
 .web3-card__heading{
-	background-color:rgba(14, 86, 192, 0.12);
+	background-color:rgba(14, 86, 192, 0.12 );
 	display: flex;
 	justify-content: space-between;
   align-items: center;
