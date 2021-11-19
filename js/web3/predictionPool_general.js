@@ -103,5 +103,5 @@ async function populatePredictionUI(){
     ele.classList.add("loaded");
   })
 
-  getPastPools();
+  await getPastPools();
 }

@@ -5446,63 +5446,23 @@ const config = {
     ]
   },
   // Testnet details
-  // addresses : {
-  //   "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
-  //   "Wallet": "0x5D103b6064935888fFAE0E5DC51BC7582Aa20E6a",
-  //   "Implementation": "0xe77a1b16f91dfc0d0737b6768f6096e663b793ec",
-  //   "Predcoin": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
-  //   "BUSD": "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
-  //   "WBNB": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
-  //   "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
-  //   "PRED": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
-  //   "BUSD-PRED LP": "0x6db5a429398887567e99911b8fe035a636b8bc47",
-  //   "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
-  //   "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
-  //   // IPO
-  //   "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
-  //   "Prediction": "0xb021c3fFbA6E88802790603Ec96411F5b5BBF234",
-  //   "loserPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
-  //   "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf"
-  // },
-  // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
-  // predictionTokens: {
-  //   "BNB": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  //   "ETH": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
-  //   "DOGE": "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
-  //   "CAKE": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
-  //   "BTC": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
-  // },
-  // predictionTokenAddresses:{
-  //   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "BNB",
-  //   "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": "ETH",
-  //   "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": "DOGE",
-  //   "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
-  //   "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
-  // },
-  // chainId: 97,
-  // providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
-  // etherscanApi: "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
-
-  // Mainnet addresses
   addresses : {
-    "Farm": "0x4b74C42b7aB96fEec003563c355f2fEfD0C80ee7",
-    "Wallet": "0x7c52c575A9C302e5B071904214036146108531c2",
-    "Implementation": "0x59cd2e492ff59de3d99c0e034e85c7e51d420643",
-    "Predcoin": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
-    "BUSD": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-    "WBNB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-    "PancakeRouter": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
-    "PRED": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
-    "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
-    "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
-    "USDT-PRED LP": "0x47893dc78be9231a031e594eb29636d3fcda09b9",
+    "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
+    "Wallet": "0x5D103b6064935888fFAE0E5DC51BC7582Aa20E6a",
+    "Implementation": "0xe77a1b16f91dfc0d0737b6768f6096e663b793ec",
+    "Predcoin": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
+    "BUSD": "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
+    "WBNB": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
+    "PancakeRouter": "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
+    "PRED": "0xB2d7b35539A543bbE4c74965488fFE33c6721f0d",
+    "BUSD-PRED LP": "0x6db5a429398887567e99911b8fe035a636b8bc47",
+    "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
     "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
-    "BabyFactory": "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd",
-      // IPO
+    // IPO
     "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
-    "Prediction": "0xBf9C36E0852B62Ac730E6BA8EAa5022Ed97cBBE8",
-    "loserPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
-    "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406"
+    "Prediction": "0xb021c3fFbA6E88802790603Ec96411F5b5BBF234",
+    "loserPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
+    "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf"
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   predictionTokens: {
@@ -5519,6 +5479,46 @@ const config = {
     "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
     "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
   },
-  chainId: 56,
-  providerEndpoint: "https://bsc-mainnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K",
+  chainId: 97,
+  providerEndpoint: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+  etherscanApi: "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address="
+
+  // Mainnet addresses
+  // addresses : {
+  //   "Farm": "0x4b74C42b7aB96fEec003563c355f2fEfD0C80ee7",
+  //   "Wallet": "0x7c52c575A9C302e5B071904214036146108531c2",
+  //   "Implementation": "0x59cd2e492ff59de3d99c0e034e85c7e51d420643",
+  //   "Predcoin": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
+  //   "BUSD": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+  //   "WBNB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  //   "PancakeRouter": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+  //   "PRED": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
+  //   "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
+  //   "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
+  //   "USDT-PRED LP": "0x47893dc78be9231a031e594eb29636d3fcda09b9",
+  //   "PancakeFactory": "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
+  //   "BabyFactory": "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd",
+  //     // IPO
+  //   "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
+  //   "Prediction": "0xBf9C36E0852B62Ac730E6BA8EAa5022Ed97cBBE8",
+  //   "loserPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
+  //   "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406"
+  // },
+  // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
+  // predictionTokens: {
+  //   "BNB": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  //   "ETH": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+  //   "DOGE": "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
+  //   "CAKE": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+  //   "BTC": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+  // },
+  // predictionTokenAddresses:{
+  //   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "BNB",
+  //   "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": "ETH",
+  //   "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": "DOGE",
+  //   "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
+  //   "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC"
+  // },
+  // chainId: 56,
+  // providerEndpoint: "https://bsc-mainnet.web3api.com/v1/Q3SYS628Q7NM9568343JHPK9HBNDRHUZ5K",
 }

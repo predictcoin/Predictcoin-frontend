@@ -100,19 +100,20 @@ async function populatePredictionModal(event, util) {
 async function getPastPools(){
   
   const table = document.querySelector(".past-pools .table");
-  if(table.querySelectorAll(".table-row").length > 0) return;
+  if(table.classList.contains("filled")) return;
+  table.classList.add("filled");
   const utils = [loserUtil, winnerUtil];
 
   for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
+    
     const util = utils[higherIndex];
     const length = util.farm.poolLength.toNumber() - 2;
 
-    for(i=0; i<length; i++){
+    for(i=0; i<=length; i++){
       const data = {pool: i};
       console.log(i);
       const userInfo = await util.userInfo(i, await signer.getAddress());
       const poolInfo = await util.getPoolInfo(i);
-      console.log(userInfo.amount.toString(), poolInfo.epoch.toString());
       const pending = higherIndex === 1 ? await util.pendingPred(i) : await util.pendingBNB(i);
       data.epoch = poolInfo.epoch.toString();
       data.amount = formatNumber(ethers.utils.formatUnits(userInfo.amount, 18));
@@ -122,6 +123,8 @@ async function getPastPools(){
       document.querySelector(".past-pools").classList.remove("empty");
       data.icon = higherIndex === 1 ? "pred" : "bnb";
       data.earned = formatNumber(ethers.utils.formatUnits(pending, 18));
+
+      console.log(userInfo.amount.toString(), poolInfo.epoch.toString());
 
       const row = `
         <td>${data.epoch}</td>
@@ -140,6 +143,7 @@ async function getPastPools(){
       table.appendChild(tr);
     }
   }
+  
 }
 
 async function withdrawPastPool(pool, amount, util){
