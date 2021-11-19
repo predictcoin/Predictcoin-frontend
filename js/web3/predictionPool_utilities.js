@@ -40,8 +40,7 @@ PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
   }else{
     totalBNBPerYr = this.farm.bnbPerBlock.mul(28800).mul(365);
     totalPredPerYr = pred_bnbPrice.mul(totalBNBPerYr);
-  }
-  
+  } 
   const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   const numerator = poolPredPerYr.mul(100);
 
@@ -84,6 +83,10 @@ PredictionUtil.prototype.userInfo = async function(id) {
 
 PredictionUtil.prototype.totalStaked = async function(pId) {
   return (await this.farm.poolInfo(pId)).amount;
+}
+
+PredictionUtil.prototype.getPoolInfo = async function(pId){
+  return await this.farm.poolInfo(pId);
 }
 
 PredictionUtil.prototype.userStake = async function(id) {

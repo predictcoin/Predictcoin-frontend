@@ -210,7 +210,7 @@ function setPredictionRows(predictions){
   }
 
   const rows = predictions.map(prediction => {
-    return ` 
+    return `
       <td>
         ${prediction.round}
       </td>
