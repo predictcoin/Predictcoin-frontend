@@ -381,3 +381,58 @@ body.live .live-pools{
   text-align: center;
   color: #fff;
 }
+
+.past-pools.empty .empty{
+  display: block;
+}
+.past-pools:not(.empty) .empty{
+  display: none;
+}
+
+.past-pools.empty table{
+  display: none;
+}
+.past-pools:not(empty) table{
+  display: table;
+}
+
+.past-pools table{
+  width: 100%;
+  max-width: 50rem;
+  margin: auto;
+}
+
+.past-pools .table-head{
+  padding: 1rem;
+  background: #fff;
+  color: #0071BC94;
+  text-align: center;
+}
+
+.past-pools .table-head th{
+  padding: 1rem;
+}
+
+.past-pools td{
+  text-align: center;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  vertical-align: middle;
+}
+.past-pools tr{
+  padding: 0.3rem;
+  text-align: center;
+  background-color: #fff;
+}
+.past-pools button.withdraw{
+  background-color: #0E56C0;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: auto;
+}
+.past-pools img{
+  width: 2rem;
+}

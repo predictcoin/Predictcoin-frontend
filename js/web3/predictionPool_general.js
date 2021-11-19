@@ -3,17 +3,6 @@ function changeTab(e) {
   document.querySelector("body").classList.toggle("live");
 }
 
-function changePage(event) {
-  const pages = document.querySelectorAll(".past-pools.pages .page");
-  const activeNo = document.querySelector(".page-nos .active");
-  activeNo.classList.remove("active");
-  event.target.classList.add("active");
-  const page = Number(event.target.textContent);
-  const activePage = document.querySelector(".past-pools.pages .page.active")
-  activePage.classList.remove("active");
-  pages[page-1].classList.add("active");
-}
-
 async function fillPrediction_APR(){
   let predPrice = (
     await util.getAmountsOut(
@@ -113,4 +102,6 @@ async function populatePredictionUI(){
     ele.classList.remove("loading");
     ele.classList.add("loaded");
   })
+
+  getPastPools();
 }

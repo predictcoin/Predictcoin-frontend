@@ -96,3 +96,57 @@ async function populatePredictionModal(event, util) {
     balEle.textContent = formatNumber(bal);
   }
 }
+
+async function getPastPools(){
+  
+  const table = document.querySelector(".past-pools .table");
+  if(table.querySelectorAll(".table-row").length > 0) return;
+  const utils = [loserUtil, winnerUtil];
+
+  for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
+    const util = utils[higherIndex];
+    const length = util.farm.poolLength.toNumber() - 2;
+
+    for(i=0; i<length; i++){
+      const data = {pool: i};
+      console.log(i);
+      const userInfo = await util.userInfo(i, await signer.getAddress());
+      const poolInfo = await util.getPoolInfo(i);
+      console.log(userInfo.amount.toString(), poolInfo.epoch.toString());
+      const pending = higherIndex === 1 ? await util.pendingPred(i) : await util.pendingBNB(i);
+      data.epoch = poolInfo.epoch.toString();
+      data.amount = formatNumber(ethers.utils.formatUnits(userInfo.amount, 18));
+
+      if(userInfo.amount.lte(0)) continue;
+
+      document.querySelector(".past-pools").classList.remove("empty");
+      data.icon = higherIndex === 1 ? "pred" : "bnb";
+      data.earned = formatNumber(ethers.utils.formatUnits(pending, 18));
+
+      const row = `
+        <td>${data.epoch}</td>
+        <td>${data.icon === "pred" ? 
+          '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">'
+          : '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">'}
+        </td>
+        <td>${data.amount}</td>
+        <td>${data.earned}</td>
+        <td><button class="withdraw">Withdraw</button></td>`
+      const tr = document.createElement("tr");
+      tr.classList.add("table-row")
+      tr.innerHTML = row;
+      tr.querySelector(".withdraw")
+        .addEventListener("click", () => withdrawPastPool(`${data.pool}`, userInfo.amount, util));
+      table.appendChild(tr);
+    }
+  }
+}
+
+async function withdrawPastPool(pool, amount, util){
+  let tx = async () => await util.withdraw(pool, amount);
+  await sendTx(
+    tx,
+    `Successfully withdrew ${ethers.utils.formatUnits(amount, 18)} PRED`,
+    `Failed to withdraw ${ethers.utils.formatUnits(amount, 18)} PRED`
+  );
+}
