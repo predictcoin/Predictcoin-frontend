@@ -91,6 +91,16 @@
                   </span>
                 </a>
               </li>
+		                            <li class="nav-item">
+                            <a class="nav-link" href="bid.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/bid.png" alt="prediction" />
+                                </span>
+                                <span class="navText">
+                                    Predict $BID
+                                </span>
+                            </a>
+                        </li>
 		<li class="nav-item  ">
                             <a class="nav-link" href="sports.html">
                                 <span class="navIcon">
@@ -160,16 +170,16 @@
         <span><span class="notifications__status">0</span> transactions pending</span>
       </div>
 	             <img src="images/3.jpg" class="img-fluid sizeimg" alt="">
-	                    <p class="ipop">
-                <a href="http://pancakeswap.finance/swap?outputCurrency=0xbdd2e3fdb879aa42748e9d47b7359323f226ba22" target="_blank" id="ipobtn">Buy PRED</a></p>
+<!-- 	                    <p class="ipop">
+                <a href="http://pancakeswap.finance/swap?outputCurrency=0xbdd2e3fdb879aa42748e9d47b7359323f226ba22" target="_blank" id="ipobtn">Buy PRED</a></p> -->
 	         <div class="container">
-      <div class="row">
+<!--       <div class="row">
         <div class="predchart">
           <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
           <div class="livecoinwatch-widget-6" lcw-coin="PRED" lcw-base="USD" lcw-period="d" lcw-color-tx="#000000"
             lcw-color-bg="#ffffff" lcw-border-w="0"></div>
         </div>
-      </div>
+      </div> -->
     </div>
 	     
       <section class="staking-section--headings">
@@ -241,9 +251,14 @@
         </div>
         <div class="web3-card loading not-enabled prediction-pool winner" data-pool="0">
           <div class="web3-card__heading">
-            <div>
-              <img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">
-            </div>
+          <div class="lpimg">
+            <img src="images/pp.png" class="first-lpimg lefticn" alt="predictpool">
+		              <img src="images/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
+              title="To gain access to the Predict Pool, you have to predict on any of the coins on predictcoin.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
+
+            Predict Pool launches every weekend on predictcoin.finance/staking. Winners & Losers have 7 days to earn their rewards with the wallet they predicted with."
+              alt="tip">
+          </div>
             <div>
               <h4 class="title">Round <span class="epoch">#0</span></h4>
               <span class="multiplier">75x</span>
@@ -301,9 +316,14 @@
         </div>
         <div class="web3-card loading not-enabled prediction-pool loser" data-pool="0">
           <div class="web3-card__heading">
-            <div>
-              <img src="assets/front_n/images/coins/BID.png" alt="pred-icon">
-            </div>
+        <div class="lpimg">
+          <img src="assets/front_n/images/coins/BID.png" alt="pred-icon">
+		            <img src="images/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
+              title="To gain access to the Predict Pool, you have to predict on any of the coins on predictcoin.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
+
+            Predict Pool launches every weekend on predictcoin.finance/staking. Winners & Losers have 7 days to earn their rewards with the wallet they predicted with."
+              alt="tip">
+          </div>
             <div>
               <h4 class="title">Round <span class="epoch">#0</span></h4>
             </div>
@@ -645,6 +665,25 @@ padding: 20px;
 text-align: center;
 padding-top: 30px;
 }
+			
+			    .lefticn {
+        width: 135px !important;
+        padding-top: 55px;
+      }
+
+
+      @media only screen and (max-width: 600px) {
+        .lefticn {
+          width: 115px !important;
+          /* padding-top: 6px; */
+        }
+      }
+			
+			
+      .quest {
+        width: 15px !important;
+
+      }
     </style>
 
   </body> 

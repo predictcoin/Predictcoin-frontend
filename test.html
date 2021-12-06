@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Predictcoin - Test </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link href="assets/front_n/images/favicon.svg" rel="icon">
+    <!-- <link href="images/favicon.png" rel="icon"> -->
+
+
+    <!-- Css Links -->
+    <link rel="stylesheet" href="assets/front_n/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/front_n/css/all.min.css">
+    <link rel="stylesheet" href="assets/front_n/css/jquery.growl.css">
+    <link rel="stylesheet" href="assets/front_n/css/custom.css">
+    <link rel="stylesheet" href="assets/front_n/css/web3.css">
+    <link rel="stylesheet" href="assets/front_n/css/css2.css">
+    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
+    <script src="assets/front_n/js/jquery.min.js"></script>
+    <script src="assets/front_n/js/gijgo.min.js"></script>
+    <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> -->
+    <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <!-- Etherjs -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <!-- Validate -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+</head>
+
+<body class="pageBgGrdient pageFill not-connected loading">
+    <header class="headerStatic">
+        <div class="container-fluid inner">
+            <nav class="navbar headerNavbar">
+
+                <a class="navbar-brand p-0" href="index.html">
+                    <img src="assets/front_n/images/logo.svg" alt="logo" />
+                </a>
+
+                <div class="headerNav mx-auto">
+                    <ul class="navbar-nav flex-lg-row">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="staking.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/staking.png" alt="staking" />
+                                </span>
+                                <span class="navText">
+                                    Staking
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="farming.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/farming.png" alt="farming" />
+                                </span>
+                                <span class="navText">
+                                    Farming
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="swap.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/swap.png" alt="voting" />
+                                </span>
+                                <span class="navText">
+                                    Swap
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="voting.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/voting.png" alt="voting" />
+                                </span>
+                                <span class="navText">
+                                    Voting
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="prediction.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/prediction.png" alt="prediction" />
+                                </span>
+                                <span class="navText">
+                                    Price Prediction
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="ipo.html">
+                                <span class="navIcon">
+                                    <img src="assets/front_n/images/icons/chart2.png" alt="prediction" />
+                                </span>
+                                <span class="navText">
+                                    IPO
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="headerRight">
+                    <!-- id="connect_metamask" -->
+                    <button class="btn btn-wallet wallet-not-connected" data-toggle="modal" data-target="#walConnect">
+                        <span class="btn-wicon">
+                            <img src="assets/front_n/images/icons/wallet.png" alt="wallet" />
+                        </span>
+                        <span class="btn-wtext">
+                            Connect
+                        </span>
+                    </button>
+
+                    <button class="btn btn-wallet wallet-connected" data-toggle="modal" data-target="#walInfo">
+                        <span class="btn-wicon">
+                            <img src="assets/front_n/images/icons/wallet.png" alt="wallet" />
+                        </span>
+                        <span class="btn-wtext">
+                            0x
+                        </span>
+                    </button>
+
+                    <div class="mobMenu d-inline-block d-lg-none">
+                        <div class="smClose">
+                            <svg id="closeicon" viewBox="0 0 800 600">
+                                <path
+                                    d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                    id="top">
+                                </path>
+                                <path d="M300,320 L460,320" id="middle"></path>
+                                <path
+                                    d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                    id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) ">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
+
+        </div>
+    </header>
+    <input type="hidden" id="base_url" value="https://predictcoin.finance">
+    <title>Predictcoin - Staking </title>
+
+    <div class="inPageSec">
+        <div class="notifications">
+            <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span><span class="notifications__status">0</span> transactions pending</span>
+        </div>
+        <img src="images/3.jpg" class="img-fluid sizeimg" alt="">
+        <p class="ipop">
+            <a href="http://pancakeswap.finance/swap?outputCurrency=0xbdd2e3fdb879aa42748e9d47b7359323f226ba22"
+                target="_blank" id="ipobtn">Buy PRED</a>
+        </p>
+        <div class="container">
+            <div class="row">
+                <div class="predchart">
+                    <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
+                    <div class="livecoinwatch-widget-6" lcw-coin="PRED" lcw-base="USD" lcw-period="d"
+                        lcw-color-tx="#000000" lcw-color-bg="#ffffff" lcw-border-w="0"></div>
+                </div>
+            </div>
+        </div>
+        <div class="inner card-container">
+            <div class="web3-card not-enabled" data-pool="0">
+                <div class="web3-card__heading">
+                    <div class="lpimg">
+                        <img src="images/pp.png" class="first-lpimg lefticn" alt="predictpool">
+                    </div>
+                    <div>
+                        <h4>PRED</h4>
+                        <span class="multiplier">20x</span>
+                    </div>
+                </div>
+                <ul class="web3-card__user-reward">
+                    <li>
+                        <span data-toggle="tooltip"
+                            title="This pool rewards aren’t compounded automatically, so we show APR" class="apr-title">
+                            APR
+                        </span>
+                        <span>
+                            <div class="ph-item loading">
+                                <div class="ph-picture"></div>
+                            </div>
+                            <span class="apr loaded">0%
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <span>Stake</span><span>PRED
+                        </span>
+                    </li>
+                    <li><span>Earn</span><span>PRED</span></li>
+                    <li class="wallet-connected"><span>Earned</span><span>
+                            <div class="ph-item loading">
+                                <div class="ph-picture"></div>
+                            </div><span class="loaded earned">0.0</span>
+                        </span></li>
+                    <li class="wallet-connected"><span>~ USD</span><span>
+                            <div class="ph-item loading">
+                                <div class="ph-picture"></div>
+                            </div><span class="dollar-value loaded">$0.00</span>
+                        </span></li>
+                </ul>
+                <div class="web3-card__amount contract-enabled wallet-connected">
+                    <div>
+                        <span>PRED Staked</span>
+                        <span class="staked">0.001</span>
+                    </div>
+                    <div>
+                        <span class="mutate-btn" data-toggle="modal" data-target="#unstake">
+                            -
+                        </span>
+                        <span class="mutate-btn" data-toggle="modal" data-target="#stake">
+                            +
+                        </span>
+                    </div>
+                </div>
+                <div class="web3-card__btns">
+                    <button
+                        class="web3-card__btn web3-card__btn--harvest contract-enabled harvest wallet-connected">HARVEST</button>
+                    <button
+                        class="web3-card__btn web3-card__btn--blue wallet-connected contract-not-enabled enable-contract">ENABLE</button>
+                    <button
+                        class="web3-card__btn web3-card__btn--blue contract-enabled wallet-connected compound">COMPOUND</button>
+                    <button class="web3-card__btn web3-card__btn--blue wallet-not-connected btncurve"
+                        data-toggle="modal" data-target="#walConnect">UNLOCK WALLET</button>
+                </div>
+
+                <div class="web3-card__bottom">
+                    <p>Details</p>
+                    <div>Total stacked:
+                        <div class="ph-item loading">
+                            <div class="ph-picture"></div>
+                        </div>
+                        <span class="loaded total-staked">0</span>
+                    </div>
+                    <a href="http://BscScan.com/" class="contract-link">View contract</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inPageSec">
+        <!-- <div class="container inner">
+				<img src="images/coming.jpg" alt="download" />
+			</div> -->
+        <p class="text-center caddress">CA: 0xbdd2e3fdb879aa42748e9d47b7359323f226ba22</p>
+        <footer class="footerInner">
+            <div class="inner container">
+                <div class="row align-items-center py-2">
+                    <div class="col-sm-12 col-md-6 col-lg-6 my-2">
+                        <p class="text-white font-12 mb-0 text-center text-md-left">
+                            Copyright &copy; 2021 Predictcoin | All Rights Reserved
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 my-2">
+                        <div class="socialLinksInner text-center text-md-right">
+                            <a href="https://t.me/predictcoin" target="_blank">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://twitter.com/predictcoinfin" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <img src="assets/front_n/images/coins/theme.png" class="theme-btn">
+
+        <!-- Modal -->
+        <div class="modal fade" id="walConnect">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Connect To Wallet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="walOptionBtns">
+
+                            <button onclick="select_network('metamask')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_metamask">
+                                <span class="walOptText">
+                                    Meta Mask
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/metamask.svg" alt="metamask" />
+                                </span>
+                            </button>
+
+                            <button onclick="select_network('trustwallet')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_trustwallet">
+                                <span class="walOptText">
+                                    Trust Wallet
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/trustwallet.png" alt="trustwallet" />
+                                </span>
+                            </button>
+
+                            <button onclick="select_network('mathwallet')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_mathwallet">
+                                <span class="walOptText">
+                                    Math Wallet
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/mathwallet.png" alt="mathwallet" />
+                                </span>
+                            </button>
+
+                            <button onclick="select_network('tokenpocket')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_tokenpocket">
+                                <span class="walOptText">
+                                    Token Pocket
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/tokenpo.png" alt="tokenpo" />
+                                </span>
+                            </button>
+
+
+                            <button onclick="select_network('binance')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_binancechain">
+                                <span class="walOptText">
+                                    Binance Chain Wallet
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/binancewallet.png" alt="binancewallet" />
+                                </span>
+                            </button>
+
+                            <button onclick="select_network('walletconnect')"
+                                class="btn d-flex align-items-center justify-content-between"
+                                id="connect_wallet_walletconnect">
+                                <span class="walOptText">
+                                    WalletConnect
+                                </span>
+                                <span class="walOptImg">
+                                    <img src="assets/front_n/images/wallet/wc.png" alt="WalletConnect" />
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade walInfo" id="walInfo">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Your Wallet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea type="text" class="address-text"></textarea>
+                        <div class="address">
+                            <span class="address-text"></span>
+                            <span class="address-copy">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM15 5L21 11V21C21 22.1 20.1 23 19 23H7.99C6.89 23 6 22.1 6 21L6.01 7C6.01 5.9 6.9 5 8 5H15ZM14 12H19.5L14 6.5V12Z"
+                                        fill="#00A660" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="btns">
+
+                            <a class="btn btn--view" href="">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.0002 14.2931L12.6557 11.9491C13.2822 11.1427 13.5778 10.1278 13.4823 9.11101C13.3868 8.09426 12.9074 7.15214 12.1416 6.47649C11.3759 5.80084 10.3814 5.44246 9.36064 5.47434C8.33991 5.50621 7.36971 5.92594 6.6476 6.64806C5.92548 7.37017 5.50576 8.34037 5.47388 9.3611C5.44201 10.3818 5.80038 11.3763 6.47603 12.1421C7.15169 12.9078 8.09381 13.3873 9.11055 13.4828C10.1273 13.5783 11.1422 13.2827 11.9487 12.6561L14.2932 15.0001L15.0002 14.2931ZM9.50015 12.5001C8.90681 12.5001 8.32679 12.3242 7.83344 11.9945C7.34009 11.6649 6.95558 11.1963 6.72851 10.6482C6.50145 10.1 6.44204 9.49678 6.5578 8.91484C6.67355 8.3329 6.95927 7.79835 7.37883 7.37879C7.79839 6.95923 8.33294 6.67351 8.91488 6.55776C9.49683 6.442 10.1 6.50141 10.6482 6.72847C11.1964 6.95554 11.6649 7.34005 11.9946 7.8334C12.3242 8.32675 12.5002 8.90677 12.5002 9.50011C12.4992 10.2955 12.1829 11.058 11.6205 11.6204C11.058 12.1828 10.2955 12.4992 9.50015 12.5001Z"
+                                        fill="black" />
+                                    <path d="M1 6H5V7H1V6Z" fill="black" />
+                                    <path d="M1 1H9V2H1V1Z" fill="black" />
+                                    <path d="M1 3.5H9V4.5H1V3.5Z" fill="black" />
+                                </svg>
+                                view on BscScan
+                            </a>
+
+                            <button class="btn btn--logout">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 15H9C9.26514 14.9997 9.51934 14.8943 9.70681 14.7068C9.89429 14.5193 9.99974 14.2651 10 14V12.5H9V14H3V2H9V3.5H10V2C9.99974 1.73486 9.89429 1.48066 9.70681 1.29319C9.51934 1.10571 9.26514 1.00026 9 1H3C2.73486 1.00026 2.48066 1.10571 2.29319 1.29319C2.10571 1.48066 2.00026 1.73486 2 2V14C2.00026 14.2651 2.10571 14.5193 2.29319 14.7068C2.48066 14.8943 2.73486 14.9997 3 15Z"
+                                        fill="black" />
+                                    <path
+                                        d="M10.293 10.293L12.086 8.5H5V7.5H12.086L10.293 5.707L11 5L14 8L11 11L10.293 10.293Z"
+                                        fill="black" />
+                                </svg>
+                                Logout
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade stake" id="stake">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Stake PRED Token</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="stake-input">
+                            <p class="stake-input__heading"><span>Stake</span><span>Balance</span></p>
+                            <p class="stake-input__balance balance">0</p>
+                            <div><input autofocus type="text" placeholder="0"> <button class="max">MAX</button></div>
+                        </div>
+                        <span class="warning">You don't have enough tokens to stake</span>
+                        <div class="stake-btns">
+                            <button class="btn btn__cancel" data-dismiss="modal" aria-label="Close">CANCEL</button>
+                            <button class="btn btn__confirm disable-btn">CONFIRM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade stake" id="unstake">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Unstake PRED Token</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="stake-input">
+                            <p class="stake-input__heading"><span>Unstake</span><span>Staked</span></p>
+                            <p class="stake-input__balance staked">0</p>
+                            <div><input autofocus type="text" placeholder="0"> <button class="max">MAX</button></div>
+                        </div>
+                        <span class="warning">You don't have enough PRED tokens to unstake</span>
+                        <div class="stake-btns">
+                            <button data-dismiss="modal" aria-label="Close" class="btn btn__cancel">CANCEL</button>
+                            <button class="btn btn__confirm disable-btn">CONFIRM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/front_n/js/popper.min.js"></script>
+        <script src="assets/front_n/js/bootstrap.min.js"></script>
+        <script src="assets/front_n/js/jquery.growl689d.js?ver=1625865650"></script>
+        <script src="assets/front_n/js/custom.js"></script>
+        <script src="js/web3/config.js"></script>
+        <script src="js/web3/ERC20Contract.js"></script>
+        <script src="js/web3/FarmContract.js"></script>
+        <script src="js/web3/PancakeRouterContract.js"></script>
+        <script src="js/web3/farm_utilities.js"></script>
+        <script src="js/web3/stake.js"></script>
+        <script src="js/web3/test.js"></script>
+        <!-- <script src="js/web3/wallet.js"></script> -->
+        <script src="js/web3/farm_general.js"></script>
+        <style>
+            .sizeimg {
+                border-radius: 30px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+            }
+
+            @media screen and (max-width: 500px) {
+                .sizeimg {
+                    border-radius: 30px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 100%;
+                }
+            }
+
+            .btncurve {
+                border-radius: 50px;
+            }
+
+            .web3-card {
+                border-radius: 30px;
+                -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.51);
+                box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.51);
+            }
+
+            #ipobtn {
+                border-radius: 6px;
+                background: linear-gradient(133deg, #e97100, #ffb35f);
+                border: 1px solid #fff;
+                padding: 20px;
+                width: 200px;
+                transition: all 0.5s;
+                color: #fff;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .ipop {
+                text-align: center;
+                padding-top: 30px;
+            }
+
+            .lefticn {
+                width: 135px !important;
+                padding-top: 85px;
+            }
+
+
+            @media only screen and (max-width: 600px) {
+                .lefticn {
+                    width: 115px !important;
+                    padding-top: 50px;
+                }
+            }
+        </style>
+
+</body>
+
+</html>
