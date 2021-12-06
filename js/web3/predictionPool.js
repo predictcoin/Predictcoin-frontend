@@ -1,6 +1,5 @@
 async function renderPredictionAPR(card, id, util, pred_bnbPrice) {
   let apr = await util.getStakeApr(id, pred_bnbPrice);
-
   const aprEle = card.querySelector(".apr");
   aprEle.textContent = `${formatNumber(apr, "per")}%`;
 }
@@ -14,7 +13,7 @@ async function renderPredictionStaked(card, pId, util) {
 }
 
 async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPrice){
-    // enter reward
+  // enter reward
   let earnedEle = card.querySelector(".earned");
   let earned, totalDollarValue;
   if(typeof util.farm.pendingPred !== "undefined"){
@@ -22,9 +21,9 @@ async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPric
     earned = ethers.utils.formatUnits(earned, 18);
     totalDollarValue = predPrice * earned;
   }else {
-    earned = await util.pendingBNB(pId);
+    earned = await util.pendingBID(pId);
     earned = ethers.utils.formatUnits(earned, 18);
-    totalDollarValue = bnbPrice * earned;
+    totalDollarValue = 0.0581528 * earned;
   }
   
   card.querySelector(".dollar-value").textContent = `$${Number(
@@ -59,7 +58,7 @@ async function populatePredictionModal(event, util) {
   const modalId = event.target.dataset.target;
   const modal = document.querySelector(`${modalId}`);
   modal.dataset.pool = pId;
-  modal.dataset.prediction = typeof util.farm.instance.pendingBNB !== "undefined" ? "loser": "winner";
+  modal.dataset.prediction = typeof util.farm.instance.pendingBID !== "undefined" ? "loser": "winner";
   let canStake;
   if(modal.dataset.prediction === "loser"){
     canStake = await util.lostRound(util.pools[pId].epoch);
@@ -88,12 +87,24 @@ async function populatePredictionModal(event, util) {
     let staked = await util.userStake(pId);
     staked = ethers.utils.formatUnits(staked, 18);
     stakedEle.textContent = formatNumber(staked);
+    const title = modal.querySelector(".modal-title");
+    if(modal.dataset.prediction === "loser"){
+      title.textContent = "Unstake BID Token"
+    }else {
+      title.textContent = "Unstake PRED Token";
+    }
   } else {
     // enter balance
     let balEle = modal.querySelector(".balance");
     let bal = await util.getBalance(pId);
     bal = ethers.utils.formatUnits(bal, 18);
     balEle.textContent = formatNumber(bal);
+    const title = modal.querySelector(".modal-title");
+    if(modal.dataset.prediction === "loser"){
+      title.textContent = "Stake BID Token"
+    }else {
+      title.textContent = "Stake PRED Token";
+    }
   }
 }
 
@@ -102,8 +113,8 @@ async function getPastPools(){
   const table = document.querySelector(".past-pools .table");
   if(table.classList.contains("filled")) return;
   table.classList.add("filled");
-  const utils = [loserUtil, winnerUtil];
-
+  const utils = [loserUtil, winnerUtil, BNBUtil];
+  console.log(BNBUtil);
   for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
     
     const util = utils[higherIndex];
@@ -111,27 +122,34 @@ async function getPastPools(){
 
     for(i=0; i<=length; i++){
       const data = {pool: i};
-      console.log(i);
+      console.log(higherIndex)
       const userInfo = await util.userInfo(i, await signer.getAddress());
       const poolInfo = await util.getPoolInfo(i);
-      const pending = higherIndex === 1 ? await util.pendingPred(i) : await util.pendingBNB(i);
+      switch(higherIndex){
+        case(1):
+          pending = await util.pendingPred(i);
+          data.icon = '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">';
+          break;
+        case(2):
+          pending = await util.pendingBNB(i);
+          data.icon = '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">';
+          break;
+        default:
+          data.icon = '<img src="assets/front_n/images/coins/BID.png" alt="pred-icon">';
+          pending = await util.pendingBID(i);
+      }
       data.epoch = poolInfo.epoch.toString();
       data.amount = formatNumber(ethers.utils.formatUnits(userInfo.amount, 18));
 
       if(userInfo.amount.lte(0)) continue;
 
       document.querySelector(".past-pools").classList.remove("empty");
-      data.icon = higherIndex === 1 ? "pred" : "bnb";
       data.earned = formatNumber(ethers.utils.formatUnits(pending, 18));
 
-      console.log(userInfo.amount.toString(), poolInfo.epoch.toString());
 
       const row = `
         <td>${data.epoch}</td>
-        <td>${data.icon === "pred" ? 
-          '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">'
-          : '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">'}
-        </td>
+        <td>${data.icon}</td>
         <td>${data.amount}</td>
         <td>${data.earned}</td>
         <td><button class="withdraw">Withdraw</button></td>`

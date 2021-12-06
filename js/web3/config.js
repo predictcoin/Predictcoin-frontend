@@ -4814,6 +4814,793 @@ const config = {
         "anonymous": false,
         "inputs": [
           {
+            "indexed": false,
+            "internalType": "address",
+            "name": "operator",
+            "type": "address"
+          }
+        ],
+        "name": "NewOperatorAddress",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Paused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Unpaused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "implementation",
+            "type": "address"
+          }
+        ],
+        "name": "Upgraded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Withdraw",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "BID",
+        "outputs": [
+          {
+            "internalType": "contract IBEP20",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "BIDPerBlock",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "BONUS_MULTIPLIER",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_epoch",
+            "type": "uint256"
+          }
+        ],
+        "name": "add",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "allocPoint",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          }
+        ],
+        "name": "emergencyWithdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_from",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_to",
+            "type": "uint256"
+          }
+        ],
+        "name": "getMultiplier",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getPoolLength",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_operator",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IBEP20",
+            "name": "_BID",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_BIDPerBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_startBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_maxBIDDeposit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "contract PredictionWallet",
+            "name": "_wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IPrediction",
+            "name": "_prediction",
+            "type": "address"
+          }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "preder",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "round",
+            "type": "uint256"
+          }
+        ],
+        "name": "lostRound",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "maxBIDDeposit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "operatorAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "pause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "paused",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_user",
+            "type": "address"
+          }
+        ],
+        "name": "pendingBID",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolInfo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "allocPoint",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastRewardBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accBIDPerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "epoch",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "poolLength",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "prediction",
+        "outputs": [
+          {
+            "internalType": "contract IPrediction",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "setAllocPoint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_maxBIDDeposit",
+            "type": "uint256"
+          }
+        ],
+        "name": "setMaxBIDDeposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_operatorAddress",
+            "type": "address"
+          }
+        ],
+        "name": "setOperator",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "setPoolAllocPoint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "startBlock",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "totalRewardDebt",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "unpause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "multiplierNumber",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateMultiplier",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          }
+        ],
+        "name": "updatePool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newImplementation",
+            "type": "address"
+          }
+        ],
+        "name": "upgradeTo",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newImplementation",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "upgradeToAndCall",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "userInfo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "wallet",
+        "outputs": [
+          {
+            "internalType": "contract PredictionWallet",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "preder",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "round",
+            "type": "uint256"
+          }
+        ],
+        "name": "wonRound",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    BNBPool: [
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "previousAdmin",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newAdmin",
+            "type": "address"
+          }
+        ],
+        "name": "AdminChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "beacon",
+            "type": "address"
+          }
+        ],
+        "name": "BeaconUpgraded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Deposit",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "EmergencyWithdraw",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "operator",
+            "type": "address"
+          }
+        ],
+        "name": "NewOperatorAddress",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
             "indexed": true,
             "internalType": "address",
             "name": "previousOwner",
@@ -5016,6 +5803,11 @@ const config = {
       {
         "inputs": [
           {
+            "internalType": "address",
+            "name": "_operator",
+            "type": "address"
+          },
+          {
             "internalType": "contract IBEP20",
             "name": "_pred",
             "type": "address"
@@ -5083,6 +5875,19 @@ const config = {
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "operatorAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -5252,6 +6057,32 @@ const config = {
           }
         ],
         "name": "setMaxPredDeposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_operatorAddress",
+            "type": "address"
+          }
+        ],
+        "name": "setOperator",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "setPoolAllocPoint",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -5445,6 +6276,7 @@ const config = {
       }
     ]
   },
+  
   // Testnet details
   // addresses : {
   //   "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
@@ -5461,8 +6293,10 @@ const config = {
   //   // IPO
   //   "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
   //   "Prediction": "0xb021c3fFbA6E88802790603Ec96411F5b5BBF234",
-  //   "loserPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
-  //   "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf"
+  //   "loserPool": "0x09DCDD45F609BfD1307c91f678F413Bfc3d3cae6",
+  //   "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf",
+  //   "BNBPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
+  //   "BID": "0x21B1c11d5e7f6B8Cd07be8886b196319fc69e558"
   // },
   // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   // predictionTokens: {
@@ -5492,6 +6326,7 @@ const config = {
     "BUSD": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
     "WBNB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
     "PancakeRouter": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+    "AutoSharkRouter": "0x9b1240399e9e23e4c31520fc5c00fa83dc451819",
     "PRED": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
     "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
     "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
@@ -5501,8 +6336,10 @@ const config = {
       // IPO
     "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
     "Prediction": "0xBf9C36E0852B62Ac730E6BA8EAa5022Ed97cBBE8",
-    "loserPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
-    "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406"
+    "loserPool": "0x203b37B90F1Ff840daEe3508FafDbCcA3b2eb7d5",
+    "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406",
+    "BID": "0xf9c86001c92fe30be5aa5eb3ef4cd191eae205e4",
+    "BNBPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   predictionTokens: {
