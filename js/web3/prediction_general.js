@@ -28,22 +28,22 @@ function closeModal(modal){
 
 function setNextRoundCountdown(){
   const repeat = () => {
-    const originStamp = 1635771600;
-    const currentStamp = parseInt(Date.now()/1000);
-    const interval = 604800;
-    const elapsed = currentStamp - originStamp;
-    const past = Math.floor(elapsed/interval);
+    // const originStamp = 1635771600;
+    // const currentStamp = parseInt(Date.now()/1000);
+    // const interval = 604800;
+    // const elapsed = currentStamp - originStamp;
+    // const past = Math.floor(elapsed/interval);
 
-    const remainder = elapsed%interval;
-    let futureStamp
-    if(remainder === 0){
-      futureStamp = originStamp + (past*interval);
-    }else{
-      futureStamp = originStamp + ((past+1)*interval)
-    }
+    // const remainder = elapsed%interval;
+    // let futureStamp
+    // if(remainder === 0){
+    //   futureStamp = originStamp + (past*interval);
+    // }else{
+    //   futureStamp = originStamp + ((past+1)*interval)
+    // }
 
-    const duration = futureStamp - parseInt(Date.now()/1000);
-
+    // const duration = futureStamp - parseInt(Date.now()/1000);
+    const duration = (1639400400000 - Date.now())/1000
     const [days, hours, mins, secs] = getCountDown(duration);
     const cont = document.querySelector(".round-ended .timer");
     cont.textContent = `${days}d : ${hours}hr : ${mins}m : ${secs}s`
