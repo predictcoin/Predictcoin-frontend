@@ -1,6 +1,5 @@
 async function renderPredictionAPR(card, id, util, pred_bnbPrice) {
   let apr = await util.getStakeApr(id, pred_bnbPrice);
-
   const aprEle = card.querySelector(".apr");
   aprEle.textContent = `${formatNumber(apr, "per")}%`;
 }
@@ -14,7 +13,7 @@ async function renderPredictionStaked(card, pId, util) {
 }
 
 async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPrice){
-    // enter reward
+  // enter reward
   let earnedEle = card.querySelector(".earned");
   let earned, totalDollarValue;
   if(typeof util.farm.pendingPred !== "undefined"){
@@ -22,7 +21,7 @@ async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPric
     earned = ethers.utils.formatUnits(earned, 18);
     totalDollarValue = predPrice * earned;
   }else {
-    earned = await util.pendingBNB(pId);
+    earned = await util.pendingBID(pId);
     earned = ethers.utils.formatUnits(earned, 18);
     totalDollarValue = bnbPrice * earned;
   }
@@ -59,7 +58,7 @@ async function populatePredictionModal(event, util) {
   const modalId = event.target.dataset.target;
   const modal = document.querySelector(`${modalId}`);
   modal.dataset.pool = pId;
-  modal.dataset.prediction = typeof util.farm.instance.pendingBNB !== "undefined" ? "loser": "winner";
+  modal.dataset.prediction = typeof util.farm.instance.pendingBID !== "undefined" ? "loser": "winner";
   let canStake;
   if(modal.dataset.prediction === "loser"){
     canStake = await util.lostRound(util.pools[pId].epoch);
@@ -88,12 +87,24 @@ async function populatePredictionModal(event, util) {
     let staked = await util.userStake(pId);
     staked = ethers.utils.formatUnits(staked, 18);
     stakedEle.textContent = formatNumber(staked);
+    const title = modal.querySelector(".modal-title");
+    if(modal.dataset.prediction === "loser"){
+      title.textContent = "Unstake BID Token"
+    }else {
+      title.textContent = "Unstake PRED Token";
+    }
   } else {
     // enter balance
     let balEle = modal.querySelector(".balance");
     let bal = await util.getBalance(pId);
     bal = ethers.utils.formatUnits(bal, 18);
     balEle.textContent = formatNumber(bal);
+    const title = modal.querySelector(".modal-title");
+    if(modal.dataset.prediction === "loser"){
+      title.textContent = "Stake BID Token"
+    }else {
+      title.textContent = "Stake PRED Token";
+    }
   }
 }
 
@@ -111,7 +122,6 @@ async function getPastPools(){
 
     for(i=0; i<=length; i++){
       const data = {pool: i};
-      console.log(i);
       const userInfo = await util.userInfo(i, await signer.getAddress());
       const poolInfo = await util.getPoolInfo(i);
       const pending = higherIndex === 1 ? await util.pendingPred(i) : await util.pendingBNB(i);
@@ -124,7 +134,6 @@ async function getPastPools(){
       data.icon = higherIndex === 1 ? "pred" : "bnb";
       data.earned = formatNumber(ethers.utils.formatUnits(pending, 18));
 
-      console.log(userInfo.amount.toString(), poolInfo.epoch.toString());
 
       const row = `
         <td>${data.epoch}</td>

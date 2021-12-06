@@ -59,14 +59,15 @@ Object.defineProperty(WinnerPool.prototype, 'constructor', {
   }
 );
 
+
 function LoserPool(){
   PredictionPool(this);
 }
 
 LoserPool.prototype = Object.create(PredictionPool.prototype);
 
-LoserPool.prototype.pendingBNB = function (pId, address) {
-  return this.instance.pendingBNB(pId, address);
+LoserPool.prototype.pendingBID = function (pId, address) {
+  return this.instance.pendingBID(pId, address);
 }
 
 LoserPool.prototype.initialize = async function (address, abi, signer){
@@ -75,8 +76,8 @@ LoserPool.prototype.initialize = async function (address, abi, signer){
   this.poolLength = await this.instance.getPoolLength();
 
   const multiplier = await this.instance.BONUS_MULTIPLIER();
-  const bnbPerBlock = await this.instance.bnbPerBlock();
-  this.bnbPerBlock = multiplier.mul(bnbPerBlock);
+  const BIDPerBlock = await this.instance.BIDPerBlock();
+  this.BIDPerBlock = multiplier.mul(BIDPerBlock);
 }
 
 Object.defineProperty(LoserPool.prototype, 'constructor', {
@@ -85,3 +86,30 @@ Object.defineProperty(LoserPool.prototype, 'constructor', {
     writable: true 
   }
 );
+
+// function LoserPool(){
+//   PredictionPool(this);
+// }
+
+// LoserPool.prototype = Object.create(PredictionPool.prototype);
+
+// LoserPool.prototype.pendingBNB = function (pId, address) {
+//   return this.instance.pendingBNB(pId, address);
+// }
+
+// LoserPool.prototype.initialize = async function (address, abi, signer){
+//   this.instance = await new ethers.Contract(address, abi, signer);
+//   this.allocPoint = await this.instance.allocPoint();
+//   this.poolLength = await this.instance.getPoolLength();
+
+//   const multiplier = await this.instance.BONUS_MULTIPLIER();
+//   const bnbPerBlock = await this.instance.bnbPerBlock();
+//   this.bnbPerBlock = multiplier.mul(bnbPerBlock);
+// }
+
+// Object.defineProperty(LoserPool.prototype, 'constructor', {
+//     value: LoserPool,
+//     enumerable: false, // so that it does not appear in 'for in' loop
+//     writable: true 
+//   }
+// );

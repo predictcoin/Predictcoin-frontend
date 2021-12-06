@@ -1,0 +1,552 @@
+#prediction-section .predict .predict-btns .up, #prediction-section .predict .predict-btns .down {
+  border-radius: 4px;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+#prediction-section .predict .predict-btns .up img, #prediction-section .predict .predict-btns .down img {
+  margin-right: 0.5rem;
+}
+
+#prediction-section .connect-wallet,
+#prediction-section .enable-contract, #prediction-section .predictions .withdraw {
+  background-color: #0E56C0;
+  color: #ffffff;
+  border: none;
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+#prediction-section .predict, #prediction-section .predictions {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+#prediction-section {
+  color: #292929;
+  max-width: 1140px;
+  margin: auto;
+}
+
+#prediction-section .connect-wallet,
+#prediction-section .enable-contract {
+  display: block;
+  margin: auto initial;
+}
+
+#prediction-section .enable-contract {
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 965px) {
+  #prediction-section .first-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+#prediction-section .predict {
+  position: relative;
+}
+
+@media only screen and (min-width: 965px) {
+  #prediction-section .predict {
+    max-width: 500px;
+  }
+}
+
+#prediction-section .predict .skeleton {
+  margin-bottom: 2rem;
+}
+
+#prediction-section .predict .ph-item {
+  height: 4rem;
+}
+
+#prediction-section .predict .progress {
+  height: 0.3rem;
+}
+
+#prediction-section .predict .progress-bar {
+  width: 20%;
+  background-color: #00A660;
+}
+
+#prediction-section .predict .timer {
+  display: block;
+  text-align: end;
+}
+
+#prediction-section .predict .closeTime-info {
+  display: none;
+  text-align: center;
+}
+
+#prediction-section .predict .tokens {
+  margin: 2rem 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#prediction-section .predict .tokens .token {
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 1px #0E56C036 solid;
+  border-radius: 10px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+#prediction-section .predict .tokens .token.active {
+  background-color: #0E56C036;
+  color: #0E56C0;
+}
+
+#prediction-section .predict .tokens .token img {
+  width: 2rem;
+}
+
+#prediction-section .predict .locked-position {
+  margin-bottom: 2rem;
+  color: #0E56C0;
+}
+
+#prediction-section .predict .locked-position .heading {
+  color: #292929;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+#prediction-section .predict .locked-position .bar {
+  background: #E2EBF769;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+}
+
+#prediction-section .predict .locked-position .bar > div {
+  vertical-align: middle;
+}
+
+#prediction-section .predict .locked-position .bar img {
+  width: 2.5rem;
+  margin-right: 0.3rem;
+}
+
+#prediction-section .predict .locked-position .bar .price {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#prediction-section .predict .predict {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+#prediction-section .predict .predict .heading {
+  color: #292929;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+#prediction-section .predict .predict .predict-box {
+  background: #E2EBF769;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 500;
+}
+
+#prediction-section .predict .predict .predict-box .pred-needed {
+  font-size: 18px;
+  color: #0E56C0;
+}
+
+#prediction-section .predict .predict .predict-box .pred-balance {
+  font-size: 12px;
+  color: #6586B2;
+}
+
+#prediction-section .predict .predict .error {
+  color: #C8304D;
+  font-weight: 500;
+}
+
+#prediction-section .predict .predict-btns {
+  margin: 1rem;
+  text-align: center;
+  display: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#prediction-section .predict .predict-btns .up {
+  background-color: #00A660;
+  width: 186px;
+}
+
+#prediction-section .predict .predict-btns .down {
+  background-color: #C8304D;
+}
+
+@media screen and (max-width: 480px) {
+  #prediction-section .predict .predict-btns .down {
+    width: 186px;
+  }
+}
+
+#prediction-section .predict .round-ended {
+  display: none;
+  position: absolute;
+  padding: 2rem;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  bottom: 0;
+  /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  #prediction-section .predict .round-ended {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  #prediction-section .predict .round-ended {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+#prediction-section .predict .round-ended.show {
+  display: block;
+}
+
+#prediction-section .predict .round-ended .emoji-container {
+  height: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#prediction-section .predict .round-ended .emoji-container .emoji {
+  display: block;
+  margin: auto;
+}
+
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .emoji-container {
+    height: 15%;
+  }
+}
+
+#prediction-section .predict .round-ended .title {
+  font-weight: 600;
+  text-align: center;
+}
+
+#prediction-section .predict .round-ended .description {
+  text-align: center;
+}
+
+#prediction-section .predict .round-ended .time {
+  text-align: center;
+  padding: 1rem;
+  background: #F0F4F7;
+  border-radius: 11px;
+  border: 1px dashed #0E56C057;
+}
+
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .time {
+    padding: 0.5rem;
+  }
+}
+
+#prediction-section .predict .round-ended .time .title {
+  font-weight: 600;
+}
+
+#prediction-section .predict .round-ended .time .timer {
+  color: #616161;
+  text-align: center;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 400px) {
+  #prediction-section .predict .round-ended .time .timer {
+    font-size: 1.5rem;
+  }
+}
+
+#prediction-section .chart {
+  margin: 2rem;
+}
+
+@media only screen and (min-width: 965px) {
+  #prediction-section .chart {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+#prediction-section .chart .tradingview-widget-container {
+  height: 100%;
+}
+
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 {
+  height: 100%;
+}
+
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 25rem;
+}
+
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 .tv-widget-chart__nav {
+  display: none !important;
+}
+
+#prediction-section .chart .tradingview-widget-container #tradingview_c2432 .tv-widget-chart__container {
+  padding-top: 0;
+}
+
+@media only screen and (min-width: 0px) {
+  #prediction-section .chart .tradingview-widget-copyright {
+    display: none;
+  }
+}
+
+#prediction-section .predictions .heading {
+  margin-bottom: 1rem;
+}
+
+#prediction-section .predictions h2 {
+  margin-bottom: 1rem;
+}
+
+#prediction-section .predictions .withdraw {
+  margin: auto;
+  display: block;
+}
+
+#prediction-section .predictions .status {
+  display: inline-block;
+  padding: 0.4rem;
+  border-radius: 24px;
+}
+
+#prediction-section .predictions .unsuccessful {
+  background: #C4C4C473;
+}
+
+#prediction-section .predictions .won {
+  background-color: #00A66070;
+}
+
+#prediction-section .predictions .lost {
+  background: #FF5A5A73;
+}
+
+#prediction-section .predictions .earn {
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+#prediction-section .predictions .earn.won {
+  background: #0E56C08F;
+  color: #ffffff;
+}
+
+#prediction-section .predictions .earn.lost {
+  background: #F0B90B;
+}
+
+#prediction-section .predictions .error {
+  color: #C8304D;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+#prediction-section .predictions .my-prediction-table {
+  text-align: center;
+  overflow-x: scroll;
+  display: none;
+}
+
+@media only screen and (min-width: 965px) {
+  #prediction-section .predictions .my-prediction-table {
+    display: block;
+  }
+}
+
+#prediction-section .predictions .my-prediction-table .table-head {
+  padding: 1rem;
+  background: #E2EBF75C;
+  color: #0071BC94;
+}
+
+#prediction-section .predictions .my-prediction-table .table-head th {
+  padding: 1rem;
+}
+
+#prediction-section .predictions .my-prediction-table td {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+@media only screen and (min-width: 965px) {
+  #prediction-section .predictions .my-prediction-cards {
+    display: none;
+  }
+}
+
+#prediction-section .predictions .my-prediction-card {
+  background-color: #F0F4F7;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+#prediction-section .predictions .my-prediction-card .earn {
+  display: inline-block;
+  margin: auto;
+}
+
+#prediction-section .predictions .my-prediction-card div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#prediction-section .predictions .no-prediction {
+  text-align: center;
+  display: none;
+}
+
+body.connected #prediction-section .predict,
+body.connected #prediction-section .predict-btns {
+  display: block;
+}
+
+body.connected #prediction-section .predict-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body.connected #prediction-section #tradingview_c2432 iframe {
+  width: 100% !important;
+}
+
+body.connected #prediction-section .connect-wallet {
+  display: none;
+}
+
+body:not(.connected) #prediction-section .enable-contract,
+body:not(.connected) #prediction-section .withdraw {
+  display: none;
+}
+
+body:not(.connected) #prediction-section .my-predictions {
+  display: none;
+}
+
+body.enabled #prediction-section .predict-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body.enabled #prediction-section .enable-contract {
+  display: none;
+}
+
+body:not(.enabled) #prediction-section .predict-btns {
+  display: none;
+}
+
+body:not(.enabled) #prediction-section .withdraw {
+  display: none;
+}
+
+#prediction-section .predict.ended .round-ended {
+  display: block;
+}
+
+body #prediction-section.prediction-ended .predict .predict {
+  display: none;
+}
+
+body #prediction-section.prediction-ended .predict .predict-btns {
+  display: none;
+}
+
+body #prediction-section.prediction-ended .predict .closeTime-info {
+  display: block;
+}
+
+body #prediction-section .no-predictions.predictions .no-prediction {
+  display: block;
+}
+
+body.loading #prediction-section .predict.inner,
+body.loading #prediction-section .predict-btns,
+body.loading #prediction-section .locked-position,
+body.loading #prediction-section .withdraw,
+body.loading #prediction-section .my-prediction-card,
+body.loading #prediction-section .my-prediction-cards,
+body.loading #prediction-section .my-prediction-table,
+body.loading #prediction-section .enable-contract {
+  display: none;
+}
+
+body:not(.loading) .skeleton {
+  display: none;
+}
+/*# sourceMappingURL=prediction.css.map */

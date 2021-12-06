@@ -24,10 +24,8 @@ window.addEventListener("load", async () => {
 });
 
 async function useDefaultProvider(){
-  
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
-  
   if(typeof initPredictionPool !== "undefined"){
     
     winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");

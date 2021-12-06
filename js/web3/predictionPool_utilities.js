@@ -7,6 +7,7 @@ function PredictionUtil(signer, provider){
   this.farm = null;
   this.pools = {};
   this.pred = null;
+  this.BID = null;
   this.maxPred = 0;
   this.min = 0.000001;
 }
@@ -15,14 +16,17 @@ PredictionUtil.prototype.initialize = async function(Contract, name) {
   this.farm = new Contract();
 
   await this.farm.initialize(config.addresses[name], config.abis[name], this.signer);
-
   const poolIndex = this.farm.poolLength.toNumber() - 1;
   this.pools[poolIndex] = await this.farm.poolInfo(poolIndex);
   this.pools.live = this.pools[poolIndex];
-  this.maxPred = await this.farm.instance.maxPredDeposit();
+  this.maxPred = name === "winnerPool"? await this.farm.instance.maxPredDeposit()
+    : await this.farm.instance.maxBIDDeposit();
 
   this.pred = new ERC20();
   await this.pred.initialize(config.addresses.PRED, config.abis.ERC20, this.signer);
+  
+  this.BID = new ERC20();
+  await this.BID.initialize(config.addresses.BID, config.abis.ERC20, this.signer);
 }
 
 PredictionUtil.prototype.withdraw = async function(id, amount) {
@@ -38,13 +42,13 @@ PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
   if(typeof this.farm.predPerBlock !== "undefined"){
     totalPredPerYr = this.farm.predPerBlock.mul(28800).mul(365);
   }else{
-    totalBNBPerYr = this.farm.bnbPerBlock.mul(28800).mul(365);
-    totalPredPerYr = pred_bnbPrice.mul(totalBNBPerYr);
+    totalPredPerYr = this.farm.BIDPerBlock.mul(28800).mul(365);
   } 
   const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   const numerator = poolPredPerYr.mul(100);
 
   const stakedPred = this.pools[id].amount;
+
   let denominator = stakedPred.mul(this.farm.allocPoint);
   if (denominator.eq(0)) return 0;
   return numerator.div(denominator);
@@ -77,6 +81,11 @@ PredictionUtil.prototype.pendingBNB = async function(id) {
   return pending;
 }
 
+PredictionUtil.prototype.pendingBID = async function(id) {
+  const pending = await this.farm.pendingBID(id, await this.signer.getAddress());
+  return pending;
+}
+
 PredictionUtil.prototype.userInfo = async function(id) {
   return this.farm.userInfo(id, await this.signer.getAddress());
 }
@@ -95,7 +104,9 @@ PredictionUtil.prototype.userStake = async function(id) {
 }
 
 PredictionUtil.prototype.getBalance = async function(id) {
-  const balance = await this.pred.balanceOf(await this.signer.getAddress());
+  const balance = this.farm.predPerBlock === "undefined" ? 
+    await this.pred.balanceOf(await this.signer.getAddress()) : 
+    await this.BID.balanceOf(await this.signer.getAddress());
   return balance;
 }
 
