@@ -19,7 +19,8 @@ PredictionUtil.prototype.initialize = async function(Contract, name) {
   const poolIndex = this.farm.poolLength.toNumber() - 1;
   this.pools[poolIndex] = await this.farm.poolInfo(poolIndex);
   this.pools.live = this.pools[poolIndex];
-  this.maxPred = name === "winnerPool"? await this.farm.instance.maxPredDeposit()
+  this.maxPred = name === "winnerPool" || this.farm.instance.maxBIDDeposit === undefined
+    ? await this.farm.instance.maxPredDeposit()
     : await this.farm.instance.maxBIDDeposit();
 
   this.pred = new ERC20();
@@ -104,7 +105,7 @@ PredictionUtil.prototype.userStake = async function(id) {
 }
 
 PredictionUtil.prototype.getBalance = async function(id) {
-  const balance = this.farm.predPerBlock === "undefined" ? 
+  const balance = this.farm.BIDPerBlock === undefined ? 
     await this.pred.balanceOf(await this.signer.getAddress()) : 
     await this.BID.balanceOf(await this.signer.getAddress());
   return balance;
@@ -119,12 +120,15 @@ PredictionUtil.prototype.lostRound = async function(id) {
 }
 
 PredictionUtil.prototype.approve = async function(id){
-  return await this.pred.approve(this.farm.instance.address);
+  return this.farm.BIDPerBlock === undefined ? 
+    await this.pred.approve(this.farm.instance.address) :
+    await this.BID.approve(this.farm.instance.address);
 }
 
 PredictionUtil.prototype.allowance = async function(id){
-  return await this.pred.allowance(await this.signer.getAddress(), 
-    this.farm.instance.address);
+  return this.farm.BIDPerBlock === undefined ? 
+    await this.pred.allowance(await this.signer.getAddress(), this.farm.instance.address) :
+    await this.BID.allowance(await this.signer.getAddress(), this.farm.instance.address);
 }
 
 // PredictionUtil.prototype.stake = async function(id, amount){

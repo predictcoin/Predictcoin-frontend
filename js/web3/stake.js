@@ -294,19 +294,18 @@ async function putMax(event) {
 
   if (parent.id === "unstake") {
     bal = await _util.userStake(pId);
+    input.value = ethers.utils.formatUnits(bal, token.decimals);
+    parent.querySelector(".warning").textContent = "You don't have enough tokens staked";
   } else {
     bal = await _util.getBalance(pId);
-  }
-  input.value = ethers.utils.formatUnits(bal, token.decimals);
-
-  if(leftOver && input.value && leftOver.lt(ethers.utils.parseUnits(input.value, 18))){
-    parent.classList.add("disable-modal");
-    console.log("me");
-    parent.querySelector(".warning").textContent = "You have exceeded the max deposit";
-    return;
-  } else{
-    console.log("me");
-    parent.querySelector(".warning").textContent = "You don't have enough tokens to stake";
+    input.value = ethers.utils.formatUnits(bal, token.decimals);
+    if(leftOver && input.value && leftOver.lt(ethers.utils.parseUnits(input.value, 18))){
+      parent.classList.add("disable-modal");
+      parent.querySelector(".warning").textContent = "You have exceeded the max deposit";
+      return;
+    } else{
+      parent.querySelector(".warning").textContent = "You don't have enough tokens to stake";
+    }
   }
 
   if (bal.gt(0)) {

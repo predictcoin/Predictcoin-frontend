@@ -76,7 +76,8 @@ LoserPool.prototype.initialize = async function (address, abi, signer){
   this.poolLength = await this.instance.getPoolLength();
 
   const multiplier = await this.instance.BONUS_MULTIPLIER();
-  const BIDPerBlock = await this.instance.BIDPerBlock();
+  const BIDPerBlock = this.instance.BIDPerBlock !== undefined ? await this.instance.BIDPerBlock()
+    : await this.instance.bnbPerBlock();
   this.BIDPerBlock = multiplier.mul(BIDPerBlock);
 }
 
@@ -87,29 +88,31 @@ Object.defineProperty(LoserPool.prototype, 'constructor', {
   }
 );
 
-// function LoserPool(){
-//   PredictionPool(this);
-// }
 
-// LoserPool.prototype = Object.create(PredictionPool.prototype);
 
-// LoserPool.prototype.pendingBNB = function (pId, address) {
-//   return this.instance.pendingBNB(pId, address);
-// }
+function BNBPool(){
+  PredictionPool(this);
+}
 
-// LoserPool.prototype.initialize = async function (address, abi, signer){
-//   this.instance = await new ethers.Contract(address, abi, signer);
-//   this.allocPoint = await this.instance.allocPoint();
-//   this.poolLength = await this.instance.getPoolLength();
+BNBPool.prototype = Object.create(PredictionPool.prototype);
 
-//   const multiplier = await this.instance.BONUS_MULTIPLIER();
-//   const bnbPerBlock = await this.instance.bnbPerBlock();
-//   this.bnbPerBlock = multiplier.mul(bnbPerBlock);
-// }
+BNBPool.prototype.pendingBNB = function (pId, address) {
+  return this.instance.pendingBNB(pId, address);
+}
 
-// Object.defineProperty(LoserPool.prototype, 'constructor', {
-//     value: LoserPool,
-//     enumerable: false, // so that it does not appear in 'for in' loop
-//     writable: true 
-//   }
-// );
+BNBPool.prototype.initialize = async function (address, abi, signer){
+  this.instance = await new ethers.Contract(address, abi, signer);
+  this.allocPoint = await this.instance.allocPoint();
+  this.poolLength = await this.instance.getPoolLength();
+
+  const multiplier = await this.instance.BONUS_MULTIPLIER();
+  const bnbPerBlock = await this.instance.bnbPerBlock();
+  this.bnbPerBlock = multiplier.mul(bnbPerBlock);
+}
+
+Object.defineProperty(BNBPool.prototype, 'constructor', {
+    value: BNBPool,
+    enumerable: false, // so that it does not appear in 'for in' loop
+    writable: true 
+  }
+);

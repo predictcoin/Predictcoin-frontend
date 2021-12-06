@@ -23,7 +23,7 @@ async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPric
   }else {
     earned = await util.pendingBID(pId);
     earned = ethers.utils.formatUnits(earned, 18);
-    totalDollarValue = bnbPrice * earned;
+    totalDollarValue = 0.0581528 * earned;
   }
   
   card.querySelector(".dollar-value").textContent = `$${Number(
@@ -113,8 +113,8 @@ async function getPastPools(){
   const table = document.querySelector(".past-pools .table");
   if(table.classList.contains("filled")) return;
   table.classList.add("filled");
-  const utils = [loserUtil, winnerUtil];
-
+  const utils = [loserUtil, winnerUtil, BNBUtil];
+  console.log(BNBUtil);
   for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
     
     const util = utils[higherIndex];
@@ -122,25 +122,34 @@ async function getPastPools(){
 
     for(i=0; i<=length; i++){
       const data = {pool: i};
+      console.log(higherIndex)
       const userInfo = await util.userInfo(i, await signer.getAddress());
       const poolInfo = await util.getPoolInfo(i);
-      const pending = higherIndex === 1 ? await util.pendingPred(i) : await util.pendingBNB(i);
+      switch(higherIndex){
+        case(1):
+          pending = await util.pendingPred(i);
+          data.icon = '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">';
+          break;
+        case(2):
+          pending = await util.pendingBNB(i);
+          data.icon = '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">';
+          break;
+        default:
+          data.icon = '<img src="assets/front_n/images/coins/BID.png" alt="pred-icon">';
+          pending = await util.pendingBID(i);
+      }
       data.epoch = poolInfo.epoch.toString();
       data.amount = formatNumber(ethers.utils.formatUnits(userInfo.amount, 18));
 
       if(userInfo.amount.lte(0)) continue;
 
       document.querySelector(".past-pools").classList.remove("empty");
-      data.icon = higherIndex === 1 ? "pred" : "bnb";
       data.earned = formatNumber(ethers.utils.formatUnits(pending, 18));
 
 
       const row = `
         <td>${data.epoch}</td>
-        <td>${data.icon === "pred" ? 
-          '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">'
-          : '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">'}
-        </td>
+        <td>${data.icon}</td>
         <td>${data.amount}</td>
         <td>${data.earned}</td>
         <td><button class="withdraw">Withdraw</button></td>`
