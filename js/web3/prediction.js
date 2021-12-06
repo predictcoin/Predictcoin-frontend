@@ -118,7 +118,7 @@ function getCountDown(duration){
   days = zeroPad(days);
   hours = zeroPad(hours);
   mins = zeroPad(mins);
-  secs = zeroPad(secs);
+  secs = zeroPad(secs.toFixed());
   return [days, hours, mins, secs];
 }
 
