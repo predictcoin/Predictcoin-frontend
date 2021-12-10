@@ -2,18 +2,16 @@
 let provider, signer;
 
 window.addEventListener("load", async () => {
-
   let wallet = localStorage.getItem("wallet");
   if (wallet === null) {
-    
-    await useDefaultProvider()
-    
+    await useDefaultProvider();
+
     return;
   }
+  
   let walletProvider = getWalletProvider(wallet);
   // render APR and total staked/liquidity
   try {
-    
     await checkConnection(walletProvider);
     await start(walletProvider);
   } catch (err) {
@@ -23,17 +21,25 @@ window.addEventListener("load", async () => {
   }
 });
 
-async function useDefaultProvider(){
-  
+async function useDefaultProvider() {
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
-  
-  if(typeof initPredictionPool !== "undefined"){
-    
-    winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
-    loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
+
+  if (typeof initPredictionPool !== "undefined") {
+    winnerUtil = await initPredictionPool(
+      provider,
+      provider,
+      WinnerPool,
+      "winnerPool"
+    );
+    loserUtil = await initPredictionPool(
+      provider,
+      provider,
+      LoserPool,
+      "loserPool"
+    );
   }
-  
+
   await fillTotal_APR();
 }
 
@@ -44,18 +50,28 @@ async function start(walletProvider) {
   if (proceed === false) return;
   await initContracts(signer, provider);
 
-  if(typeof initPredictionPool !== "undefined"){
-    winnerUtil = await initPredictionPool(signer, provider, WinnerPool, "winnerPool");
-    loserUtil = await initPredictionPool(signer, provider, LoserPool, "loserPool");
+  if (typeof initPredictionPool !== "undefined") {
+    winnerUtil = await initPredictionPool(
+      signer,
+      provider,
+      WinnerPool,
+      "winnerPool"
+    );
+    loserUtil = await initPredictionPool(
+      signer,
+      provider,
+      LoserPool,
+      "loserPool"
+    );
   }
 
   await populateUI();
   await establishEvents(walletProvider);
 }
 
-function getWalletProvider(wallet){
+function getWalletProvider(wallet) {
   let walletProvider;
-  switch (wallet){
+  switch (wallet) {
     case "mathwallet":
     case "trustwallet":
     case "tokenpocket":
@@ -91,18 +107,17 @@ async function select_network(wallet) {
   }
 }
 
-function disconnectWallet(){
+function disconnectWallet() {
   closeModal("#walInfo");
   provider.off("block");
   provider.removeAllListeners("accountsChanged", "chainChanged");
 
   document.querySelector("body").classList.add("not-connected");
   document.querySelector("body").classList.remove("connected");
-  document.querySelectorAll(".web3-card").forEach(ele => {
-    ele.classList.add("not-enabled")
-    ele.classList.remove("enabled")
-    }
-  );
+  document.querySelectorAll(".web3-card").forEach((ele) => {
+    ele.classList.add("not-enabled");
+    ele.classList.remove("enabled");
+  });
   localStorage.removeItem("wallet");
 }
 

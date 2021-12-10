@@ -20,17 +20,7 @@ const fillTokens = async () => {
   let prices = [];
 
   for (i = 0; i < 10; i++) {
-    const {
-      name,
-      symbol,
-      current_price,
-      market_cap,
-      total_volume,
-      circulating_supply,
-      price_change_percentage_24h_in_currency: _24hChange,
-      price_change_percentage_7d_in_currency: _7dChange,
-      sparkline_in_7d,
-    } = res[i];
+    const {name, symbol, current_price, market_cap, total_volume, circulating_supply, price_change_percentage_24h_in_currency: _24hChange, price_change_percentage_7d_in_currency: _7dChange, sparkline_in_7d} = res[i];
 
     prices.push([sparkline_in_7d.price.map((price) => parseInt(price)), _7dChange]);
 
@@ -39,27 +29,18 @@ const fillTokens = async () => {
     const row = `<tr>
       <td>${name.toUpperCase()} ${symbol.toUpperCase()}</td>
         <td><span>$${formatter.format(current_price.toFixed(2))}</span></td>
-        <td><span class=${
-          _24hChange < 0 ? "text-red" : "text-green"
-        }>${formatter.format(_24hChange.toFixed(2))}%</span>
+        <td><span class=${_24hChange < 0 ? "text-red" : "text-green"}>${formatter.format(_24hChange.toFixed(2))}%</span>
         </td>
-        <td>
-          <span class=${
-            _7dChange < 0 ? "text-red" : "text-green"
-          }>${formatter.format(_7dChange.toFixed(2))}%</span>
+        <td><span class=${_7dChange < 0 ? "text-red" : "text-green"}>${formatter.format(_7dChange.toFixed(2))}%</span>
         </td>
         <td>$${formatter.format(market_cap)}</td>
         <td class="text-right">  
           <div class="volFVal">$${formatter.format(total_volume)}</div>  
           <div class="volCVal text-lightGray">
-          ${formatter.format(
-            parseInt(total_volume / current_price)
-          )} ${symbol.toUpperCase()}
+          ${formatter.format(parseInt(total_volume / current_price))} ${symbol.toUpperCase()}
           </div>
         </td>
-        <td>  ${formatter.format(
-          circulating_supply
-        )} ${symbol.toUpperCase()}</td>
+        <td>  ${formatter.format(circulating_supply)} ${symbol.toUpperCase()}</td>
         <td class="text-center">  
           <span class="ChartSicon${i}">      
           </span>
