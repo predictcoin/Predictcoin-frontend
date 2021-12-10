@@ -1,0 +1,376 @@
+body.live .past {
+  display: none;
+}
+
+body:not(.live) .live {
+  display: none;
+}
+
+.web3-card {
+  border: none;
+  max-width: 40rem;
+  border-radius: 29px;
+  -webkit-box-shadow: 5px 4px 19px 9px rgba(0,0,0,0.35); 
+box-shadow: 5px 4px 19px 9px rgba(0,0,0,0.35);
+
+}
+
+.ipo_heading {
+  margin: auto;
+  width: fit-content;
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 1.2rem 0.4rem;
+  margin-bottom: 4rem;
+}
+
+.ipo_heading span {
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 30px;
+}
+
+body.live .ipo_heading span.live-tab {
+  background: rgba(165, 165, 165, 0.52);
+}
+
+body:not(.live) .ipo_heading span.past-tab {
+  background: rgba(165, 165, 165, 0.52);
+}
+
+.web3-card__heading {
+  padding: 0;
+  text-align: center;
+  background: rgba(46, 89, 243, 1);
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 25px 25px 0px 0px;
+}
+
+.web3-card__heading img {
+  width: 30%;
+}
+
+.timer {
+  margin: 1rem auto;
+  width: fit-content;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(97, 97, 97, 1);
+}
+
+
+
+.first-section,
+.second-section,
+.third-section,
+.fourth-section {
+  margin: 0 2rem;
+}
+
+.token_details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.token_details img {
+  width: 4rem;
+  vertical-align: top;
+}
+
+.token_details .tokens {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.token_details .buy_token {
+  font-weight: 700;
+  color: rgba(14, 86, 192, 1);
+  font-size: 24px;
+}
+
+.token_details .sell_token {
+  background: rgba(240, 185, 11, 0.56);
+  padding: 0 0.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.layered_text {
+  display: flex;
+  flex-direction: column;
+}
+/* along */
+.layered_text .top {
+  margin: auto;
+}
+
+.layered_text .bottom {
+  font-weight: 600;
+  font-size: 18px;
+  color: rgba(97, 97, 97, 1);
+}
+
+.second-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 2rem;
+}
+
+.progress_bar {
+  height: 1rem;
+  border-radius: 7px;
+  background: rgba(226, 235, 247, 1);
+  margin: 0.5rem 0;
+}
+
+.progress_fill {
+  height: 100%;
+  width: 0%;
+  background: rgba(14, 86, 192, 1);
+  border-radius: 7px;
+}
+
+.progress_text-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-section {
+  margin: 1rem 2rem;
+}
+
+.input {
+  border: 1px solid rgba(226, 235, 247, 0.47);
+  margin: 1rem 0 0.2rem 0;
+  padding: 1rem;
+  background: rgba(226, 235, 247, 0.47);
+  display: flex;
+  justify-content: space-between;
+}
+
+.input input {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.input .eq {
+  text-align: center;
+  display: inline-block;
+  border-left: 1px solid rgba(196, 196, 196, 1);
+  padding-left: 2px;
+}
+
+.input_error {
+  color: red;
+}
+
+.claim_button,
+.buy_button,
+.enable_button {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  border: none;
+  background: rgba(14, 86, 192, 1);
+  color: #fff;
+  font-weight: 600;
+  padding: 20px;
+  width: 70%;
+}
+
+.buy_button.disable {
+  cursor: not-allowed;
+}
+
+hr {
+  width: 90%;
+}
+
+.web3-card__bottom {
+  background: transparent;
+}
+
+.separated_text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashed_cover {
+  margin: 2rem 0 0;
+  border: 2px dashed rgba(14, 86, 192, 0.5);
+  padding: 5px;
+}
+
+.past .fourth-section {
+  text-align: center;
+  color: rgba(134, 134, 134, 1);
+}
+
+.fourth-section .first {
+  font-size: 24px;
+}
+
+.fourth-section .second {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.past .first-section {
+  margin-top: 2rem;
+}
+
+.notifications.notifications--show {
+  margin-bottom: 1rem;
+}
+
+.web3-card.ended {
+  display: none;
+}
+
+.live .web3-card:not(.started) .fourth-section,
+.web3-card:not(.started) .buy_button {
+  display: none;
+}
+
+.web3-card.started .start-IPO {
+  display: none;
+}
+
+.web3-card:not(.started) .end-IPO {
+  display: none;
+}
+
+.no-IPOs.hide {
+  display: none;
+  color: #fff;
+}
+
+.web3-card.ended+.no-IPOs.hide {
+  display: block;
+}
+
+.web3-card.sold-out .not-sold-out {
+  display: none;
+}
+
+.web3-card .sold-out {
+  margin-top: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.web3-card.sold-out .sold-out {
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .timer {
+    font-size: 18px;
+  }
+
+  .claim_button,
+  .buy_button,
+  .enable_button {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .layered_text .bottom, .progress_text-top, .progress_text-bottom, .web3-card__bottom{
+    font-size: 14px;
+  }
+}
+
+
+.offering{
+  padding-bottom: 40px;
+}
+
+
+.enable_button{
+  border-radius: 30px;
+}
+
+
+.sizeimg{
+  border-radius: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+@media screen and (max-width: 500px) {
+  .sizeimg {
+    border-radius: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+
+.launch{
+	text-align: center;
+}
+
+
+.damn{
+  padding-left: 319px;
+  padding-right:313px;
+  margin-bottom: 30px; 
+}
+
+@media only screen and (max-width: 600px) {
+  .damn {
+    padding-left: 13px;
+    padding-right:15px;
+    margin-bottom: 30px; 
+  }
+}
+
+
+
+.launcher p{
+  color: #fff;
+}
+
+.launcher h5{
+  color: #fff;
+}
+.bg-card{
+  background-color: rgba(196, 196, 196, 0.233);
+}
+/* gradient */
+/* .gradient-card {
+  border: none;
+  max-width: 40rem;
+  border-radius: 29px;
+
+} */
+
+/* .granimate {
+  background-color: #2ecc71;
+  animation: hue 11s linear 0s infinite reverse;
+  border-radius: 29px;
+  padding-top: 140px;
+  height: 200px; 
+  }*/
+
+
+/* .granimate::before {
+  background: linear-gradient(105deg, rgba(255, 190, 0, 0), #ffbe00);
+  animation: hue 12s linear 1s infinite;
+}
+
+@keyframes hue {
+  to {
+    filter: hue-rotate(1turn);
+  }
+} */
