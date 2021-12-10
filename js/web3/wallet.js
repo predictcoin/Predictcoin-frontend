@@ -15,7 +15,6 @@ window.addEventListener("load", async () => {
     await checkConnection(walletProvider);
     await start(walletProvider);
   } catch (err) {
-    console.log(err);
 
     await useDefaultProvider();
   }
@@ -24,6 +23,7 @@ window.addEventListener("load", async () => {
 async function useDefaultProvider() {
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
+<<<<<<< HEAD
 
   if (typeof initPredictionPool !== "undefined") {
     winnerUtil = await initPredictionPool(
@@ -38,6 +38,14 @@ async function useDefaultProvider() {
       LoserPool,
       "loserPool"
     );
+=======
+  
+  if(typeof initPredictionPool !== "undefined"){
+    
+    winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
+    loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
+    BNBUtil = await initPredictionPool(provider, provider, BNBPool, "BNBPool");
+>>>>>>> 609df4840f0f238cb7c9fe28a313a2f23accb3db
   }
 
   await fillTotal_APR();
@@ -50,6 +58,7 @@ async function start(walletProvider) {
   if (proceed === false) return;
   await initContracts(signer, provider);
 
+<<<<<<< HEAD
   if (typeof initPredictionPool !== "undefined") {
     winnerUtil = await initPredictionPool(
       signer,
@@ -63,6 +72,12 @@ async function start(walletProvider) {
       LoserPool,
       "loserPool"
     );
+=======
+  if(typeof initPredictionPool !== "undefined"){
+    winnerUtil = await initPredictionPool(signer, provider, WinnerPool, "winnerPool");
+    loserUtil = await initPredictionPool(signer, provider, LoserPool, "loserPool");
+    BNBUtil = await initPredictionPool(signer, provider, BNBPool, "BNBPool");
+>>>>>>> 609df4840f0f238cb7c9fe28a313a2f23accb3db
   }
 
   await populateUI();
@@ -87,7 +102,6 @@ function getWalletProvider(wallet) {
 
 async function select_network(wallet) {
   let walletProvider = getWalletProvider(wallet);
-  console.log("second", wallet, walletProvider);
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
     await walletProvider.request({ method: "eth_requestAccounts" });
