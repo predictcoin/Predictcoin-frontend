@@ -11,18 +11,22 @@ async function fillPrediction_APR(){
       config.addresses.BUSD
     )
   )[1];
-  
-  let bnbPrice = (
-    await util.getAmountsOut(
+      
+  // let bidPrice = ethers.BigNumber.from("57414222109677671");
+  let bidPrice = (
+    await util.getAmountsOutAutoShark(
       ethers.utils.parseUnits("1", 18),
+      config.addresses.BID,
       config.addresses.WBNB,
       config.addresses.BUSD
     )
-  )[1];
-  
-  const pred_bnbPrice = bnbPrice.div(predPrice);
+  )[2];
+
+
+  const pred_bidPrice = predPrice.div(bidPrice);
+
   predPrice = ethers.utils.formatUnits(predPrice, 18);
-  bnbPrice = ethers.utils.formatUnits(bnbPrice, 18);
+  bidPrice = ethers.utils.formatUnits(bidPrice, 18);
 
   const loserEle = document.querySelector(".prediction-pool.loser");
   const winnerEle = document.querySelector(".prediction-pool.winner");
@@ -32,7 +36,7 @@ async function fillPrediction_APR(){
   eles.forEach( async (ele, index) => {
     const pId = utils[index].farm.poolLength.toNumber()-1;
     ele.dataset.pool = pId;
-    await renderPredictionAPR(ele, pId, utils[index], pred_bnbPrice);
+    await renderPredictionAPR(ele, pId, utils[index], pred_bidPrice);
     await renderPredictionStaked(ele, pId, utils[index]);
     ele.querySelector(".epoch").textContent = `#${utils[index].pools[pId].epoch}`;
     ele.classList.remove("loading");
@@ -49,17 +53,19 @@ async function populatePredictionUI(){
     )
   )[1];
   
-  let bnbPrice = (
-    await util.getAmountsOut(
+  // let bidPrice = ethers.BigNumber.from("57414222109677671");
+  let bidPrice = (
+    await util.getAmountsOutAutoShark(
       ethers.utils.parseUnits("1", 18),
+      config.addresses.BID,
       config.addresses.WBNB,
       config.addresses.BUSD
     )
-  )[1];
-  
-  const pred_bnbPrice = bnbPrice.div(predPrice);
+  )[2];
+
+  const pred_bidPrice = predPrice.div(bidPrice);
   predPrice = ethers.utils.formatUnits(predPrice, 18);
-  bnbPrice = ethers.utils.formatUnits(bnbPrice, 18);
+  bidPrice = ethers.utils.formatUnits(bidPrice, 18);
 
 
   const loserEle = document.querySelector(".prediction-pool.loser");
@@ -83,11 +89,11 @@ async function populatePredictionUI(){
 
     const pId = utils[index].farm.poolLength.toNumber() - 1;
     ele.dataset.pool = pId;
-    await renderPredictionAPR(ele, pId, utils[index], pred_bnbPrice);
+    await renderPredictionAPR(ele, pId, utils[index], pred_bidPrice);
     await renderPredictionStaked(ele, pId, utils[index]);
     ele.querySelector(".epoch").textContent = `#${utils[index].pools[pId].epoch}`;
 
-    await renderPredictionPendingReward(ele, utils[index], pId, bnbPrice, predPrice);
+    await renderPredictionPendingReward(ele, utils[index], pId, bidPrice, predPrice);
     await renderUserStake(ele, utils[index], pId);
 
     //config. enable button
