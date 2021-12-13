@@ -114,7 +114,10 @@ async function getPastPools(){
   if(table.classList.contains("filled")) return;
   table.classList.add("filled");
   const utils = [loserUtil, winnerUtil, BNBUtil];
+<<<<<<< HEAD
   console.log(BNBUtil);
+=======
+>>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
     
     const util = utils[higherIndex];
@@ -122,7 +125,10 @@ async function getPastPools(){
 
     for(i=0; i<=length; i++){
       const data = {pool: i};
+<<<<<<< HEAD
       console.log(higherIndex)
+=======
+>>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
       const userInfo = await util.userInfo(i, await signer.getAddress());
       const poolInfo = await util.getPoolInfo(i);
       switch(higherIndex){

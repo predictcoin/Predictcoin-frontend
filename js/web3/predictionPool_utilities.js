@@ -43,7 +43,12 @@ PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
   if(typeof this.farm.predPerBlock !== "undefined"){
     totalPredPerYr = this.farm.predPerBlock.mul(28800).mul(365);
   }else{
+<<<<<<< HEAD
     totalPredPerYr = this.farm.BIDPerBlock.mul(28800).mul(365);
+=======
+    totalBIDPerYr = this.farm.bidPerBlock.mul(28800).mul(365);
+    totalPredPerYr = totalBIDPerYr.div(pred_bnbPrice);
+>>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   } 
   const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   const numerator = poolPredPerYr.mul(100);
@@ -74,6 +79,11 @@ PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
 
 PredictionUtil.prototype.pendingPred = async function(id) {
   const pending = await this.farm.pendingPred(id, await this.signer.getAddress())
+  return pending;
+}
+
+PredictionUtil.prototype.pendingBID = async function(id) {
+  const pending = await this.farm.pendingBID(id, await this.signer.getAddress())
   return pending;
 }
 
