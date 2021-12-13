@@ -59,6 +59,7 @@ Object.defineProperty(WinnerPool.prototype, 'constructor', {
   }
 );
 
+
 function LoserPool(){
   PredictionPool(this);
 }

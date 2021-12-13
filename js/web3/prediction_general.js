@@ -43,7 +43,7 @@ function setNextRoundCountdown(){
     }
 
     const duration = futureStamp - parseInt(Date.now()/1000);
-
+    // const duration = (1639400400000 - Date.now())/1000
     const [days, hours, mins, secs] = getCountDown(duration);
     const cont = document.querySelector(".round-ended .timer");
     cont.textContent = `${days}d : ${hours}hr : ${mins}m : ${secs}s`

@@ -56,6 +56,7 @@ function closeModal(modal){
     ele.value = "";
   })
   document.querySelector(`${modal} .close`).click();
+  document.querySelector(`${modal}`).dataset.prediction = "";
 }
 
 function closeModal2(event){

@@ -8,6 +8,7 @@ function Util(signer, provider){
   this.pools;
   this.min = 0.000001;
   this.PancakeRouter = null;
+  this.AutoSharkRouter = null;
 }
 
 Util.prototype.initialize = async function() {

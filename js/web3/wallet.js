@@ -17,16 +17,15 @@ window.addEventListener("load", async () => {
     await checkConnection(walletProvider);
     await start(walletProvider);
   } catch (err) {
+    console.log(err);
 
     await useDefaultProvider();
   }
 });
 
 async function useDefaultProvider(){
-  
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
   await initContracts(provider, provider);
-  
   if(typeof initPredictionPool !== "undefined"){
     
     winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
@@ -72,6 +71,7 @@ function getWalletProvider(wallet){
 
 async function select_network(wallet) {
   let walletProvider = getWalletProvider(wallet);
+  console.log("second", wallet, walletProvider);
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
     await walletProvider.request({ method: "eth_requestAccounts" });

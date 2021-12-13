@@ -5808,6 +5808,11 @@ const config = {
       {
         "inputs": [
           {
+            "internalType": "address",
+            "name": "_operator",
+            "type": "address"
+          },
+          {
             "internalType": "contract IBEP20",
             "name": "_pred",
             "type": "address"
@@ -5875,6 +5880,19 @@ const config = {
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "operatorAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
           }
         ],
         "stateMutability": "view",
@@ -6044,6 +6062,32 @@ const config = {
           }
         ],
         "name": "setMaxPredDeposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_operatorAddress",
+            "type": "address"
+          }
+        ],
+        "name": "setOperator",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "setPoolAllocPoint",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -6237,7 +6281,6 @@ const config = {
       }
     ]
   },
-
   // Testnet details
   // addresses : {
   //   "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
