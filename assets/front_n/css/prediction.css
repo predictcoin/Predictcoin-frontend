@@ -175,7 +175,7 @@
   }
 }
 #prediction-section .predict .round-ended {
-  /* display: none; */
+  display: none;
   position: absolute;
   padding: 2rem;
   top: 0;
