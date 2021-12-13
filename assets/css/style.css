@@ -313,25 +313,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-xl-6 {
   flex: 0 0 auto;
-<<<<<<< HEAD
-  width: 79%;
-=======
   width: 69%;
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 }
 
 .wrapper {
   text-align: center;
   padding-top: 20px;
-<<<<<<< HEAD
-  display: flex;
-}
-
-@media only screen and (max-width: 600px) {
-  .wrapper {
-display: block;  }
-=======
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 }
 
 .buttonblue{
@@ -355,30 +342,6 @@ margin-top: 10px;
 }
 
 
-<<<<<<< HEAD
-.buttonred{
-  background: linear-gradient( 
-    133deg,#e84124,#be0d00);
-  padding: 13px 64px!important;
-  border-radius: 30px;
-  font-size: 16px;
-  margin-left: 13px;
-  display: inline-block;
-  text-decoration: none;
-  text-align: center;
-  color: #ffffff!important;
-  font-weight: 700;
-}
-
-@media only screen and (max-width: 600px) {
-  .buttonred {
-margin-top: 10px;
-  }
-}
-
-
-=======
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 .buttonout{
   border: 1px solid rgb(255, 255, 255);
   padding: 13px 64px!important;
@@ -428,14 +391,6 @@ margin-top: 10px;
   }
 }
 
-<<<<<<< HEAD
-@media only screen and (min-width: 300px) {
-  .lappyguy {
-    margin-top: -45px;
-  }
-}
-=======
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 
 
 #hero {
@@ -922,15 +877,8 @@ color: #FFF;
 	{
 		font-size: 18px;
 	}
-<<<<<<< HEAD
-	}
-=======
 	
-	.about {
-		/* padding: 1.25rem 0 1rem; */
-	}
-}
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
+
 
 
 .whitepaper h1{
@@ -1113,5 +1061,4 @@ background-color: #fff;
     width: 81%!important;
   }
 }
-
-
+}
