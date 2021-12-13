@@ -20,16 +20,11 @@ async function fillPrediction_APR(){
       config.addresses.WBNB,
       config.addresses.BUSD
     )
-<<<<<<< HEAD
-  )[1];
-  const pred_bnbPrice = bnbPrice.div(predPrice);
-=======
   )[2];
 
 
   const pred_bidPrice = predPrice.div(bidPrice);
 
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   predPrice = ethers.utils.formatUnits(predPrice, 18);
   bidPrice = ethers.utils.formatUnits(bidPrice, 18);
 

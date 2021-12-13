@@ -76,14 +76,8 @@ LoserPool.prototype.initialize = async function (address, abi, signer){
   this.poolLength = await this.instance.getPoolLength();
 
   const multiplier = await this.instance.BONUS_MULTIPLIER();
-<<<<<<< HEAD
-  const BIDPerBlock = this.instance.BIDPerBlock !== undefined ? await this.instance.BIDPerBlock()
-    : await this.instance.bnbPerBlock();
-  this.BIDPerBlock = multiplier.mul(BIDPerBlock);
-=======
   const bidPerBlock = await this.instance.bidPerBlock();
   this.bidPerBlock = multiplier.mul(bidPerBlock);
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 }
 
 Object.defineProperty(LoserPool.prototype, 'constructor', {
@@ -93,17 +87,9 @@ Object.defineProperty(LoserPool.prototype, 'constructor', {
   }
 );
 
-<<<<<<< HEAD
-
-
-function BNBPool(){
-  PredictionPool(this);
-}
-=======
 function BNBPool(){
   PredictionPool(this);
 };
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 
 BNBPool.prototype = Object.create(PredictionPool.prototype);
 

@@ -4921,24 +4921,6 @@ const config = {
       },
       {
         "inputs": [],
-<<<<<<< HEAD
-        "name": "BIDPerBlock",
-=======
-        "name": "BONUS_MULTIPLIER",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-<<<<<<< HEAD
-        "inputs": [],
         "name": "BONUS_MULTIPLIER",
         "outputs": [
           {
@@ -4951,17 +4933,6 @@ const config = {
         "type": "function"
       },
       {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_epoch",
-            "type": "uint256"
-          }
-        ],
-        "name": "add",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-=======
         "inputs": [
           {
             "internalType": "uint256",
@@ -4985,16 +4956,11 @@ const config = {
           }
         ],
         "stateMutability": "view",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
         "type": "function"
       },
       {
         "inputs": [],
-<<<<<<< HEAD
-        "name": "allocPoint",
-=======
         "name": "bidPerBlock",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
         "outputs": [
           {
             "internalType": "uint256",
@@ -5082,25 +5048,17 @@ const config = {
           },
           {
             "internalType": "contract IBEP20",
-<<<<<<< HEAD
-            "name": "_BID",
-=======
             "name": "_pred",
             "type": "address"
           },
           {
             "internalType": "contract IBEP20",
             "name": "_bid",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
             "type": "address"
           },
           {
             "internalType": "uint256",
-<<<<<<< HEAD
-            "name": "_BIDPerBlock",
-=======
             "name": "_bidPerBlock",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
             "type": "uint256"
           },
           {
@@ -5110,11 +5068,7 @@ const config = {
           },
           {
             "internalType": "uint256",
-<<<<<<< HEAD
-            "name": "_maxBIDDeposit",
-=======
             "name": "_maxPredDeposit",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
             "type": "uint256"
           },
           {
@@ -5159,11 +5113,7 @@ const config = {
       },
       {
         "inputs": [],
-<<<<<<< HEAD
-        "name": "maxBIDDeposit",
-=======
         "name": "maxPredDeposit",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
         "outputs": [
           {
             "internalType": "uint256",
@@ -5298,8 +5248,6 @@ const config = {
       },
       {
         "inputs": [],
-<<<<<<< HEAD
-=======
         "name": "pred",
         "outputs": [
           {
@@ -5313,7 +5261,6 @@ const config = {
       },
       {
         "inputs": [],
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
         "name": "prediction",
         "outputs": [
           {
@@ -5349,19 +5296,11 @@ const config = {
         "inputs": [
           {
             "internalType": "uint256",
-<<<<<<< HEAD
-            "name": "_maxBIDDeposit",
-            "type": "uint256"
-          }
-        ],
-        "name": "setMaxBIDDeposit",
-=======
             "name": "_maxPredDeposit",
             "type": "uint256"
           }
         ],
         "name": "setMaxPredDeposit",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -5667,22 +5606,6 @@ const config = {
         "anonymous": false,
         "inputs": [
           {
-<<<<<<< HEAD
-            "indexed": false,
-            "internalType": "address",
-            "name": "operator",
-            "type": "address"
-          }
-        ],
-        "name": "NewOperatorAddress",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-=======
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
             "indexed": true,
             "internalType": "address",
             "name": "previousOwner",
@@ -6358,11 +6281,6 @@ const config = {
       }
     ]
   },
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   // Testnet details
   // addresses : {
   //   "Farm": "0xe7543ec3F8341E3Becb5E3711B2a633AB072E1B8",
@@ -6380,17 +6298,10 @@ const config = {
   //   // IPO
   //   "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
   //   "Prediction": "0xb021c3fFbA6E88802790603Ec96411F5b5BBF234",
-<<<<<<< HEAD
-  //   "loserPool": "0x09DCDD45F609BfD1307c91f678F413Bfc3d3cae6",
-  //   "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf",
-  //   "BNBPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
-  //   "BID": "0x21B1c11d5e7f6B8Cd07be8886b196319fc69e558"
-=======
   //   "loserPool": "0x8148A3348c593B746ECB019Cde9bb2a982fde569",
   //   "winnerPool": "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf",
   //   "BNBPool": "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
   //   "BID": "0x21B1c11d5e7f6B8Cd07be8886b196319fc69e558",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   // },
   // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   // predictionTokens: {
@@ -6420,11 +6331,7 @@ const config = {
     "BUSD": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
     "WBNB": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
     "PancakeRouter": "0x10ED43C718714eb63d5aA57B78B54704E256024E",
-<<<<<<< HEAD
-    "AutoSharkRouter": "0x9b1240399e9e23e4c31520fc5c00fa83dc451819",
-=======
     "AutoSharkRouter": "0xB0EeB0632bAB15F120735e5838908378936bd484",
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
     "PRED": "0xbdD2E3fdb879AA42748E9D47b7359323f226BA22",
     "BUSD-PRED LP": "0xf38db36c3e1b2a93ba0eda1ee49a86f9cbca6980",
     "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
@@ -6434,17 +6341,10 @@ const config = {
       // IPO
     "IPO1": "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
     "Prediction": "0xBf9C36E0852B62Ac730E6BA8EAa5022Ed97cBBE8",
-<<<<<<< HEAD
-    "loserPool": "0x203b37B90F1Ff840daEe3508FafDbCcA3b2eb7d5",
-    "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406",
-    "BID": "0xf9c86001c92fe30be5aa5eb3ef4cd191eae205e4",
-    "BNBPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
-=======
     "loserPool": "0x5D83EF52661Baa67c9a7d60BF61b8339622603B6",
     "winnerPool": "0x29C06EB1320BBc32A6891889A3dF56d8422f5406",
     "BID": "0xf9C86001C92fE30Be5Aa5eB3EF4cd191eAE205e4",
     "BNBPool": "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc"
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   },
   pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   predictionTokens: {
