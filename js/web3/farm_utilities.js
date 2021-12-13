@@ -17,12 +17,7 @@ Util.prototype.initialize = async function() {
   this.PancakeRouter = new PancakeRouter();
   this.AutoSharkRouter = new PancakeRouter();
   await this.PancakeRouter.initialize(config.addresses.PancakeRouter, config.abis.PancakeRouter, this.signer);
-<<<<<<< HEAD
-  // this.AutoSharkRouter = new PancakeRouter();
-  // await this.AutoSharkRouter.initialize(config.addresses.AutoSharkRouter, config.abis.PancakeRouter, this.signer);
-=======
   await this.AutoSharkRouter.initialize(config.addresses.AutoSharkRouter, config.abis.PancakeRouter, this.signer);
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
   this.pools = [];
   this.pools[0] = await this.farm.poolInfo(0);
 }
@@ -112,13 +107,8 @@ Util.prototype.getAmountsOut = async function (amountIn, PRED, BUSD){
   return await this.PancakeRouter.getAmountsOut(amountIn, [PRED, BUSD])
 }
 
-<<<<<<< HEAD
-Util.prototype.getAmountsOut2 = async function (amountIn, ...tokens){
-  return await this.AutoSharkRouter.getAmountsOut(amountIn, tokens);
-=======
 Util.prototype.getAmountsOutAutoShark = async function (amountIn, ...tokens){
   return await this.AutoSharkRouter.getAmountsOut(amountIn, tokens)
->>>>>>> bcedac50ff07bb618025d82d11911cf55727426a
 }
 
 Util.prototype.totalSupply = async function(token){
