@@ -22,7 +22,6 @@ async function fillPrediction_APR(){
     )
   )[2];
 
-
   const pred_bidPrice = predPrice.div(bidPrice);
 
   predPrice = ethers.utils.formatUnits(predPrice, 18);
