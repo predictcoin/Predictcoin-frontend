@@ -1,16 +1,17 @@
 // This file Connects wallets and registers events
-let provider, signer;
+let provider, signer, walletProvider;
 
 window.addEventListener("load", async () => {
 
   let wallet = localStorage.getItem("wallet");
+  console.log(wallet);
   if (wallet === null) {
     
     await useDefaultProvider()
     
     return;
   }
-  let walletProvider = getWalletProvider(wallet);
+  walletProvider = await getWalletProvider(wallet);
   // render APR and total staked/liquidity
   try {
     
@@ -53,7 +54,7 @@ async function start(walletProvider) {
   await establishEvents(walletProvider);
 }
 
-function getWalletProvider(wallet){
+async function getWalletProvider(wallet){
   let walletProvider;
   switch (wallet){
     case "mathwallet":
@@ -64,22 +65,34 @@ function getWalletProvider(wallet){
       break;
     case "binance":
       walletProvider = window.BinanceChain;
+    case "walletConnect":
+      walletProvider = new WalletConnectProvider.default({
+        rpc: {
+          1: "https://bsc-dataseed.binance.org/",
+          56: "https://bsc-dataseed.binance.org/",
+          97: "https://data-seed-prebsc-1-s1.binance.org:8545/"
+        },
+      });
+      await walletProvider.enable()
   }
 
   return walletProvider;
 }
 
 async function select_network(wallet) {
-  let walletProvider = getWalletProvider(wallet);
-  console.log("second", wallet, walletProvider);
+  let walletProvider = await getWalletProvider(wallet);
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
     await walletProvider.request({ method: "eth_requestAccounts" });
+    console.log("me");
     localStorage.setItem("wallet", wallet);
   } catch (err) {
     if (err.code == 4001) {
       $.growl.error({ message: "Wallet connection was rejected" });
       return;
+    }
+    if(wallet === "walletConnect"){
+      localStorage.setItem("wallet", wallet);
     }
   }
 
@@ -103,6 +116,9 @@ function disconnectWallet(){
     ele.classList.remove("enabled")
     }
   );
+  if(localStorage.getItem("wallet") === "walletConnect"){
+    walletProvider.disconnect();
+  }
   localStorage.removeItem("wallet");
 }
 

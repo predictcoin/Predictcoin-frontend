@@ -29,8 +29,8 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <!-- Validate -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <!-- WalletConnect
-    <script type="text/javascript" src="unpkg.com/%40walletconnect/web3-provider%401.2.1/dist/umd/index.min.js"></script> -->
+    <!-- WalletConnect -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
   </head> 
   <body class="pageBgGrdient pageFill not-connected">
         <header class="headerStatic">
@@ -426,6 +426,15 @@
                 </span>
                 <span class="walOptImg">
                   <img src="assets/front_n/images/wallet/trustwallet.png" alt="trustwallet"/>
+                </span>
+              </button>
+
+              <button onclick="select_network('walletConnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_binancechain">
+                <span class="walOptText">
+                  Wallet Connect
+                </span>
+                <span class="walOptImg">
+                  <img src="assets/front_n/images/wallet/walletconnect.svg" alt="walletconnect"/>
                 </span>
               </button>
               
