@@ -23,6 +23,7 @@
 
     <script src="assets/front_n/js/jquery.min.js"></script>    
     <script src="assets/front_n/js/gijgo.min.js"></script>    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
     <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <!-- Etherjs -->
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
@@ -233,6 +234,15 @@
                 </span>
                 <span class="walOptImg">
                   <img src="assets/front_n/images/wallet/trustwallet.png" alt="trustwallet"/>
+                </span>
+              </button>
+
+              <button onclick="select_network('walletConnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_binancechain">
+                <span class="walOptText">
+                  Wallet Connect
+                </span>
+                <span class="walOptImg">
+                  <img src="assets/front_n/images/wallet/walletconnect.svg" alt="walletconnect"/>
                 </span>
               </button>
               
