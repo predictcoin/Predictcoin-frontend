@@ -245,7 +245,7 @@ function setPredictionRows(predictions){
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
         '<a href="./staking.html" class="earn won">Earn PRED</a>' :
-        '<a href="./staking.html" class="earn lost">Earn BNB</a>' 
+        '<a href="./staking.html" class="earn lost">Earn BID</a>' 
       ) :
         '<span>-</span>'
       }
@@ -308,7 +308,7 @@ function setPredictionCards(predictions){
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
         '<a class="earn won" href="./staking.html">Earn PRED</a>' :
-        '<a href="./staking.html" class="earn lost">Earn BNB</a>' 
+        '<a href="./staking.html" class="earn lost">Earn BID</a>' 
       ) :
         ''
       }  
