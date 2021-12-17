@@ -4,7 +4,6 @@ let provider, signer, walletProvider;
 window.addEventListener("load", async () => {
 
   let wallet = localStorage.getItem("wallet");
-  console.log(wallet);
   if (wallet === null) {
     
     await useDefaultProvider()

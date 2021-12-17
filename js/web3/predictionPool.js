@@ -12,7 +12,7 @@ async function renderPredictionStaked(card, pId, util) {
   totalEle.textContent = formatNumber(total);
 }
 
-async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPrice){
+async function renderPredictionPendingReward(card, util, pId, bidPrice, predPrice){
   // enter reward
   let earnedEle = card.querySelector(".earned");
   let earned, totalDollarValue;
@@ -23,7 +23,7 @@ async function renderPredictionPendingReward(card, util, pId, bnbPrice, predPric
   }else {
     earned = await util.pendingBID(pId);
     earned = ethers.utils.formatUnits(earned, 18);
-    totalDollarValue = 0.0581528 * earned;
+    totalDollarValue = bidPrice * earned;
   }
   
   card.querySelector(".dollar-value").textContent = `$${Number(
@@ -88,11 +88,7 @@ async function populatePredictionModal(event, util) {
     staked = ethers.utils.formatUnits(staked, 18);
     stakedEle.textContent = formatNumber(staked);
     const title = modal.querySelector(".modal-title");
-    if(modal.dataset.prediction === "loser"){
-      title.textContent = "Unstake BID Token"
-    }else {
-      title.textContent = "Unstake PRED Token";
-    }
+    title.textContent = "Unstake PRED Token";
   } else {
     // enter balance
     let balEle = modal.querySelector(".balance");
@@ -100,11 +96,7 @@ async function populatePredictionModal(event, util) {
     bal = ethers.utils.formatUnits(bal, 18);
     balEle.textContent = formatNumber(bal);
     const title = modal.querySelector(".modal-title");
-    if(modal.dataset.prediction === "loser"){
-      title.textContent = "Stake BID Token"
-    }else {
       title.textContent = "Stake PRED Token";
-    }
   }
 }
 
