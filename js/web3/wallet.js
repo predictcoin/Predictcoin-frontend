@@ -64,6 +64,7 @@ async function getWalletProvider(wallet){
       break;
     case "binance":
       walletProvider = window.BinanceChain;
+      break;
     case "walletConnect":
       walletProvider = new WalletConnectProvider.default({
         rpc: {
