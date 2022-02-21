@@ -345,10 +345,10 @@ async function withdraw(event) {
   await sendTx(
     tx,
     `Successfully withdrew ${formatNumber(input.value)} ${
-      predictionStatus === "loser" ? "BID" : (predictionStatus ?  "PRED" : config.pools[parent.dataset.pool])
+      predictionStatus ?  "PRED" : config.pools[parent.dataset.pool]
     }`,
     `Failed to withdraw ${formatNumber(input.value)} ${
-      predictionStatus === "loser" ? "BID" : (predictionStatus ?  "PRED" : config.pools[parent.dataset.pool])
+      predictionStatus ?  "PRED" : config.pools[parent.dataset.pool]
     }`
   );
   closeModal("#unstake");
