@@ -395,10 +395,10 @@ async function deposit(event) {
   await sendTx(
     tx,
     `You successfully staked ${formatNumber(input.value)} ${
-      predictionStatus === "loser" ? "BID" : (predictionStatus ?  "PRED" : config.pools[parent.dataset.pool])
+      predictionStatus ?  "PRED" : config.pools[parent.dataset.pool]
     }`,
     `Transaction failed to stake ${formatNumber(input.value)} ${
-      predictionStatus === "loser" ? "BID" : (predictionStatus ?  "PRED" : config.pools[parent.dataset.pool])
+      predictionStatus ?  "PRED" : config.pools[parent.dataset.pool]
     }`
   );
   closeModal("#stake");
